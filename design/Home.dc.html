@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><title>Bhutan Mind Vacation — Journeys through the Kingdom of Bhutan</title><script src="assets/data.js"></script><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#000}a{color:inherit;text-decoration:none}a:hover{color:#e3a23a}</style></helmet>
+<dc-import name="Nav" hint-size="100%,76px"></dc-import>
+
+<section ref="{{ heroRef }}" data-screen-label="01 Film" style="position:relative;height:230vh;background:#000;">
+  <div style="position:sticky;top:0;height:100vh;overflow:hidden;">
+    <video ref="{{ vidRef }}" playsinline="" loop="" muted="" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale({{ vidScale }});filter:saturate(.85) contrast(1.05);"></video>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 55%,rgba(0,0,0,.7) 100%);"></div>
+    <div style="position:absolute;inset:0;background:#000;opacity:{{ heroDark }};"></div>
+    <div style="position:absolute;inset:0;background:#000;opacity:{{ curtain }};transition:opacity 2.2s ease;pointer-events:none;"></div>
+
+    <div style="position:absolute;top:110px;left:clamp(16px,3vw,40px);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#f5f1e8;line-height:1.9;opacity:{{ metaOp }};transition:opacity 1.2s ease 1.2s;">
+      <div>27.5142° N</div><div>90.4336° E</div>
+      <div style="margin-top:14px;width:28px;height:1px;background:#e3a23a;"></div>
+    </div>
+    <div style="position:absolute;top:110px;right:clamp(16px,3vw,40px);text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:rgba(245,241,232,.8);line-height:1.9;opacity:{{ metaOp }};transition:opacity 1.2s ease 1.6s;">
+      <div>DRUK YUL</div><div>LAND OF THE THUNDER DRAGON</div>
+    </div>
+
+    <div style="position:absolute;left:0;right:0;top:50%;transform:translateY(-54%);display:flex;justify-content:center;pointer-events:none;">
+      <h1 style="margin:0;display:flex;font-family:'Instrument Serif',serif;font-weight:400;font-size:31vw;line-height:.8;letter-spacing:-.02em;color:#f5f1e8;white-space:nowrap;">
+        <sc-for list="{{ letters }}" as="l" hint-placeholder-count="6"><span style="display:inline-block;transform:translate({{ l.x }},{{ l.y }});opacity:{{ l.op }};transition:opacity 1.4s ease {{ l.delay }};">{{ l.ch }}</span></sc-for>
+      </h1>
+    </div>
+    <div style="position:absolute;left:0;right:0;top:calc(50% + 12.5vw);display:flex;justify-content:center;opacity:{{ tagOp }};transition:opacity 1.2s ease;">
+      <p style="margin:0;font-family:'JetBrains Mono',monospace;font-size:clamp(11px,1vw,14px);letter-spacing:.42em;color:#f5f1e8;text-align:center;padding:0 20px;">WHERE PROGRESS IS MEASURED IN HAPPINESS</p>
+    </div>
+
+    <div style="position:absolute;left:0;right:0;bottom:36px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 clamp(16px,3vw,40px);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.75);opacity:{{ tagOp }};">
+      <span>FILM 01 — HIMALAYAN RIVER VALLEY</span>
+      <a href="#kingdom" data-cursor="ENTER" style="display:flex;flex-direction:column;align-items:center;gap:12px;color:#f5f1e8;font-size:11px;letter-spacing:.32em;">ENTER THE KINGDOM<span style="width:1px;height:42px;background:linear-gradient(#f5f1e8,transparent);display:block;"></span></a>
+      <button onClick="{{ toggleSound }}" style="all:unset;cursor:pointer;display:flex;gap:10px;align-items:center;">SOUND <span style="color:{{ soundColor }};">{{ soundLabel }}</span></button>
+    </div>
+  </div>
+</section>
+
+<section id="kingdom" ref="{{ kRef }}" data-screen-label="02 You don't simply visit" style="position:relative;height:440vh;background:#0f0e0b;">
+  <div style="position:sticky;top:0;height:100vh;overflow:hidden;">
+    <sc-for list="{{ kSlides }}" as="s" hint-placeholder-count="0">
+      <div style="position:absolute;inset:0;opacity:{{ s.op }};transition:opacity 1.1s ease;">
+        <div role="img" aria-label="{{ s.alt }}" style="position:absolute;inset:-4%;background-image:{{ s.bg }};background-size:cover;background-position:center;transform:scale({{ s.scale }}) translateY({{ s.py }});transition:transform 1.6s cubic-bezier(.2,.6,.2,1);"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,9,7,.78),rgba(10,9,7,.25) 70%);"></div>
+      </div>
+    </sc-for>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(16px,6vw,96px);">
+      <sc-for list="{{ kSlides }}" as="s" hint-placeholder-count="4">
+        <div style="position:absolute;left:clamp(16px,6vw,96px);right:clamp(16px,6vw,96px);top:50%;transform:translateY(-50%);pointer-events:none;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#e3a23a;margin-bottom:28px;opacity:{{ s.op }};transition:opacity .6s;">{{ s.kicker }}</div>
+          <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,8.4vw,150px);line-height:.92;letter-spacing:-.015em;color:#f5f1e8;max-width:13ch;display:flex;flex-wrap:wrap;column-gap:.24em;">
+            <sc-for list="{{ s.words }}" as="w" hint-placeholder-count="4"><span style="display:inline-block;font-style:{{ w.it }};opacity:{{ w.op }};transform:translateY({{ w.y }});filter:blur({{ w.blur }});transition:opacity .9s ease {{ w.d }}, transform 1.1s cubic-bezier(.2,.7,.2,1) {{ w.d }}, filter .9s ease {{ w.d }};">{{ w.t }}</span></sc-for>
+          </h2>
+        </div>
+      </sc-for>
+    </div>
+    <div style="position:absolute;right:clamp(16px,3vw,40px);bottom:40px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#f5f1e8;display:flex;gap:14px;align-items:center;">
+      <span>{{ kNo }}</span><span style="width:80px;height:1px;background:rgba(245,241,232,.25);position:relative;display:block;"><span style="position:absolute;left:0;top:0;bottom:0;width:{{ kBar }};background:#e3a23a;display:block;"></span></span><span>04</span>
+    </div>
+    <div style="position:absolute;left:clamp(16px,3vw,40px);bottom:40px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:rgba(245,241,232,.7);">{{ kCaption }}</div>
+  </div>
+</section>
+
+<section ref="{{ mapRef }}" data-screen-label="03 Map teaser" style="position:relative;background:#0f0e0b;color:#f5f1e8;min-height:100vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center;overflow:hidden;">
+  <div style="padding:clamp(80px,10vw,140px) clamp(16px,5vw,80px);position:relative;z-index:2;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#e3a23a;margin-bottom:32px;">03 — THE SHAPE OF THE KINGDOM</div>
+    <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(52px,6.4vw,112px);line-height:.9;letter-spacing:-.01em;">A kingdom<br>between earth<br><span style="font-style:italic;color:#e3a23a;">and sky.</span></h2>
+    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:12px 40px;font-family:'JetBrains Mono',monospace;">
+      <span style="font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.6);">AREA</span><span style="font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.6);">HIGHEST PEAK</span><span style="font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.6);">DZONGKHAGS</span>
+      <span style="font-family:'Instrument Serif',serif;font-size:34px;">38,394 km²</span><span style="font-family:'Instrument Serif',serif;font-size:34px;">7,570 m</span><span style="font-family:'Instrument Serif',serif;font-size:34px;">20</span>
+    </div>
+    <p style="margin:40px 0 0;max-width:400px;font-family:'Archivo',sans-serif;font-size:15px;line-height:1.65;color:rgba(245,241,232,.75);">Shaded from real elevation data. Hover a valley to look inside it — the subtropical south rises to Gangkhar Puensum in barely 170 kilometres.</p>
+    <a href="Map.dc.html" data-cursor="EXPLORE" style="margin-top:44px;display:inline-flex;gap:16px;align-items:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:500;letter-spacing:.24em;color:#f5f1e8;padding-bottom:10px;border-bottom:1px solid #e3a23a;">ENTER THE INTERACTIVE MAP <span style="font-family:'JetBrains Mono',monospace;">→</span></a>
+  </div>
+  <div style="position:relative;height:min(78vh,760px);min-height:420px;">
+    <dc-import name="BhutanMap" markers="{{ teaserMarkers }}" hover-id="{{ mHover }}" on-hover="{{ onMapHover }}" on-select="{{ onMapSelect }}" labels="all" style="position:absolute;inset:0 -12% 0 -6%;" hint-size="100%,100%"></dc-import>
+    <a href="{{ mDest.page }}" data-cursor="OPEN" style="position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(16px,4vw,48px);width:min(300px,60%);color:#f5f1e8;opacity:{{ mCardOp }};transform:translateX({{ mCardX }});transition:opacity .5s ease, transform .7s cubic-bezier(.2,.7,.2,1);">
+      <div style="aspect-ratio:4/5;overflow:hidden;background:#1b1a16;"><div role="img" aria-label="{{ mDest.name }}" style="width:100%;height:100%;view-transition-name:{{ mVt }};background-image:{{ mDest.imgBg }};background-size:cover;background-position:center;"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;"><span style="font-family:'Instrument Serif',serif;font-size:30px;letter-spacing:0;">{{ mDest.name }}</span><span style="color:#e3a23a;">{{ mDest.altLabel }}</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.7);margin-top:6px;">{{ mDest.kindU }}</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;color:rgba(245,241,232,.85);margin-top:10px;line-height:1.8;">{{ mDest.tagsU }}</div>
+    </a>
+  </div>
+</section>
+
+<section id="experiences" data-screen-label="04 Choose" style="position:relative;background:#000;color:#f5f1e8;display:flex;flex-wrap:wrap;min-height:100vh;">
+  <sc-for list="{{ choices }}" as="c" hint-placeholder-count="0">
+    <a href="{{ c.href }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" data-cursor="ENTER" style="position:relative;flex:{{ c.flex }} 1 300px;min-height:100vh;overflow:hidden;color:#f5f1e8;transition:flex 1s cubic-bezier(.7,0,.2,1);border-right:1px solid rgba(245,241,232,.08);">
+      <div role="img" aria-label="{{ c.name }}" style="position:absolute;inset:0;width:100%;height:100%;transform:scale({{ c.scale }});filter:grayscale({{ c.gray }}) brightness({{ c.bright }});transition:transform 2.4s cubic-bezier(.2,.6,.2,1), filter .8s ease;background-image:{{ c.imgBg }};background-size:cover;background-position:center;"></div>
+      <sc-if value="{{ c.hasVideo }}" hint-placeholder-val="{{ false }}"><video ref="{{ c.vref }}" playsinline="" loop="" muted="" preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ c.vop }};transition:opacity .8s;"></video></sc-if>
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.75),rgba(0,0,0,0) 60%);"></div>
+      <div style="position:absolute;left:clamp(20px,3vw,44px);right:24px;bottom:clamp(32px,6vh,64px);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;color:#e3a23a;">{{ c.no }}</div>
+        <div style="font-family:'Instrument Serif',serif;font-size:clamp(44px,5vw,88px);line-height:.92;margin-top:18px;font-style:{{ c.it }};">{{ c.verb }}</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;font-family:'Archivo',sans-serif;font-size:12px;font-weight:500;letter-spacing:.24em;"><span>{{ c.name }}</span><span style="opacity:{{ c.arrowOp }};transition:opacity .4s;font-family:'JetBrains Mono',monospace;">EXPLORE →</span></div>
+        <p style="margin:16px 0 0;max-width:340px;font-family:'Archivo',sans-serif;font-size:14px;line-height:1.6;color:rgba(245,241,232,.82);opacity:{{ c.arrowOp }};transition:opacity .5s;">{{ c.text }}</p>
+      </div>
+    </a>
+  </sc-for>
+</section>
+
+<section ref="{{ jRef }}" data-screen-label="05 Featured journey" style="position:relative;background:#0f0e0b;color:#f5f1e8;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));min-height:100vh;">
+  <div style="position:relative;grid-column:span 2;min-height:80vh;overflow:hidden;">
+    <div role="img" aria-label="Punakha Dzong at the confluence of the Pho Chhu and Mo Chhu" style="position:absolute;inset:-6% 0;width:100%;height:112%;transform:translateY({{ jPar }});background-image:{{ fj.imgBg }};background-size:cover;background-position:center;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,14,11,0) 60%,rgba(15,14,11,.9));"></div>
+    <div style="position:absolute;left:clamp(16px,3vw,40px);top:clamp(96px,12vh,140px);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;line-height:2;color:#f5f1e8;border-left:1px solid #e3a23a;padding-left:14px;">PUNAKHA DZONG<br>27.5815° N · 89.8631° E<br>1,200 M</div>
+    <div style="position:absolute;left:clamp(16px,3vw,40px);bottom:40px;font-family:'Instrument Serif',serif;font-size:clamp(90px,16vw,260px);line-height:.8;color:rgba(245,241,232,.92);">11<span style="font-size:.22em;font-family:'JetBrains Mono',monospace;letter-spacing:.2em;margin-left:16px;">DAYS</span></div>
+  </div>
+  <div style="padding:clamp(48px,6vw,96px) clamp(16px,3vw,48px);display:flex;flex-direction:column;justify-content:center;gap:28px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#e3a23a;">05 — FEATURED · JOURNEY {{ fj.no }}</div>
+    <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,4.2vw,76px);line-height:.92;">Valleys of the <span style="font-style:italic;">Thunder Dragon</span></h2>
+    <p style="margin:0;font-family:'Archivo',sans-serif;font-size:15px;line-height:1.65;color:rgba(245,241,232,.78);">{{ fj.line }}</p>
+    <div style="position:relative;height:200px;margin:0 -16px;background:#0f0e0b;">
+      <dc-import name="BhutanMap" route="{{ fj.route }}" markers="{{ fj.markers }}" flights="{{ fj.flight }}" progress="{{ jProg }}" labels="none" graticule="{{ false }}" districts="{{ false }}" style="position:absolute;inset:0;" hint-size="100%,200px"></dc-import>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;line-height:1.9;color:rgba(245,241,232,.85);">{{ fj.routeText }}</div>
+    <div style="height:90px;">{{ elev }}</div>
+    <a href="Journey.dc.html" data-cursor="ENTER" style="align-self:flex-start;display:inline-flex;gap:16px;font-family:'Archivo',sans-serif;font-size:12px;font-weight:500;letter-spacing:.24em;padding:18px 26px;background:#e3a23a;color:#14130f;" style-hover="background:#f5f1e8;color:#14130f">ENTER THE JOURNEY <span style="font-family:'JetBrains Mono',monospace;">→</span></a>
+  </div>
+</section>
+
+<section data-screen-label="06 People" style="position:relative;background:#ece4d4;color:#1b1a16;padding:clamp(80px,12vw,180px) clamp(16px,5vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(40px,6vw,100px);align-items:center;overflow:hidden;">
+  <div style="position:relative;">
+    <div role="img" aria-label="Bhutanese people in traditional dress" style="width:100%;aspect-ratio:4/5;display:block;filter:sepia(.12);background-image:{{ peopleImgBg }};background-size:cover;background-position:center;"></div>
+    <div style="position:absolute;left:-14px;bottom:-14px;width:40%;height:40%;border-left:1px solid #8f2b1f;border-bottom:1px solid #8f2b1f;pointer-events:none;"></div>
+    <div style="margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#5a5244;">PHOTOGRAPH · BMV TOURS &amp; TREKS</div>
+  </div>
+  <div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#8f2b1f;margin-bottom:36px;">06 — PEOPLE OF BHUTAN</div>
+    <blockquote style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(40px,4.6vw,84px);line-height:1;letter-spacing:-.01em;text-wrap:balance;">“You arrive as a guest. <span style="font-style:italic;color:#8f2b1f;">You leave as family.</span>”</blockquote>
+    <p style="margin:40px 0 0;max-width:460px;font-family:'Archivo',sans-serif;font-size:16px;line-height:1.7;color:#3d382f;">BMV is Bhutanese, family-owned and run from Babesa, Thimphu. Our guides grew up in these valleys. They know which farmhouse is lighting its hot-stone bath tonight, and when the monks at Gangtey begin evening prayer.</p>
+    <a href="About.dc.html" style="margin-top:36px;display:inline-flex;gap:14px;font-family:'Archivo',sans-serif;font-size:12px;font-weight:500;letter-spacing:.24em;border-bottom:1px solid #1b1a16;padding-bottom:8px;color:#1b1a16;" style-hover="color:#8f2b1f;border-color:#8f2b1f">MEET THE FAMILY <span style="font-family:'JetBrains Mono',monospace;">→</span></a>
+  </div>
+</section>
+
+<section data-screen-label="07 Not pre-written" style="position:relative;background:#24392d;color:#f5f1e8;padding:clamp(80px,10vw,150px) clamp(16px,5vw,80px);overflow:hidden;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#e3a23a;margin-bottom:36px;">07 — YOUR JOURNEY IS NOT PRE-WRITTEN</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border-top:1px solid rgba(245,241,232,.2);">
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+      <div style="padding:28px 24px 36px 0;border-right:1px solid rgba(245,241,232,.12);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#e3a23a;letter-spacing:.2em;">{{ s.no }}</div>
+        <div style="font-family:'Instrument Serif',serif;font-size:clamp(28px,2.6vw,40px);line-height:1;margin-top:22px;">{{ s.q }}</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;color:rgba(245,241,232,.7);margin-top:16px;line-height:1.8;">{{ s.a }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <a href="Build.dc.html" data-cursor="BEGIN" style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:clamp(56px,8vw,110px);color:#f5f1e8;" style-hover="color:#e3a23a">
+    <span style="font-family:'Instrument Serif',serif;font-size:clamp(64px,11vw,200px);line-height:.85;letter-spacing:-.02em;">Build your<br><span style="font-style:italic;">Bhutan</span></span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:clamp(40px,6vw,96px);line-height:1;">→</span>
+  </a>
+</section>
+
+<section data-screen-label="08 Trust" style="position:relative;background:#f5f1e8;color:#1b1a16;padding:clamp(80px,10vw,150px) clamp(16px,5vw,80px);">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px;align-items:end;margin-bottom:56px;">
+    <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5vw,88px);line-height:.92;">In good<br><span style="font-style:italic;">hands.</span></h2>
+    <p style="margin:0;max-width:440px;font-family:'Archivo',sans-serif;font-size:15px;line-height:1.7;color:#4a4439;">Licensed in Bhutan and affiliated with the Association of Bhutanese Tour Operators, the Guides Association of Bhutan and the Hotel &amp; Restaurant Association of Bhutan.</p>
+  </div>
+  <div style="border-top:1px solid #1b1a16;">
+    <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+      <a href="{{ t.href }}" style="display:grid;grid-template-columns:60px minmax(0,1.3fr) minmax(0,1fr) 40px;gap:24px;align-items:baseline;padding:30px 0;border-bottom:1px solid rgba(27,26,22,.18);color:#1b1a16;" style-hover="color:#8f2b1f">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8f2b1f;">{{ t.no }}</span>
+        <span style="font-family:'Instrument Serif',serif;font-size:clamp(26px,3vw,48px);line-height:1;">{{ t.title }}</span>
+        <span style="font-family:'Archivo',sans-serif;font-size:14px;line-height:1.6;color:#4a4439;">{{ t.text }}</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:16px;text-align:right;">{{ t.arrow }}</span>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<section ref="{{ endRef }}" data-screen-label="09 Final" style="position:relative;height:100vh;min-height:620px;overflow:hidden;background:#000;color:#f5f1e8;">
+  <video ref="{{ endVidRef }}" playsinline="" loop="" muted="" preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.8);"></video>
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,.42);"></div>
+  <div style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(16px,5vw,80px);gap:12px;">
+    <div style="font-family:'Instrument Serif',serif;font-size:clamp(40px,6.4vw,120px);line-height:.95;letter-spacing:-.01em;opacity:{{ end1 }};transform:translateY({{ end1y }});transition:all 1.2s cubic-bezier(.2,.7,.2,1);">Some places change your plans.</div>
+    <div style="font-family:'Instrument Serif',serif;font-style:italic;color:#e3a23a;font-size:clamp(40px,6.4vw,120px);line-height:.95;letter-spacing:-.01em;opacity:{{ end2 }};transform:translateY({{ end2y }});transition:all 1.2s cubic-bezier(.2,.7,.2,1) .5s;">Bhutan changes your perspective.</div>
+    <a href="Build.dc.html" data-cursor="BEGIN" style="margin-top:56px;align-self:flex-start;display:inline-flex;gap:16px;font-family:'Archivo',sans-serif;font-size:12px;font-weight:500;letter-spacing:.26em;padding:20px 30px;border:1px solid #f5f1e8;color:#f5f1e8;opacity:{{ end2 }};transition:all 1s ease 1s;" style-hover="background:#f5f1e8;color:#14130f">BEGIN YOUR JOURNEY <span style="font-family:'JetBrains Mono',monospace;">→</span></a>
+  </div>
+</section>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { const v = this._rvImg(); const isU = s => typeof s === 'string' && /^(https?:|assets\/|data:)/.test(s); const seen = new Set(); const add = o => { if (!o || typeof o !== 'object' || seen.has(o) || o.$typeof || o instanceof Element || 'current' in o) return o; seen.add(o); if (Array.isArray(o)) { o.forEach(add); return o; } if (Object.getPrototypeOf(o) !== Object.prototype) return o; for (const k of Object.keys(o)) { const x = o[k]; if (isU(x)) o[k + 'Bg'] = 'url("' + x + '")'; else if (x && typeof x === 'object') add(x); } return o; }; return v ? add({ ...v }) : v; }
+  state = { ready: false, y: 0, vh: 800, sound: false, mHover: 'punakha', choice: -1, endIn: false };
+  heroRef = React.createRef(); vidRef = React.createRef(); kRef = React.createRef(); mapRef = React.createRef(); jRef = React.createRef(); endRef = React.createRef(); endVidRef = React.createRef();
+  vrefs = [React.createRef(), React.createRef(), React.createRef()];
+  componentDidMount() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.reduce = reduce;
+    const wait = () => {
+      if (!window.BMV_MEDIA) return setTimeout(wait, 60);
+      const v = this.vidRef.current;
+      if (v) v.poster = window.BMV_MEDIA.heroPoster; const ev = this.endVidRef.current; if (ev && window.BMV) ev.poster = window.BMV.img('punakha', 0);
+      if (v && !reduce) { v.muted = true; v.src = window.BMV_MEDIA.heroVideo; v.play().catch(() => {}); }
+      this.forceUpdate();
+    }; wait();
+    setTimeout(() => this.setState({ ready: true }), 150);
+    let raf = 0;
+    this.onScroll = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; this.setState({ y: window.scrollY, vh: window.innerHeight }); }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true }); window.addEventListener('resize', this.onScroll); this.onScroll();
+    this.io = new IntersectionObserver(es => es.forEach(e => {
+      const v = this.endVidRef.current;
+      if (e.isIntersecting) { this.setState({ endIn: true }); if (v && !reduce && window.BMV_MEDIA) { if (!v.src) v.src = window.BMV_MEDIA.riverVideo; v.muted = true; v.play().catch(() => {}); } }
+      else if (v) v.pause();
+    }), { threshold: 0.35 });
+    this.endRef.current && this.io.observe(this.endRef.current);
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onScroll); this.io && this.io.disconnect(); }
+  prog(ref) { const el = ref.current; if (!el) return 0; const r = el.getBoundingClientRect(); const span = r.height - this.state.vh; return Math.max(0, Math.min(1, span > 0 ? -r.top / span : 0)); }
+  inview(ref) { const el = ref.current; if (!el) return 0; const r = el.getBoundingClientRect(); return Math.max(0, Math.min(1, (this.state.vh - r.top) / (r.height + this.state.vh))); }
+  _rvImg() {
+    const B = window.BMV, M = window.BMV_MEDIA || {};
+    const st = this.state, ready = st.ready;
+    if (!B) { const BL = 'data:image/gif;base64,R0lGODlhAQABAAAAACw='; return { heroRef: this.heroRef, vidRef: this.vidRef, kRef: this.kRef, mapRef: this.mapRef, jRef: this.jRef, endRef: this.endRef, endVidRef: this.endVidRef, heroPoster: BL, endPoster: BL, peopleImg: BL, mDest: { img: BL }, fj: { img: BL, route: [], markers: [] }, letters: [], kSlides: [], choices: [], steps: [], trust: [], teaserMarkers: [], curtain: 1 }; }
+    const hp = this.prog(this.heroRef);
+    const letters = 'BHUTAN'.split('').map((ch, i) => { const o = i - 2.5; return { ch, x: (o * hp * 16).toFixed(2) + 'vw', y: (Math.abs(o) * hp * -6 + hp * -4).toFixed(2) + 'vh', op: ready ? Math.max(0, 1 - hp * 1.25).toFixed(3) : 0, delay: (0.6 + i * 0.12) + 's' }; });
+    const img = B ? B.img : () => '', br = B ? B.brand : {};
+    // 02
+    const kp = this.prog(this.kRef); const kIdx = Math.min(3, Math.floor(kp * 4));
+    const kData = [
+      { k: 'ARRIVAL', t: 'You don’t simply *visit* Bhutan.', img: img('punakha', 1), cap: 'PUNAKHA DZONG · PUNAKHA', alt: 'Punakha Dzong' },
+      { k: 'SINCE 1974', t: 'For fifty years it has opened its doors *with care.*', img: img('taktsang', 1), cap: 'PARO TAKTSANG · PARO', alt: 'Paro Taktsang' },
+      { k: 'BY CONSTITUTION', t: 'Sixty percent of the land stays *forest, forever.*', img: img('phobjikha', 0), cap: 'PHOBJIKHA VALLEY · WANGDUE PHODRANG', alt: 'Phobjikha valley' },
+      { k: 'GROSS NATIONAL HAPPINESS', t: 'Progress here is measured *in happiness.*', img: img('dochula', 0), cap: 'DRUK WANGYAL CHORTENS · DOCHULA', alt: 'Chortens at Dochula' }
+    ];
+    const kSlides = kData.map((s, i) => { const on = i === kIdx; let itf = false; const words = s.t.split(' ').map((w, j) => { let it = false; if (w.startsWith('*')) { itf = true; w = w.slice(1); } if (itf) it = true; if (w.endsWith('*')) { w = w.slice(0, -1); const r = { t: w, it: 'italic' }; itf = false; return { ...r, j }; } return { t: w, it: it ? 'italic' : 'normal', j }; }).map(w => ({ ...w, op: on ? 1 : 0, y: on ? '0' : (i < kIdx ? '-60px' : (40 + (w.j % 3) * 30) + 'px'), blur: on ? '0px' : '8px', d: on ? (0.08 * w.j + 0.2) + 's' : '0s' }));
+      return { img: s.img, bg: `url("${s.img}")`, alt: s.alt, kicker: s.k, words, op: on ? 1 : 0, scale: on ? 1 : 1.08, py: on ? ((kp * 4 - i - 0.5) * -3).toFixed(2) + '%' : '0%' }; });
+    // 03
+    const teaserMarkers = ['paro', 'taktsang', 'haa', 'thimphu', 'punakha', 'phobjikha', 'trongsa', 'bumthang', 'trashigang'];
+    const md = B ? B.byId[st.mHover || 'punakha'] : null;
+    const mDest = md ? { ...md, altLabel: md.alt.toLocaleString('en-US') + ' M', kindU: md.kind.toUpperCase(), tagsU: md.tags.join(' · ').toUpperCase(), img: md.img || br.undiscovered } : {};
+    // 04
+    const ch = [
+      { no: '01', verb: 'Go higher', name: 'TREKKING', img: br.trekking, video: M.riverVideo, href: 'Journeys.dc.html?cat=Trekking', text: 'High passes, yak herders’ camps and Jomolhari base camp.' },
+      { no: '02', verb: 'Find stillness', name: 'SPIRITUAL JOURNEYS', img: br.spiritual, href: 'Journeys.dc.html?cat=Spiritual', text: 'Butter lamps, morning prayers and pilgrim trails.' },
+      { no: '03', verb: 'Follow the celebration', name: 'FESTIVALS', img: img('parotsechu', 1), href: 'Festivals.dc.html', text: 'Mask dances that have been performed for centuries.' }
+    ];
+    const choices = ch.map((c, i) => { const on = st.choice === i; return { ...c, vref: this.vrefs[i], video: c.video, hasVideo: !!c.video, flex: on ? 2.2 : 1, scale: on ? 1.02 : 1.12, gray: st.choice >= 0 && !on ? 0.7 : 0, bright: on ? 0.9 : 0.62, vop: on && c.video ? 1 : 0, it: on ? 'italic' : 'normal', arrowOp: on ? 1 : 0,
+      enter: () => { this.setState({ choice: i }); const v = this.vrefs[i].current; if (v && c.video && !this.reduce) { if (!v.src) v.src = c.video; v.muted = true; v.play().catch(() => {}); } },
+      leave: () => { this.setState({ choice: -1 }); const v = this.vrefs[i].current; if (v) v.pause(); } }; });
+    // 05
+    const j = B ? B.journeys[0] : { route: [], itinerary: [] };
+    const jv = this.inview(this.jRef);
+    const jProg = Math.max(0, Math.min(j.route.length - 1, (jv - 0.25) / 0.45 * (j.route.length - 1)));
+    const uniq = [...new Set(j.route)];
+    const fj = { ...j, markers: uniq, routeText: j.route.map(id => (B.byId[id].short || B.byId[id].name).toUpperCase()).join(' → ') };
+    const elev = this.elevChart(j, jProg);
+    const ep = this.inview(this.endRef);
+    return {
+      heroRef: this.heroRef, vidRef: this.vidRef, kRef: this.kRef, mapRef: this.mapRef, jRef: this.jRef, endRef: this.endRef, endVidRef: this.endVidRef,
+      heroPoster: M.heroPoster, endPoster: img('punakha', 0),
+      curtain: ready ? 0 : 1, metaOp: ready ? Math.max(0, 1 - hp * 2) : 0, tagOp: ready ? Math.max(0, 1 - hp * 2.4) : 0,
+      vidScale: (1 + hp * 0.12).toFixed(3), heroDark: (hp * 0.55).toFixed(3), letters,
+      toggleSound: () => { const v = this.vidRef.current; const s = !st.sound; if (v) v.muted = !s; this.setState({ sound: s }); },
+      soundLabel: st.sound ? 'ON' : 'OFF', soundColor: st.sound ? '#e3a23a' : 'rgba(245,241,232,.75)',
+      kSlides, kNo: String(kIdx + 1).padStart(2, '0'), kBar: ((kIdx + 1) / 4 * 100) + '%', kCaption: kData[kIdx].cap,
+      teaserMarkers, mHover: st.mHover, mDest, mCardOp: st.mHover ? 1 : 0, mCardX: st.mHover ? '0' : '40px', mVt: md ? 'dest-' + md.id : 'none',
+      onMapHover: id => id && this.setState({ mHover: id }),
+      onMapSelect: id => { const d = B.byId[id]; if (d) window.location.href = d.page; },
+      choices, fj, jProg, elev, jPar: ((jv - 0.5) * -8).toFixed(2) + '%',
+      peopleImg: br.people,
+      steps: [{ no: '01', q: 'Why Bhutan?', a: 'STILLNESS · ADVENTURE · CULTURE' }, { no: '02', q: 'How long?', a: '5 – 21 DAYS' }, { no: '03', q: 'When?', a: 'FESTIVALS · CRANES · BLOSSOM' }, { no: '04', q: 'Who’s coming?', a: 'SOLO · COUPLE · FAMILY' }, { no: '05', q: 'Your Bhutan', a: 'A ROUTE ON THE REAL MAP' }],
+      trust: [
+        { no: '01', title: 'Travellers’ Choice 2024', text: 'Recognised by Tripadvisor from the reviews of our guests.', href: 'https://www.tripadvisor.com.sg/Attraction_Review-g293845-d14803907-Reviews-Bhutan_Mind_Vacation_Tours-Thimphu_Thimphu_District.html', arrow: '↗' },
+        { no: '02', title: 'Bhutanese & family-owned', text: 'Owned and operated in Thimphu. Your fees stay in the kingdom.', href: 'About.dc.html', arrow: '→' },
+        { no: '03', title: 'Local guides, licensed', text: 'Every guest travels with a licensed Bhutanese guide who grew up here.', href: 'About.dc.html', arrow: '→' },
+        { no: '04', title: 'High value, low volume', text: 'We follow Bhutan’s tourism policy: socially, culturally and environmentally responsible.', href: 'About.dc.html', arrow: '→' }
+      ],
+      end1: st.endIn ? 1 : 0, end1y: st.endIn ? '0' : '40px', end2: st.endIn ? 1 : 0, end2y: st.endIn ? '0' : '40px'
+    };
+  }
+  elevChart(j, prog) {
+    const B = window.BMV; if (!B) return null; const h = React.createElement;
+    const pts = j.route.map(id => B.byId[id]); const W = 400, H = 90, mx = 3400, mn = 800;
+    const xy = pts.map((d, i) => [i / (pts.length - 1) * (W - 20) + 10, H - 18 - (d.alt - mn) / (mx - mn) * (H - 34)]);
+    const n = Math.floor(prog), t = prog - n; const vis = xy.slice(0, n + 1); if (n < xy.length - 1) vis.push([xy[n][0] + (xy[n + 1][0] - xy[n][0]) * t, xy[n][1] + (xy[n + 1][1] - xy[n][1]) * t]);
+    const line = a => a.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('');
+    return h('svg', { viewBox: `0 0 ${W} ${H}`, style: { width: '100%', height: '100%', overflow: 'visible' } },
+      h('path', { d: line(xy), fill: 'none', stroke: 'rgba(245,241,232,.25)', strokeWidth: 1, strokeDasharray: '2 3' }),
+      h('path', { d: line(vis), fill: 'none', stroke: '#e3a23a', strokeWidth: 1.6 }),
+      ...xy.map((p, i) => h('g', { key: i }, h('circle', { cx: p[0], cy: p[1], r: 2.4, fill: i <= prog + 0.01 ? '#e3a23a' : '#0f0e0b', stroke: '#e3a23a', strokeWidth: 1 }),
+        (i === 0 || pts[i].alt === Math.max(...pts.map(d => d.alt)) || pts[i].alt === Math.min(...pts.map(d => d.alt))) ? h('text', { x: p[0], y: p[1] - 8, fill: 'rgba(245,241,232,.8)', fontSize: 8, fontFamily: 'JetBrains Mono', textAnchor: 'middle', letterSpacing: 1 }, (pts[i].short || pts[i].name).toUpperCase() + ' ' + pts[i].alt.toLocaleString('en-US') + 'M') : null)),
+      h('text', { x: 0, y: H, fill: 'rgba(245,241,232,.55)', fontSize: 8, fontFamily: 'JetBrains Mono', letterSpacing: 1.2 }, 'ELEVATION PROFILE · APPROX.'));
+  }
+}
+</script>
+</body>
+</html>

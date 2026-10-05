@@ -1,0 +1,68 @@
+.main { font-family: var(--sans); }
+.mono { font-family: var(--mono); }
+.fill { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fullBox { width: 100%; height: 100%; }
+.meta { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; line-height: 2; }
+.backDark { font-family: var(--mono); font-size: 11px; letter-spacing: .22em; color: #e3a23a; }
+.backLight { color: #8f2b1f; }
+
+/* vertical */
+.vHero { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); min-height: 100vh; }
+.vLeft { padding: 140px clamp(16px, 4vw, 64px) 56px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; }
+.vH1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(72px, 11vw, 200px); line-height: .82; letter-spacing: -.02em; }
+.vRuleRow { display: flex; align-items: flex-end; gap: 28px; }
+.vRule { width: 1px; height: 160px; background: linear-gradient(#e3a23a, transparent); }
+.vRight { position: relative; min-height: 80vh; overflow: hidden; }
+
+/* still */
+.sHero { padding: 170px clamp(16px, 6vw, 120px) 0; }
+.sTop { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; font-family: var(--mono); font-size: 10px; letter-spacing: .24em; color: #5a5244; }
+.sH1 { margin: 22vh 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 4.4vw, 72px); line-height: 1; letter-spacing: .01em; text-align: center; }
+.sLine { margin: 20px auto 22vh; max-width: 30ch; text-align: center; font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.6vw, 26px); line-height: 1.3; color: #5a5244; }
+.sWide { height: 72vh; min-height: 420px; overflow: hidden; }
+
+/* editorial */
+.eHero { padding: 140px clamp(16px, 4vw, 64px) 60px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; }
+.eTop { grid-column: 1 / -1; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; border-bottom: 2px solid #1b1a16; padding-bottom: 14px; font-family: var(--mono); font-size: 10px; letter-spacing: .22em; }
+.eH1 { grid-column: 1 / -1; margin: 24px 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(80px, 15vw, 280px); line-height: .8; letter-spacing: -.03em; }
+.eMain { grid-column: span 7; min-width: 280px; }
+.eImg { width: 100%; aspect-ratio: 4 / 3; display: block; }
+.eSide { grid-column: span 5; min-width: 260px; display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; }
+.eLine { margin: 0; font-family: var(--serif); font-size: clamp(26px, 2.2vw, 36px); line-height: 1.15; }
+.eImg2 { width: 62%; aspect-ratio: 3 / 4; align-self: flex-end; }
+@media (max-width: 760px) { .eMain, .eSide { grid-column: 1 / -1; min-width: 0; } }
+
+/* default */
+.dHero { position: relative; height: 100vh; min-height: 600px; overflow: hidden; }
+.dShade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(15, 14, 11, .9), rgba(15, 14, 11, .1) 60%, rgba(15, 14, 11, .4)); }
+.dBack { position: absolute; top: 110px; left: clamp(16px, 4vw, 64px); font-family: var(--mono); font-size: 11px; letter-spacing: .22em; color: #e3a23a; }
+.dBottom { position: absolute; left: clamp(16px, 4vw, 64px); right: clamp(16px, 4vw, 64px); bottom: 56px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; color: #f5f1e8; }
+.dH1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(72px, 12vw, 220px); line-height: .82; letter-spacing: -.02em; }
+
+/* Tiger's Nest mist */
+.mist { position: relative; height: 420vh; background: #d9dcd8; }
+.mistSticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(236, 238, 234, .98) 0%, rgba(236, 238, 234, .85) 35%, rgba(236, 238, 234, 0) 70%); pointer-events: none; }
+.mistShade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10, 10, 8, .75), rgba(10, 10, 8, 0) 50%); }
+.mistText { position: absolute; left: clamp(16px, 4vw, 64px); right: clamp(16px, 4vw, 64px); bottom: clamp(40px, 8vh, 90px); color: #f5f1e8; }
+.mistKicker { font-family: var(--mono); font-size: 11px; letter-spacing: .3em; }
+.mistTitle { font-family: var(--serif); font-size: clamp(56px, 10vw, 180px); line-height: .85; margin-top: 14px; }
+.mistFacts { display: flex; flex-wrap: wrap; gap: 20px 56px; margin-top: 32px; }
+.mistK { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; opacity: .8; }
+.mistV { font-family: var(--serif); font-size: 48px; line-height: 1; }
+.mistTrail { font-size: 15px; line-height: 1.6; margin-top: 6px; }
+
+/* about + map */
+.about { padding: clamp(80px, 10vw, 150px) clamp(16px, 4vw, 64px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 56px; }
+.kicker { font-family: var(--mono); font-size: 11px; letter-spacing: .24em; }
+.h2 { margin: 20px 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 4.6vw, 80px); line-height: .92; }
+.body { margin: 0; font-size: 17px; line-height: 1.75; opacity: .85; max-width: 560px; }
+.tags { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 36px; font-family: var(--mono); font-size: 11px; letter-spacing: .16em; }
+.mapSec { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+.mapBox { position: relative; height: min(64vh, 600px); min-height: 360px; }
+.jCol { padding: clamp(48px, 6vw, 96px) clamp(16px, 4vw, 64px); display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+.jRow { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding: 14px 0; }
+.jTitle { font-family: var(--serif); font-size: clamp(26px, 2.4vw, 38px); line-height: 1; }
+.jDays { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; white-space: nowrap; }
+.build { align-self: flex-start; margin-top: 16px; display: inline-flex; gap: 16px; font-size: 12px; font-weight: 500; letter-spacing: .24em; padding: 18px 26px; border: 1px solid currentColor; }
+.build:hover { background: #e3a23a; color: #14130f; border-color: #e3a23a; }

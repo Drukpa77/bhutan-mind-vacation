@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><script src="assets/data.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>@view-transition{navigation:auto}::view-transition-old(root){animation:.5s cubic-bezier(.7,0,.2,1) both bmvout}::view-transition-new(root){animation:.7s cubic-bezier(.7,0,.2,1) both bmvin}@keyframes bmvout{to{opacity:0;transform:scale(1.02)}}@keyframes bmvin{from{opacity:0;clip-path:inset(12% 0 12% 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}html{scroll-behavior:smooth}body{margin:0;background:#0f0e0b;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{color:#e3a23a}::selection{background:#8f2b1f;color:#f5f1e8}@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}html{scroll-behavior:auto}}@media (pointer:fine){body.bmv-cursor,body.bmv-cursor a,body.bmv-cursor button{cursor:none}}</style></helmet>
+<div style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 clamp(16px,3vw,40px);height:76px;font-family:'Archivo',sans-serif;color:{{ fg }};background:{{ barBg }};backdrop-filter:{{ barBlur }};-webkit-backdrop-filter:{{ barBlur }};border-bottom:1px solid {{ barLine }};transition:background .4s, color .4s, border-color .4s;">
+  <div style="display:flex;align-items:center;gap:clamp(20px,4vw,56px);">
+    <a href="Home.dc.html" data-cursor="HOME" style="display:flex;align-items:baseline;gap:10px;color:inherit;">
+      <span style="font-family:'Instrument Serif',serif;font-size:30px;letter-spacing:.02em;line-height:1;">BMV</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;opacity:.7;line-height:1.3;max-width:120px;">BHUTAN MIND VACATION</span>
+    </a>
+    <nav style="display:flex;gap:28px;font-size:12px;letter-spacing:.2em;font-weight:500;">
+      <button onClick="{{ toggle }}" data-cursor="OPEN" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;">
+        <span style="display:flex;flex-direction:column;gap:4px;width:18px;"><span style="height:1px;background:currentColor;display:block;"></span><span style="height:1px;background:currentColor;display:block;width:60%;"></span></span>EXPLORE
+      </button>
+      <a href="Journeys.dc.html" style="color:inherit;" style-hover="opacity:.6">JOURNEYS</a>
+      <a href="Plan.dc.html" style="color:inherit;" style-hover="opacity:.6">PLAN</a>
+    </nav>
+  </div>
+  <a href="Build.dc.html" data-cursor="BEGIN" style="font-size:11px;letter-spacing:.22em;font-weight:500;padding:13px 20px;border:1px solid currentColor;color:inherit;display:flex;gap:12px;align-items:center;white-space:nowrap;transition:background .25s,color .25s;" style-hover="background:#e3a23a;color:#14130f;border-color:#e3a23a">DESIGN MY JOURNEY <span style="font-family:'JetBrains Mono',monospace;">→</span></a>
+</div>
+
+<div style="position:fixed;inset:0;z-index:60;background:#0b0a08;color:#f5f1e8;font-family:'Archivo',sans-serif;clip-path:{{ menuClip }};transition:clip-path .9s cubic-bezier(.77,0,.18,1);pointer-events:{{ menuPe }};overflow:hidden;">
+  <sc-for list="{{ items }}" as="it" hint-placeholder-count="7">
+    <div style="position:absolute;inset:0;background-image:url('{{ it.img }}');background-size:cover;background-position:center;opacity:{{ it.bgOpacity }};transform:scale({{ it.bgScale }});transition:opacity .8s ease, transform 2.4s cubic-bezier(.2,.6,.2,1);"></div>
+  </sc-for>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,10,8,.92) 0%,rgba(11,10,8,.6) 50%,rgba(11,10,8,.25) 100%);"></div>
+  <div style="position:relative;height:100%;display:grid;grid-template-rows:76px 1fr auto;padding:0 clamp(16px,3vw,40px);">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-family:'Instrument Serif',serif;font-size:30px;">BMV</span>
+      <button onClick="{{ toggle }}" data-cursor="CLOSE" style="all:unset;cursor:pointer;font-size:12px;letter-spacing:.2em;font-weight:500;display:flex;gap:12px;align-items:center;">CLOSE <span style="font-size:20px;font-weight:300;">×</span></button>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:clamp(0px,0.6vh,8px);">
+      <sc-for list="{{ items }}" as="it" hint-placeholder-count="7">
+        <a href="{{ it.href }}" onMouseEnter="{{ it.enter }}" onClick="{{ close }}" data-cursor="ENTER" style="display:flex;align-items:baseline;gap:clamp(14px,2vw,32px);color:#f5f1e8;opacity:{{ it.op }};transform:translateY({{ it.ty }});transition:opacity .4s, transform .9s cubic-bezier(.2,.7,.2,1) {{ it.delay }};">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;color:#e3a23a;width:28px;">{{ it.no }}</span>
+          <span style="font-family:'Instrument Serif',serif;font-size:clamp(44px,8.2vh,104px);line-height:.98;letter-spacing:-.01em;font-style:{{ it.italic }};">{{ it.label }}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;opacity:{{ it.subOp }};transition:opacity .3s;">{{ it.sub }}</span>
+        </a>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;padding:28px 0;border-top:1px solid rgba(245,241,232,.14);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:rgba(245,241,232,.75);">
+      <div style="display:flex;gap:28px;flex-wrap:wrap;"><a href="Plan.dc.html">PLAN</a><a href="Visa.dc.html">VISA</a><a href="Build.dc.html">BUILD YOUR JOURNEY</a><a href="mailto:info@bhutanmindvacation.com">INFO@BHUTANMINDVACATION.COM</a></div>
+      <div>THIMPHU · 27.4716° N 89.6386° E</div>
+    </div>
+  </div>
+</div>
+
+<div ref="{{ curRef }}" style="position:fixed;left:0;top:0;z-index:100;pointer-events:none;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#f5f1e8;mix-blend-mode:difference;display:none;align-items:center;justify-content:center;transition:width .25s cubic-bezier(.2,.7,.2,1),height .25s cubic-bezier(.2,.7,.2,1),margin .25s;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;color:#000;"></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:800},&quot;tone&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'&quot;},&quot;solid&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">class Component extends DCLogic {
+  state = { open: false, hov: 0, scrolled: false };
+  curRef = React.createRef();
+  componentDidMount() {
+    const w = () => window.BMV ? this.forceUpdate() : setTimeout(w, 80); w();
+    this.onScroll = () => { const s = window.scrollY > 40; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true }); this.onScroll();
+    this.onKey = e => { if (e.key === 'Escape' && this.state.open) this.setState({ open: false }); };
+    window.addEventListener('keydown', this.onKey);
+    const c = this.curRef.current;
+    if (c && window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.body.classList.add('bmv-cursor'); c.style.display = 'flex';
+      let x = -50, y = -50, cx = -50, cy = -50, label;
+      this.onMove = e => { x = e.clientX; y = e.clientY; const t = e.target.closest && e.target.closest('[data-cursor],a,button'); const l = t ? (t.getAttribute('data-cursor') || '') : null;
+        if (l !== label) { label = l; if (l === null) { c.style.width = c.style.height = '10px'; c.style.margin = '-5px 0 0 -5px'; c.textContent = ''; } else if (l === '') { c.style.width = c.style.height = '34px'; c.style.margin = '-17px 0 0 -17px'; c.textContent = ''; } else { c.style.width = c.style.height = '72px'; c.style.margin = '-36px 0 0 -36px'; c.textContent = l; } } };
+      window.addEventListener('mousemove', this.onMove);
+      const tick = () => { cx += (x - cx) * 0.22; cy += (y - cy) * 0.22; c.style.transform = `translate(${cx}px,${cy}px)`; this.raf = requestAnimationFrame(tick); }; tick();
+    }
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); window.removeEventListener('keydown', this.onKey); this.onMove && window.removeEventListener('mousemove', this.onMove); cancelAnimationFrame(this.raf); }
+  renderVals() {
+    const BL = 'data:image/gif;base64,R0lGODlhAQABAAAAACw='; const B = window.BMV, img = B ? (k, i) => B.img(k, i) || BL : () => BL, br = B ? B.brand : new Proxy({}, { get: () => BL });
+    const { open, hov, scrolled } = this.state;
+    const light = this.props.tone === 'dark';
+    const list = [
+      ['Bhutan', 'Home.dc.html#kingdom', 'THE KINGDOM', img('jomolhari', 0)],
+      ['Destinations', 'Destinations.dc.html', '11 PLACES', img('phobjikha', 0)],
+      ['Experiences', 'Journeys.dc.html#experiences', 'BY FEELING', br.trekking],
+      ['Interactive Map', 'Map.dc.html', 'REAL TERRAIN', img('dochula', 1)],
+      ['Festivals', 'Festivals.dc.html', 'TSHECHU CALENDAR', img('parotsechu', 1)],
+      ['Stories', 'Stories.dc.html', 'FROM THE KINGDOM', img('taktsang', 1)],
+      ['About', 'About.dc.html', 'A BHUTANESE FAMILY', br.people]
+    ];
+    const items = list.map(([label, href, sub, im], i) => ({
+      no: String(i + 1).padStart(2, '0'), label, href, sub, img: im,
+      bgOpacity: open && hov === i ? 1 : 0, bgScale: hov === i ? 1 : 1.08,
+      op: open ? (hov === i ? 1 : 0.42) : 0, ty: open ? '0' : '40px', delay: open ? (0.25 + i * 0.05) + 's' : '0s',
+      italic: hov === i ? 'italic' : 'normal', subOp: hov === i ? 0.9 : 0,
+      enter: () => this.setState({ hov: i })
+    }));
+    const solid = scrolled || this.props.solid;
+    return {
+      items, curRef: this.curRef,
+      toggle: () => this.setState(s => ({ open: !s.open })), close: () => this.setState({ open: false }),
+      menuClip: open ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)', menuPe: open ? 'auto' : 'none',
+      fg: light ? '#1b1a16' : '#f5f1e8',
+      barBg: solid ? (light ? 'rgba(239,233,221,.86)' : 'rgba(15,14,11,.55)') : 'transparent',
+      barBlur: solid ? 'blur(14px)' : 'none',
+      barLine: solid ? (light ? 'rgba(27,26,22,.1)' : 'rgba(245,241,232,.08)') : 'transparent'
+    };
+  }
+}</script>
+</body>
+</html>

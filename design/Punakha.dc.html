@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><title>Punakha — Where Two Rivers Meet · Bhutan Mind Vacation</title><script src="assets/data.js"></script><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#0f0e0b}a{color:inherit;text-decoration:none}a:hover{color:#e3a23a}</style></helmet>
+<dc-import name="Nav" hint-size="100%,76px"></dc-import>
+<main style="background:#0f0e0b;color:#f5f1e8;font-family:'Archivo',sans-serif;">
+  <header data-screen-label="Punakha hero" style="position:relative;height:100vh;min-height:620px;overflow:hidden;">
+    <div role="img" aria-label="Punakha Dzong" style="position:absolute;inset:0;width:100%;height:100%;view-transition-name:dest-punakha;transform:translateY({{ heroPar }}) scale(1.06);background-image:{{ heroImgBg }};background-size:cover;background-position:center;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,14,11,.35),rgba(15,14,11,0) 30%,rgba(15,14,11,.2) 60%,#0f0e0b 100%);"></div>
+    <div style="position:absolute;top:110px;left:clamp(16px,4vw,64px);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;line-height:2;">
+      <a href="Destinations.dc.html" style="color:#e3a23a;">← DESTINATIONS</a><br>06 / 11 · WESTERN BHUTAN
+    </div>
+    <div style="position:absolute;top:110px;right:clamp(16px,4vw,64px);text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;line-height:2;">
+      27.5815° N · 89.8631° E<br>~1,200 M<br>SUBTROPICAL VALLEY
+    </div>
+    <h1 style="position:absolute;left:0;right:0;bottom:-2.4vw;margin:0;text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-size:21vw;line-height:.8;letter-spacing:-.03em;view-transition-name:word-punakha;">Punakha</h1>
+  </header>
+
+  <section ref="{{ rivRef }}" data-screen-label="Two rivers" style="position:relative;height:260vh;">
+    <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;">
+      <div style="position:absolute;inset:0;opacity:.5;">{{ waves }}</div>
+      <div style="position:relative;display:flex;justify-content:space-between;padding:0 clamp(16px,4vw,64px);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#e3a23a;">
+        <span style="opacity:{{ riverLblOp }};">THE FATHER RIVER</span><span style="opacity:{{ riverLblOp }};">THE MOTHER RIVER</span>
+      </div>
+      <div style="position:relative;height:clamp(140px,22vw,320px);">
+        <div style="position:absolute;left:50%;top:0;transform:translateX(calc(-100% - {{ riverGap }}));font-family:'Instrument Serif',serif;font-size:clamp(64px,11vw,200px);line-height:1;white-space:nowrap;">Pho Chhu</div>
+        <div style="position:absolute;left:50%;top:0;transform:translateX({{ riverGap }});font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(64px,11vw,200px);line-height:1;white-space:nowrap;">Mo Chhu</div>
+        <div style="position:absolute;left:0;right:0;top:56%;text-align:center;font-family:'JetBrains Mono',monospace;font-size:clamp(11px,1vw,14px);letter-spacing:.4em;color:#e3a23a;opacity:{{ meetOp }};transform:translateY({{ meetY }});">MEET HERE</div>
+      </div>
+      <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:40px;padding:0 clamp(16px,4vw,64px);opacity:{{ storyOp }};transform:translateY({{ storyY }});">
+        <p style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(26px,2.4vw,40px);line-height:1.15;">At their confluence, Zhabdrung Ngawang Namgyal built Punakha Dzong in 1637 — the kingdom’s second-oldest fortress, and its capital until 1955.</p>
+        <p style="margin:0;font-size:15px;line-height:1.75;color:rgba(245,241,232,.8);align-self:end;max-width:440px;">The valley sits low and warm. The central monk body still winters here, and in 2011 the King and Queen were married inside these walls. In spring, jacarandas bloom purple against the whitewash.</p>
+      </div>
+    </div>
+  </section>
+
+  <section ref="{{ galRef }}" data-screen-label="River gallery" style="position:relative;height:320vh;background:#ece4d4;color:#1b1a16;">
+    <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;">
+      <div style="position:absolute;left:clamp(16px,4vw,64px);top:110px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#8f2b1f;">DOWNSTREAM · {{ galNo }} / 05</div>
+      <div style="display:flex;align-items:center;gap:clamp(24px,4vw,72px);padding-left:clamp(16px,4vw,64px);transform:translateX({{ galX }});will-change:transform;">
+        <div style="flex:0 0 clamp(260px,26vw,420px);">
+          <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,5.4vw,96px);line-height:.9;">Follow the <span style="font-style:italic;color:#8f2b1f;">water.</span></h2>
+          <p style="margin:24px 0 0;font-size:15px;line-height:1.7;color:#3d382f;">Five places along the rivers, in the order you’d meet them walking downstream.</p>
+        </div>
+        <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="0">
+          <figure style="margin:0;flex:0 0 auto;width:{{ g.w }};transform:translateY({{ g.y }});">
+            <div style="height:{{ g.h }};overflow:hidden;background:#d8cfbd;"><div role="img" aria-label="{{ g.title }}" style="width:100%;height:100%;background-image:{{ g.imgBg }};background-size:cover;background-position:center;"></div></div>
+            <figcaption style="display:flex;justify-content:space-between;gap:16px;margin-top:14px;align-items:baseline;"><span style="font-family:'Instrument Serif',serif;font-size:28px;line-height:1;">{{ g.title }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:#8f2b1f;">{{ g.no }}</span></figcaption>
+            <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:#4a4439;max-width:380px;">{{ g.text }}</p>
+          </figure>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="In the valley" style="padding:clamp(80px,10vw,150px) clamp(16px,4vw,64px);">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:56px;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#e3a23a;">IN THE VALLEY</div>
+        <h2 style="margin:20px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5vw,88px);line-height:.9;">Warmth, <span style="font-style:italic;">rice &amp; rapids</span></h2>
+      </div>
+      <div>
+        <sc-for list="{{ todo }}" as="t" hint-placeholder-count="5">
+          <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:22px 0;border-top:1px solid rgba(245,241,232,.14);">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#e3a23a;padding-top:8px;">{{ t.no }}</span>
+            <div><div style="font-family:'Instrument Serif',serif;font-size:30px;line-height:1;">{{ t.title }}</div><p style="margin:10px 0 0;font-size:14px;line-height:1.65;color:rgba(245,241,232,.75);">{{ t.text }}</p></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Punakha on the map" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));border-top:1px solid rgba(245,241,232,.1);">
+    <div style="position:relative;height:min(70vh,640px);min-height:380px;">
+      <dc-import name="BhutanMap" markers="{{ nearIds }}" active-id="punakha" focus="punakha" zoom="{{ 3 }}" labels="all" on-select="{{ go }}" style="position:absolute;inset:0;" hint-size="100%,100%"></dc-import>
+    </div>
+    <div style="padding:clamp(48px,6vw,96px) clamp(16px,4vw,64px);display:flex;flex-direction:column;justify-content:center;gap:24px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#e3a23a;">JOURNEYS THROUGH PUNAKHA</div>
+      <sc-for list="{{ journeys }}" as="j" hint-placeholder-count="4">
+        <a href="{{ j.href }}" data-cursor="VIEW" style="display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(245,241,232,.12);">
+          <span style="font-family:'Instrument Serif',serif;font-size:clamp(26px,2.4vw,38px);line-height:1;">{{ j.title }}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:#e3a23a;white-space:nowrap;">{{ j.days }} DAYS →</span>
+        </a>
+      </sc-for>
+      <a href="Build.dc.html?d=punakha" data-cursor="BEGIN" style="align-self:flex-start;margin-top:16px;display:inline-flex;gap:16px;font-size:12px;font-weight:500;letter-spacing:.24em;padding:18px 26px;background:#e3a23a;color:#14130f;" style-hover="background:#f5f1e8;color:#14130f">BUILD A JOURNEY WITH PUNAKHA <span style="font-family:'JetBrains Mono',monospace;">→</span></a>
+    </div>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { const v = this._rvImg(); const isU = s => typeof s === 'string' && /^(https?:|assets\/|data:)/.test(s); const seen = new Set(); const add = o => { if (!o || typeof o !== 'object' || seen.has(o) || o.$typeof || o instanceof Element || 'current' in o) return o; seen.add(o); if (Array.isArray(o)) { o.forEach(add); return o; } if (Object.getPrototypeOf(o) !== Object.prototype) return o; for (const k of Object.keys(o)) { const x = o[k]; if (isU(x)) o[k + 'Bg'] = 'url("' + x + '")'; else if (x && typeof x === 'object') add(x); } return o; }; return v ? add({ ...v }) : v; }
+  state = { y: 0, vh: 800, w: 1200 };
+  rivRef = React.createRef(); galRef = React.createRef();
+  componentDidMount() {
+    const w = () => window.BMV ? this.forceUpdate() : setTimeout(w, 60); w();
+    let raf = 0; this.onScroll = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; this.setState({ y: window.scrollY, vh: window.innerHeight, w: window.innerWidth }); }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true }); window.addEventListener('resize', this.onScroll); this.onScroll();
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onScroll); }
+  prog(ref) { const el = ref.current; if (!el) return 0; const r = el.getBoundingClientRect(); const s = r.height - this.state.vh; return Math.max(0, Math.min(1, s > 0 ? -r.top / s : 0)); }
+  _rvImg() {
+    const B = window.BMV; if (!B) return { heroImg: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=', gallery: [], todo: [], journeys: [], nearIds: [], rivRef: this.rivRef, galRef: this.galRef };
+    const st = this.state, img = B.img;
+    const rp = this.prog(this.rivRef), gp = this.prog(this.galRef);
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    const conv = ease(Math.min(1, rp / 0.55));
+    const gallery = [
+      { title: 'Punakha Dzong', img: img('punakha', 1), text: 'Palace of Great Happiness, at the confluence.', w: 'clamp(300px,36vw,620px)', h: '62vh', y: '-4vh' },
+      { title: 'The dzong at rest', img: img('punakha', 2), text: 'Whitewash, red-ochre band, cantilevered bridges.', w: 'clamp(220px,22vw,360px)', h: '44vh', y: '10vh' },
+      { title: 'Chimi Lhakhang', img: img('chimi', 0), text: 'The 15th-century temple of the Divine Madman, on a hillock among rice fields.', w: 'clamp(280px,30vw,520px)', h: '54vh', y: '-8vh' },
+      { title: 'The Wheel of Life', img: img('punakha', 3), text: 'Murals painted in the dzong’s courtyard galleries.', w: 'clamp(320px,40vw,680px)', h: '40vh', y: '12vh' },
+      { title: 'Wangdue Phodrang', img: img('wangdue', 0), text: 'Downstream, the rebuilt dzong on its ridge above the Punatsangchhu.', w: 'clamp(240px,24vw,400px)', h: '58vh', y: '0vh' }
+    ].map((g, i) => ({ ...g, no: String(i + 1).padStart(2, '0') }));
+    const trackW = st.w * 2.7;
+    const waves = this.waves(rp);
+    return {
+      rivRef: this.rivRef, galRef: this.galRef,
+      heroImg: img('punakha', 0), heroPar: (Math.min(st.y, 900) * 0.25).toFixed(1) + 'px',
+      riverGap: ((1 - conv) * 22 + 1).toFixed(2) + 'vw', riverLblOp: (1 - conv).toFixed(2),
+      meetOp: Math.max(0, Math.min(1, (rp - 0.45) / 0.15)).toFixed(2), meetY: ((1 - Math.min(1, Math.max(0, (rp - 0.45) / 0.15))) * 20).toFixed(1) + 'px',
+      storyOp: Math.max(0, Math.min(1, (rp - 0.55) / 0.2)).toFixed(2), storyY: ((1 - Math.min(1, Math.max(0, (rp - 0.55) / 0.2))) * 40).toFixed(1) + 'px',
+      waves, gallery, galX: (-gp * trackW * 0.62).toFixed(0) + 'px', galNo: String(Math.min(5, Math.floor(gp * 5) + 1)).padStart(2, '0'),
+      todo: [
+        { title: 'Punakha Dzong', text: 'Cross the cantilever bridge over the Mo Chhu into the courtyards. Built 1637–38.' },
+        { title: 'Chimi Lhakhang', text: 'A short walk through rice terraces to the temple of Drukpa Kunley, the Divine Madman.' },
+        { title: 'Suspension bridge', text: 'One of the longest in Bhutan, strung with prayer flags above the Pho Chhu.' },
+        { title: 'Khamsum Yulley Namgyal Chorten', text: 'A hike through paddy and pine to a chorten consecrated for the kingdom’s wellbeing.' },
+        { title: 'Rafting', text: 'Gentle to lively water on the Mo Chhu and Pho Chhu, ending beneath the dzong.' }
+      ].map((t, i) => ({ ...t, no: String(i + 1).padStart(2, '0') })),
+      nearIds: ['punakha', 'thimphu', 'dochula', 'phobjikha', 'paro'], go: id => { location.href = B.byId[id].page; },
+      journeys: B.journeys.filter(j => j.route.includes('punakha')).map(j => ({ title: j.title, days: j.days, href: j.itinerary ? 'Journey.dc.html' : 'Journey.dc.html?j=' + j.id }))
+    };
+  }
+  waves(p) {
+    const h = React.createElement, W = 1440, H = 800;
+    const paths = [0, 1, 2, 3, 4, 5].map(k => { let d = ''; for (let x = 0; x <= W; x += 12) { const y = H * 0.5 + (k - 2.5) * 46 * (1 - p * 0.7) + Math.sin(x / 140 + k * 0.7 + p * 6) * (18 + k * 3); d += (x ? 'L' : 'M') + x + ' ' + y.toFixed(1); } return h('path', { key: k, d, fill: 'none', stroke: k % 2 ? '#e3a23a' : '#f5f1e8', strokeOpacity: 0.14 + (k % 2) * 0.1, strokeWidth: 1 }); });
+    return h('svg', { viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: 'none', style: { width: '100%', height: '100%' } }, paths);
+  }
+}
+</script>
+</body>
+</html>

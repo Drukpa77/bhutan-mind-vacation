@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><title>Valleys of the Thunder Dragon — Bhutan Mind Vacation</title><script src="assets/data.js"></script><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#0f0e0b}a{color:inherit;text-decoration:none}a:hover{color:#e3a23a}</style></helmet>
+<dc-import name="Nav" hint-size="100%,76px"></dc-import>
+<main style="background:#0f0e0b;color:#f5f1e8;font-family:'Archivo',sans-serif;">
+  <header data-screen-label="Journey hero" style="position:relative;height:100vh;min-height:640px;overflow:hidden;">
+    <div role="img" aria-label="{{ j.title }}" style="position:absolute;inset:0;width:100%;height:100%;transform:scale({{ heroScale }});background-image:{{ j.imgBg }};background-size:cover;background-position:center;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,9,7,.9) 0%,rgba(10,9,7,.1) 55%,rgba(10,9,7,.4) 100%);"></div>
+    <div style="position:absolute;left:clamp(16px,4vw,64px);right:clamp(16px,4vw,64px);bottom:clamp(32px,6vh,72px);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.26em;color:#e3a23a;">JOURNEY {{ j.no }}</div>
+      <h1 style="margin:20px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(56px,10vw,184px);line-height:.84;letter-spacing:-.02em;max-width:11ch;">{{ j.title }}</h1>
+      <div style="display:flex;flex-wrap:wrap;gap:16px 48px;align-items:baseline;margin-top:36px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;">
+        <span style="font-family:'Instrument Serif',serif;font-size:48px;letter-spacing:0;">{{ j.days }} <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;">DAYS</span></span>
+        <span style="line-height:1.8;">{{ routeU }}</span>
+      </div>
+    </div>
+  </header>
+
+  <section data-screen-label="Overview" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border-bottom:1px solid rgba(245,241,232,.12);">
+    <sc-for list="{{ facts }}" as="f" hint-placeholder-count="5">
+      <div style="padding:32px clamp(16px,2vw,32px);border-right:1px solid rgba(245,241,232,.08);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.6);">{{ f.k }}</div>
+        <div style="font-family:'Instrument Serif',serif;font-size:32px;line-height:1.05;margin-top:12px;">{{ f.v }}</div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section ref="{{ elevRef }}" data-screen-label="Elevation" style="padding:80px clamp(16px,4vw,64px) 60px;">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:baseline;">
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,4vw,64px);line-height:.95;">The shape of the <span style="font-style:italic;">journey</span></h2>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.55);">ELEVATIONS APPROXIMATE · SOURCE: WIKIPEDIA PLACE DATA</span>
+    </div>
+    <div style="height:260px;margin-top:40px;">{{ elev }}</div>
+  </section>
+
+  <section ref="{{ itRef }}" data-screen-label="Itinerary" style="position:relative;display:grid;grid-template-columns:{{ cols }};">
+    <div style="position:sticky;top:76px;height:{{ mapH }};z-index:3;background:#0f0e0b;border-right:1px solid rgba(245,241,232,.08);">
+      <dc-import name="BhutanMap" route="{{ j.route }}" markers="{{ markers }}" flights="{{ j.flight }}" progress="{{ mapProg }}" active-id="{{ activeDest }}" focus="{{ focusDest }}" zoom="{{ 1.7 }}" labels="all" style="position:absolute;inset:0;" hint-size="100%,100%"></dc-import>
+      <div style="position:absolute;left:24px;top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;"><span style="font-family:'Instrument Serif',serif;font-size:44px;letter-spacing:0;color:#e3a23a;">{{ dayNo }}</span> / {{ j.days }} DAYS</div>
+      <div style="position:absolute;left:24px;right:24px;bottom:20px;height:2px;background:rgba(245,241,232,.12);"><div style="height:100%;width:{{ dayBar }};background:#e3a23a;transition:width .6s;"></div></div>
+    </div>
+    <div>
+      <sc-for list="{{ days }}" as="d" hint-placeholder-count="3">
+        <article ref="{{ d.ref }}" style="min-height:100vh;padding:clamp(64px,10vh,120px) clamp(16px,4vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:32px;align-content:center;border-bottom:1px solid rgba(245,241,232,.08);opacity:{{ d.op }};transition:opacity .6s;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#e3a23a;">DAY</div>
+            <div style="font-family:'Instrument Serif',serif;font-size:clamp(96px,10vw,180px);line-height:.8;">{{ d.no }}</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;margin-top:24px;color:rgba(245,241,232,.7);line-height:1.9;">{{ d.destU }}<br>{{ d.alt }}</div>
+            <h3 style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,2.8vw,46px);line-height:1;">{{ d.title }}</h3>
+            <p style="margin:18px 0 0;font-size:15px;line-height:1.7;color:rgba(245,241,232,.8);max-width:400px;">{{ d.text }}</p>
+          </div>
+          <div style="overflow:hidden;aspect-ratio:{{ d.ratio }};align-self:center;background:#1b1a16;"><div role="img" aria-label="{{ d.destU }}" style="width:100%;height:100%;transform:scale({{ d.scale }});transition:transform 1.6s cubic-bezier(.2,.6,.2,1);background-image:{{ d.imgBg }};background-size:cover;background-position:center;"></div></div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-screen-label="Journey CTA" style="position:relative;padding:clamp(100px,14vw,200px) clamp(16px,4vw,64px);background:#ece4d4;color:#1b1a16;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#8f2b1f;">SAMPLE ITINERARY · EVERY JOURNEY IS PRIVATE &amp; TAILORED</div>
+    <h2 style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(56px,9vw,160px);line-height:.86;letter-spacing:-.02em;">Make it <span style="font-style:italic;color:#8f2b1f;">yours.</span></h2>
+    <p style="margin:32px 0 0;max-width:520px;font-size:16px;line-height:1.7;color:#3d382f;">Change the pace, add a festival, swap a valley. Your trip is quoted with Bhutan’s Sustainable Development Fee shown clearly, never hidden.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:48px;">
+      <a href="{{ buildHref }}" data-cursor="BEGIN" style="display:inline-flex;gap:16px;font-size:12px;font-weight:500;letter-spacing:.24em;padding:20px 28px;background:#1b1a16;color:#f5f1e8;" style-hover="background:#8f2b1f;color:#f5f1e8">ADAPT THIS JOURNEY <span style="font-family:'JetBrains Mono',monospace;">→</span></a>
+      <a href="mailto:info@bhutanmindvacation.com?subject=Journey%20enquiry" style="display:inline-flex;gap:16px;font-size:12px;font-weight:500;letter-spacing:.24em;padding:20px 28px;border:1px solid #1b1a16;color:#1b1a16;" style-hover="color:#8f2b1f;border-color:#8f2b1f">ASK A BHUTAN EXPERT</a>
+    </div>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { const v = this._rvImg(); const isU = s => typeof s === 'string' && /^(https?:|assets\/|data:)/.test(s); const seen = new Set(); const add = o => { if (!o || typeof o !== 'object' || seen.has(o) || o.$typeof || o instanceof Element || 'current' in o) return o; seen.add(o); if (Array.isArray(o)) { o.forEach(add); return o; } if (Object.getPrototypeOf(o) !== Object.prototype) return o; for (const k of Object.keys(o)) { const x = o[k]; if (isU(x)) o[k + 'Bg'] = 'url("' + x + '")'; else if (x && typeof x === 'object') add(x); } return o; }; return v ? add({ ...v }) : v; }
+  state = { y: 0, vh: 800, w: 1200, active: 0 };
+  itRef = React.createRef(); elevRef = React.createRef(); refs = [];
+  componentDidMount() {
+    const w = () => window.BMV ? this.forceUpdate() : setTimeout(w, 60); w();
+    let raf = 0;
+    this.onScroll = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; const vh = window.innerHeight; let a = 0, frac = 0;
+      this.refs.forEach((r, i) => { const el = r.current; if (!el) return; const b = el.getBoundingClientRect(); if (b.top < vh * 0.55) { a = i; frac = Math.max(0, Math.min(1, (vh * 0.55 - b.top) / b.height)); } });
+      this.setState({ y: window.scrollY, vh, w: window.innerWidth, active: a, frac }); }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true }); window.addEventListener('resize', this.onScroll); this.onScroll();
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onScroll); }
+  journey() {
+    const B = window.BMV; const id = new URLSearchParams(location.search).get('j');
+    const j = B.journeys.find(x => x.id === id) || B.journeys[0];
+    if (j.itinerary) return j;
+    const uniq = j.route.filter((r, i) => j.route.indexOf(r) === i);
+    return { ...j, generated: true, itinerary: uniq.map((id, i) => { const d = B.byId[id]; return { day: i + 1, dest: id, title: d.kind, text: d.line + ' Day-by-day plan tailored on request.', img: d.img || j.img }; }) };
+  }
+  _rvImg() {
+    const B = window.BMV; if (!B) return { j: { route: [], img: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=' }, facts: [], days: [], markers: [], itRef: this.itRef, elevRef: this.elevRef };
+    const st = this.state, j = this.journey();
+    let r = 0; const dayRoute = j.itinerary.map(d => { while (r < j.route.length - 1 && j.route[r] !== d.dest) r++; return r; });
+    this.refs = j.itinerary.map((_, i) => this.refs[i] || React.createRef());
+    const a = Math.min(st.active, j.itinerary.length - 1);
+    const next = Math.min(a + 1, j.itinerary.length - 1);
+    const mapProg = dayRoute[a] + (dayRoute[next] - dayRoute[a]) * Math.min(1, (st.frac || 0) * 1.4);
+    const narrow = st.w < 900;
+    const regions = [...new Set(j.route.map(id => B.byId[id].region))];
+    const alts = j.route.map(id => B.byId[id].alt);
+    const days = j.itinerary.map((d, i) => { const dd = B.byId[d.dest]; return { ...d, ref: this.refs[i], no: String(j.generated ? i + 1 : d.day).padStart(2, '0'), destU: dd.name.toUpperCase(), alt: dd.alt.toLocaleString('en-US') + ' M · ' + dd.lat.toFixed(3) + '° N ' + dd.lon.toFixed(3) + '° E', op: i === a ? 1 : 0.38, scale: i === a ? 1 : 1.08, ratio: i % 3 === 1 ? '3/4' : '4/5' }; });
+    const ep = (() => { const el = this.elevRef.current; if (!el) return 0; const b = el.getBoundingClientRect(); return Math.max(0, Math.min(1, (st.vh - b.top) / (st.vh * 0.8))); })();
+    return {
+      j, itRef: this.itRef, elevRef: this.elevRef,
+      routeU: j.route.filter((x, i) => j.route.indexOf(x) === i).map(id => (B.byId[id].short || B.byId[id].name).toUpperCase()).join(' → '),
+      heroScale: (1 + Math.min(st.y, 800) / 4000).toFixed(3),
+      facts: [{ k: 'DURATION', v: j.days + ' days' }, { k: 'PACE', v: j.pace }, { k: 'BEST SEASON', v: j.season }, { k: 'REGIONS', v: regions.join(' · ') }, { k: 'HIGHEST POINT', v: '~' + Math.max(...alts).toLocaleString('en-US') + ' m' }],
+      elev: this.elevChart(j, ep * (j.route.length - 1), dayRoute[a]),
+      cols: narrow ? '1fr' : 'minmax(0,5fr) minmax(0,7fr)', mapH: narrow ? '38vh' : 'calc(100vh - 76px)',
+      markers: [...new Set(j.route)], mapProg, activeDest: j.itinerary[a].dest, focusDest: narrow ? '' : '',
+      dayNo: String(a + 1).padStart(2, '0'), dayBar: ((a + 1) / j.itinerary.length * 100) + '%',
+      days, buildHref: 'Build.dc.html?from=' + j.id
+    };
+  }
+  elevChart(j, prog, cur) {
+    const B = window.BMV, h = React.createElement; const pts = j.route.map(id => B.byId[id]);
+    const W = 1200, H = 260, mn = 0, mx = Math.max(4200, ...pts.map(p => p.alt + 400));
+    const xy = pts.map((d, i) => [40 + i / (pts.length - 1) * (W - 80), H - 30 - (d.alt - mn) / (mx - mn) * (H - 70)]);
+    const n = Math.floor(prog), t = prog - n; const vis = xy.slice(0, n + 1); if (n < xy.length - 1) vis.push([xy[n][0] + (xy[n + 1][0] - xy[n][0]) * t, xy[n][1] + (xy[n + 1][1] - xy[n][1]) * t]);
+    const line = a => a.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('');
+    const area = vis.length > 1 ? line(vis) + `L${vis[vis.length - 1][0]} ${H - 30}L${vis[0][0]} ${H - 30}Z` : '';
+    const grid = [1000, 2000, 3000, 4000].filter(v => v < mx).map(v => { const y = H - 30 - v / mx * (H - 70); return h('g', { key: 'g' + v }, h('line', { x1: 40, x2: W - 40, y1: y, y2: y, stroke: 'rgba(245,241,232,.08)' }), h('text', { x: 0, y: y + 3, fill: 'rgba(245,241,232,.45)', fontSize: 10, fontFamily: 'JetBrains Mono' }, v + 'm')); });
+    return h('svg', { viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: 'xMidYMid meet', style: { width: '100%', height: '100%', overflow: 'visible' } }, ...grid,
+      h('path', { d: area, fill: 'rgba(227,162,58,.1)' }),
+      h('path', { d: line(xy), fill: 'none', stroke: 'rgba(245,241,232,.22)', strokeDasharray: '3 4', vectorEffect: 'non-scaling-stroke' }),
+      h('path', { d: line(vis), fill: 'none', stroke: '#e3a23a', strokeWidth: 2, vectorEffect: 'non-scaling-stroke' }),
+      ...xy.map((p, i) => h('g', { key: i }, h('circle', { cx: p[0], cy: p[1], r: i === cur ? 6 : 3.5, fill: i <= prog + 0.01 ? '#e3a23a' : '#0f0e0b', stroke: '#e3a23a', strokeWidth: 1.2 }),
+        h('text', { x: p[0], y: p[1] - 14, fill: '#f5f1e8', fillOpacity: i <= prog + 0.01 ? 0.95 : 0.35, fontSize: 10.5, fontFamily: 'JetBrains Mono', textAnchor: 'middle', letterSpacing: 1.2 }, (pts[i].short || pts[i].name).toUpperCase()),
+        h('text', { x: p[0], y: H - 8, fill: 'rgba(245,241,232,.55)', fontSize: 10, fontFamily: 'JetBrains Mono', textAnchor: 'middle' }, pts[i].alt.toLocaleString('en-US')))));
+  }
+}
+</script>
+</body>
+</html>

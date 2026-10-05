@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><title>The Hidden Gem — Stories from the Kingdom</title><script src="assets/data.js"></script><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#f5f1e8}a{color:inherit;text-decoration:none}a:hover{color:#8f2b1f}</style></helmet>
+<dc-import name="Nav" tone="light" hint-size="100%,76px"></dc-import>
+<div style="position:fixed;left:0;top:0;height:3px;width:{{ progress }};background:#8f2b1f;z-index:80;"></div>
+<article style="background:#f5f1e8;color:#1b1a16;font-family:'Archivo',sans-serif;">
+  <header data-screen-label="Article hero" style="position:relative;height:100vh;min-height:620px;overflow:hidden;color:#f5f1e8;">
+    <div role="img" aria-label="{{ s.title }}" style="position:absolute;inset:0;width:100%;height:100%;view-transition-name:story-hero;background-image:{{ s.imgBg }};background-size:cover;background-position:center;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,14,11,.85),rgba(15,14,11,.05) 60%,rgba(15,14,11,.35));"></div>
+    <div style="position:absolute;left:clamp(16px,5vw,80px);right:clamp(16px,5vw,80px);bottom:clamp(40px,8vh,90px);">
+      <a href="Stories.dc.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#e3a23a;">← STORIES · {{ s.kickerU }}</a>
+      <h1 style="margin:20px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(60px,10vw,180px);line-height:.85;letter-spacing:-.02em;">{{ s.title }}</h1>
+      <p style="margin:24px 0 0;max-width:560px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2vw,30px);line-height:1.2;">{{ s.dek }}</p>
+      <div style="margin-top:28px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;opacity:.85;">{{ s.date }} · {{ readTime }}</div>
+    </div>
+  </header>
+
+  <sc-if value="{{ full }}" hint-placeholder-val="{{ true }}">
+    <div ref="{{ bodyRef }}" style="padding:clamp(64px,8vw,120px) clamp(16px,5vw,80px);">
+      <div style="max-width:680px;margin:0 auto;font-size:19px;line-height:1.75;color:#2b2720;">
+        <p style="margin:0 0 28px;"><span style="float:left;font-family:'Instrument Serif',serif;font-size:96px;line-height:.8;margin:6px 12px 0 0;color:#8f2b1f;">C</span>ome over the last ridge from Wangdue and the forest simply stops. Below is a wide, flat-floored bowl of grass and marsh, ringed by hills of blue pine — a glacial valley at around 2,900 metres, so open it feels like a held breath.</p>
+        <p style="margin:0 0 28px;">This is Phobjikha. Bhutanese call it a sacred place, and it is easy to understand why. On the ridge above the valley floor sits Gangtey Goenpa, the most important Nyingma monastery in western Bhutan, its golden roof catching the first light hours before it reaches the farmhouses below.</p>
+      </div>
+      <figure style="margin:64px calc(-1 * clamp(16px,5vw,80px));">
+        <div role="img" aria-label="Phobjikha valley in autumn" style="width:100%;height:80vh;min-height:400px;display:block;background-image:{{ img1Bg }};background-size:cover;background-position:center;"></div>
+        <figcaption style="padding:14px clamp(16px,5vw,80px);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:#5a5244;">PHOBJIKHA VALLEY IN AUTUMN · WIKIMEDIA COMMONS</figcaption>
+      </figure>
+      <div style="max-width:680px;margin:0 auto;font-size:19px;line-height:1.75;color:#2b2720;">
+        <p style="margin:0 0 28px;">Every year, from late October, black-necked cranes fly in from the Tibetan plateau to spend the winter in the valley’s marshes. They are endangered, shy, and deeply loved here. Local tradition says that when they arrive, they circle Gangtey Goenpa three times before landing — and again before they leave in spring.</p>
+      </div>
+      <blockquote style="margin:72px auto;max-width:980px;font-family:'Instrument Serif',serif;font-size:clamp(40px,5vw,84px);line-height:1;letter-spacing:-.01em;text-align:center;color:#1b1a16;">No power lines cross the marsh — <span style="font-style:italic;color:#8f2b1f;">so the cranes can land.</span></blockquote>
+      <div style="max-width:680px;margin:0 auto;font-size:19px;line-height:1.75;color:#2b2720;">
+        <p style="margin:0 0 28px;">Electricity came to Phobjikha by underground cable, at the community’s choosing, to keep the flight paths clear. The Royal Society for Protection of Nature runs a small crane information centre at the valley’s edge, with telescopes trained on the marsh.</p>
+        <p style="margin:0 0 28px;">Each 11 November the monastery courtyard fills for the Black-necked Crane Festival. Schoolchildren in crane costumes dance for the returning birds, and the whole valley comes to watch.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;max-width:1100px;margin:64px auto;">
+        <figure style="margin:0;"><div role="img" aria-label="Black-necked cranes in Phobjikha" style="width:100%;aspect-ratio:4/3;display:block;background-image:{{ img2Bg }};background-size:cover;background-position:center;"></div><figcaption style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:#5a5244;">BLACK-NECKED CRANES, PHOBJIKHA</figcaption></figure>
+        <figure style="margin:40px 0 0;"><div role="img" aria-label="Gangtey Goenpa" style="width:100%;aspect-ratio:3/4;display:block;background-image:{{ img3Bg }};background-size:cover;background-position:center;"></div><figcaption style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:#5a5244;">GANGTEY GOENPA</figcaption></figure>
+      </div>
+      <div style="max-width:680px;margin:0 auto;font-size:19px;line-height:1.75;color:#2b2720;">
+        <p style="margin:0;">Stay two nights. Walk the Gangtey nature trail down from the monastery through pine and dwarf bamboo to the valley floor. Then do very little at all. That, more than anything, is what Phobjikha is for.</p>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ partial }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:100px clamp(16px,5vw,80px);max-width:680px;margin:0 auto;">
+      <p style="margin:0;font-size:19px;line-height:1.75;color:#2b2720;">{{ s.dek }}</p>
+      <a href="{{ s.orig }}" style="display:inline-flex;margin-top:32px;gap:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;border-bottom:1px solid #1b1a16;padding-bottom:6px;">READ THE ORIGINAL ON THE BMV BLOG ↗</a>
+    </div>
+  </sc-if>
+
+  <section data-screen-label="Article related" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));border-top:1px solid rgba(27,26,22,.15);">
+    <div style="position:relative;height:440px;background:#f5f1e8;">
+      <dc-import name="BhutanMap" variant="light" markers="{{ near }}" active-id="{{ d.id }}" focus="{{ d.id }}" zoom="{{ 2.4 }}" labels="all" style="position:absolute;inset:0;" hint-size="100%,440px"></dc-import>
+      <div style="position:absolute;left:20px;top:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#8f2b1f;">LOCATION · {{ d.coords }}</div>
+    </div>
+    <div style="padding:clamp(40px,5vw,80px);display:flex;flex-direction:column;justify-content:center;gap:28px;background:#ece4d4;">
+      <a href="{{ d.page }}" style="display:block;"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#8f2b1f;">RELATED DESTINATION</div><div style="font-family:'Instrument Serif',serif;font-size:48px;line-height:1;margin-top:8px;">{{ d.name }} →</div></a>
+      <a href="{{ j.href }}" style="display:block;"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#8f2b1f;">RELATED JOURNEY · {{ j.days }} DAYS</div><div style="font-family:'Instrument Serif',serif;font-size:48px;line-height:1;margin-top:8px;">{{ j.title }} →</div></a>
+      <a href="Build.dc.html?d={{ d.id }}" style="align-self:flex-start;display:inline-flex;gap:16px;font-size:12px;font-weight:500;letter-spacing:.24em;padding:18px 26px;background:#1b1a16;color:#f5f1e8;" style-hover="background:#8f2b1f;color:#f5f1e8">GO THERE YOURSELF →</a>
+    </div>
+  </section>
+</article>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { const v = this._rvImg(); const isU = s => typeof s === 'string' && /^(https?:|assets\/|data:)/.test(s); const seen = new Set(); const add = o => { if (!o || typeof o !== 'object' || seen.has(o) || o.$typeof || o instanceof Element || 'current' in o) return o; seen.add(o); if (Array.isArray(o)) { o.forEach(add); return o; } if (Object.getPrototypeOf(o) !== Object.prototype) return o; for (const k of Object.keys(o)) { const x = o[k]; if (isU(x)) o[k + 'Bg'] = 'url("' + x + '")'; else if (x && typeof x === 'object') add(x); } return o; }; return v ? add({ ...v }) : v; }
+  state = { p: 0 };
+  bodyRef = React.createRef();
+  componentDidMount() {
+    const w = () => window.BMV ? this.forceUpdate() : setTimeout(w, 60); w();
+    this.onScroll = () => { const h = document.documentElement.scrollHeight - window.innerHeight; this.setState({ p: h > 0 ? window.scrollY / h : 0 }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true }); this.onScroll();
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+  _rvImg() {
+    const B = window.BMV; if (!B) return { s: { img: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=' }, img1: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=', img2: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=', img3: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=', d: {}, j: {}, near: [], full: true, bodyRef: this.bodyRef };
+    const id = new URLSearchParams(location.search).get('s') || 'hidden-gem';
+    const s0 = B.stories.find(x => x.id === id) || B.stories[1];
+    const ORIG = { chumphu: '2021/02/23/hike-to-chumphu-ney', 'hidden-gem': '2018/05/15/the-hidden-gyem', jabdo: '2019/08/08/the-sacred-jabdo-goenpa', marriage: '2019/03/07/marriage-in-bhutan', lockdown: '2020/11/09/a-lockdown-like-no-other-bhutan' };
+    const s = { ...s0, kickerU: s0.kicker.toUpperCase(), orig: 'https://www.bhutanmindvacation.com/blog/' + ORIG[s0.id] };
+    const dd = B.byId[s0.dest];
+    const j = B.journeys.find(x => x.route.includes(dd.id)) || B.journeys[0];
+    const full = s0.id === 'hidden-gem';
+    return {
+      s, full, partial: !full, bodyRef: this.bodyRef, progress: (this.state.p * 100).toFixed(2) + '%', readTime: full ? '4 MIN READ' : 'FROM THE ARCHIVE',
+      img1: B.img('phobjikha', 1), img2: B.img('crane', 0), img3: B.img('gangtey', 0),
+      d: { ...dd, coords: dd.lat.toFixed(3) + '° N ' + dd.lon.toFixed(3) + '° E' }, near: B.dest.filter(x => Math.hypot(x.lon - dd.lon, x.lat - dd.lat) < 0.7).map(x => x.id),
+      j: { title: j.title, days: j.days, href: j.itinerary ? 'Journey.dc.html' : 'Journey.dc.html?j=' + j.id }
+    };
+  }
+}
+</script>
+</body>
+</html>

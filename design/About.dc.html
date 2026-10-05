@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><title>About — Bhutan Mind Vacation</title><script src="assets/data.js"></script><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#ece4d4}a{color:inherit;text-decoration:none}a:hover{color:#8f2b1f}</style></helmet>
+<dc-import name="Nav" tone="dark" hint-size="100%,76px"></dc-import>
+<main style="background:#ece4d4;color:#1b1a16;font-family:'Archivo',sans-serif;">
+  <header data-screen-label="About intro" style="padding:170px clamp(16px,5vw,80px) 0;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#8f2b1f;">ABOUT · BMV TOURS &amp; TREKS · SINCE 2012</div>
+    <h1 style="margin:24px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(60px,10vw,184px);line-height:.84;letter-spacing:-.02em;">A Bhutanese family,<br><span style="font-style:italic;color:#8f2b1f;">at your service.</span></h1>
+    <div style="display:flex;gap:28px;flex-wrap:wrap;margin:48px 0 0;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;">
+      <a href="#story" style="border-bottom:1px solid #1b1a16;padding-bottom:6px;">OUR STORY</a><a href="#founder" style="border-bottom:1px solid #1b1a16;padding-bottom:6px;">THE FOUNDER</a><a href="#responsible" style="border-bottom:1px solid #1b1a16;padding-bottom:6px;">RESPONSIBLE TRAVEL</a>
+    </div>
+  </header>
+  <div style="margin-top:80px;height:80vh;min-height:420px;overflow:hidden;"><div role="img" aria-label="Bhutanese people in traditional dress" style="width:100%;height:100%;transform:translateY({{ par }});background-image:{{ heroImgBg }};background-size:cover;background-position:center;"></div></div>
+
+  <section id="story" ref="{{ storyRef }}" data-screen-label="Our story" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));">
+    <div style="position:sticky;top:0;height:100vh;overflow:hidden;">
+      <sc-for list="{{ chapters }}" as="c" hint-placeholder-count="0"><div role="img" aria-label="{{ c.title }}" style="position:absolute;inset:0;width:100%;height:100%;opacity:{{ c.op }};transition:opacity 1s ease;background-image:{{ c.imgBg }};background-size:cover;background-position:center;"></div></sc-for>
+      <div style="position:absolute;left:24px;bottom:24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#f5f1e8;background:rgba(27,26,22,.55);padding:8px 12px;">{{ chNo }} / 04</div>
+    </div>
+    <div>
+      <sc-for list="{{ chapters }}" as="c" hint-placeholder-count="4">
+        <article style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(16px,5vw,80px);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#8f2b1f;">{{ c.k }}</div>
+          <h2 style="margin:20px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,4.6vw,80px);line-height:.92;">{{ c.title }}</h2>
+          <p style="margin:24px 0 0;max-width:480px;font-size:16px;line-height:1.75;color:#3d382f;">{{ c.text }}</p>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="founder" data-screen-label="Founder" style="background:#1b1a16;color:#f5f1e8;padding:clamp(80px,10vw,160px) clamp(16px,5vw,80px);">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(40px,6vw,100px);align-items:start;">
+      <div><div role="img" aria-label="Tshering Dorji, founder of Bhutan Mind Vacation" style="width:100%;aspect-ratio:4/5;display:block;filter:grayscale(.2);background-image:{{ founderImgBg }};background-size:cover;background-position:center;"></div><div style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.7);">TSHERING DORJI · FOUNDER &amp; CEO</div></div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#e3a23a;">THE FOUNDER</div>
+        <blockquote style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-size:clamp(34px,3.8vw,64px);line-height:1.02;text-wrap:balance;">“People need some breathing space, which is often lost in the chaos of this crazy modern world.”</blockquote>
+        <p style="margin:32px 0 0;max-width:520px;font-size:16px;line-height:1.75;color:rgba(245,241,232,.8);">Tshering Dorji began in Bhutan’s travel industry in 2005, became a licensed guide, and walked the kingdom’s great treks — Jomolhari, Laya–Lingshi, the Druk Path, Dagala Thousand Lakes. Friendships with the travellers he guided took him across Europe, America, Asia and Australia. In 2012 he founded Bhutan Mind Vacation for people looking for serenity, happiness and a spiritual journey — while giving back to the country and its people.</p>
+        <div style="margin-top:56px;border-top:1px solid rgba(245,241,232,.2);">
+          <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;padding:18px 0;border-bottom:1px solid rgba(245,241,232,.1);"><span style="font-family:'Instrument Serif',serif;font-size:30px;line-height:1;color:#e3a23a;">{{ t.y }}</span><span style="font-size:14px;line-height:1.6;color:rgba(245,241,232,.85);">{{ t.t }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="responsible" data-screen-label="Responsible travel" style="padding:clamp(80px,10vw,160px) clamp(16px,5vw,80px);">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:56px;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#8f2b1f;">RESPONSIBLE TRAVEL</div>
+        <h2 style="margin:20px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5vw,88px);line-height:.9;">High value,<br><span style="font-style:italic;">low volume.</span></h2>
+      </div>
+      <div>
+        <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:22px 0;border-top:1px solid rgba(27,26,22,.18);"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8f2b1f;padding-top:8px;">{{ p.no }}</span><div><div style="font-family:'Instrument Serif',serif;font-size:30px;line-height:1;">{{ p.t }}</div><p style="margin:10px 0 0;font-size:14px;line-height:1.65;color:#4a4439;">{{ p.d }}</p></div></div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { const v = this._rvImg(); const isU = s => typeof s === 'string' && /^(https?:|assets\/|data:)/.test(s); const seen = new Set(); const add = o => { if (!o || typeof o !== 'object' || seen.has(o) || o.$typeof || o instanceof Element || 'current' in o) return o; seen.add(o); if (Array.isArray(o)) { o.forEach(add); return o; } if (Object.getPrototypeOf(o) !== Object.prototype) return o; for (const k of Object.keys(o)) { const x = o[k]; if (isU(x)) o[k + 'Bg'] = 'url("' + x + '")'; else if (x && typeof x === 'object') add(x); } return o; }; return v ? add({ ...v }) : v; }
+  state = { y: 0, ch: 0 };
+  storyRef = React.createRef();
+  componentDidMount() {
+    const w = () => window.BMV ? this.forceUpdate() : setTimeout(w, 60); w();
+    let raf = 0; this.onScroll = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; const el = this.storyRef.current; let ch = 0; if (el) { const r = el.getBoundingClientRect(); ch = Math.max(0, Math.min(3, Math.floor((-r.top + window.innerHeight * 0.5) / window.innerHeight))); } this.setState({ y: window.scrollY, ch }); }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true }); this.onScroll();
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+  _rvImg() {
+    const B = window.BMV; if (!B) return { heroImg: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=', founderImg: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=', chapters: [], timeline: [], pillars: [], storyRef: this.storyRef };
+    const br = B.brand, st = this.state;
+    const C = [
+      ['FAMILY-OWNED', 'Run from home', 'Bhutan Mind Vacation is owned and operated by a Bhutanese family in Babesa, Thimphu. When you write to us, you are writing to the people who will look after you.', br.happiness],
+      ['PRIVATE GUESTS', 'Experiences most visitors miss', 'We travel with you as hosts: a farmhouse dinner, a monk’s blessing, a village archery match. Personal care and attention to detail from a small, well-trained team.', br.culture],
+      ['LOCAL EXPERTISE', 'Guides from these valleys', 'Our guides are licensed, Bhutanese, and grew up in the places you’ll visit. They know the trails, the festivals, and which pass is open this week.', br.trekking],
+      ['TAILOR-MADE', 'No two journeys alike', 'Cultural, wellness, trekking, pilgrimage, adventure or that long-awaited anniversary. Action-packed or serene — designed with you, not for you.', br.custom]
+    ];
+    return {
+      heroImg: br.people, founderImg: 'https://www.bhutanmindvacation.com/img/paths/assets/images/banners/Bhutanese-Man-.jpg/ef400417ec0bc52fe36cb0e0cb017216.jpg', par: (Math.min(st.y, 900) * -0.08).toFixed(1) + 'px', storyRef: this.storyRef,
+      chapters: C.map(([k, title, text, img], i) => ({ k, title, text, img, op: i === st.ch ? 1 : 0 })), chNo: String(st.ch + 1).padStart(2, '0'),
+      timeline: [{ y: '2005', t: 'Joins a renowned Bhutanese tour agent as assistant to sales and ground operations.' }, { y: '—', t: 'Promoted to ground operations manager.' }, { y: '—', t: 'Registers as a professional tour guide; travels every corner of Bhutan.' }, { y: '2012', t: 'Founds Bhutan Mind Vacation Tours and Treks.' }, { y: '2024', t: 'Tripadvisor Travellers’ Choice award.' }],
+      pillars: [{ t: 'Socially acceptable', d: 'Tours designed to respect the communities we visit, with fair work for local guides, drivers and homestay families.' }, { t: 'Culturally respectful', d: 'We brief every guest on etiquette in dzongs, temples and homes.' }, { t: 'Environmentally friendly', d: 'Bhutan is carbon-negative and keeps most of its land under forest. We travel lightly to keep it that way.' }, { t: 'Gross National Happiness', d: 'His Majesty Jigme Singye Wangchuck’s philosophy of putting people and balance at the centre of development guides how we work.' }].map((p, i) => ({ ...p, no: String(i + 1).padStart(2, '0') }))
+    };
+  }
+}
+</script>
+</body>
+</html>

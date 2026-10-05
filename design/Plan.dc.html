@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><title>Plan Your Trip — Bhutan Mind Vacation</title><script src="assets/data.js"></script><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#f5f1e8}a{color:inherit;text-decoration:none}a:hover{color:#8f2b1f}</style></helmet>
+<dc-import name="Nav" tone="dark" solid="{{ true }}" hint-size="100%,76px"></dc-import>
+<main style="background:#f5f1e8;color:#1b1a16;font-family:'Archivo',sans-serif;">
+  <header data-screen-label="Plan intro" style="padding:170px clamp(16px,5vw,80px) 64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px;align-items:end;border-bottom:1px solid rgba(27,26,22,.15);">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#8f2b1f;">PLAN YOUR TRIP</div>
+      <h1 style="margin:20px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(56px,8vw,140px);line-height:.86;letter-spacing:-.02em;">Everything,<br><span style="font-style:italic;">calmly.</span></h1>
+    </div>
+    <p style="margin:0;max-width:460px;font-size:16px;line-height:1.7;color:#4a4439;">Bhutan asks a little more planning than most places. We handle the visa, permits and logistics; here’s what’s useful to know before you ask.</p>
+  </header>
+
+  <nav data-screen-label="Pathways" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-bottom:1px solid rgba(27,26,22,.15);">
+    <sc-for list="{{ paths }}" as="p" hint-placeholder-count="8">
+      <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:14px;padding:28px clamp(16px,2vw,32px);border-right:1px solid rgba(27,26,22,.1);border-bottom:1px solid rgba(27,26,22,.1);color:#1b1a16;" style-hover="background:#ece4d4">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#8f2b1f;">{{ p.no }}</span>
+        <span style="font-family:'Instrument Serif',serif;font-size:32px;line-height:1;">{{ p.title }}</span>
+        <span style="font-size:13px;line-height:1.5;color:#5a5244;">{{ p.sub }}</span>
+      </a>
+    </sc-for>
+  </nav>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:0;">
+    <sc-for list="{{ sections }}" as="s" hint-placeholder-count="6">
+      <section id="{{ s.id }}" style="padding:64px clamp(16px,5vw,80px);border-bottom:1px solid rgba(27,26,22,.12);grid-column:1 / -1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:40px;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#8f2b1f;">{{ s.no }}</div>
+          <h2 style="margin:12px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,3.6vw,56px);line-height:.95;">{{ s.title }}</h2>
+        </div>
+        <div style="grid-column:span 2;min-width:0;">
+          <sc-for list="{{ s.items }}" as="i" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:minmax(120px,200px) minmax(0,1fr);gap:24px;padding:16px 0;border-top:1px solid rgba(27,26,22,.1);">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:#5a5244;">{{ i.k }}</span>
+              <span style="font-size:15px;line-height:1.65;">{{ i.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+  </div>
+
+  <section id="faq" data-screen-label="FAQ" style="padding:80px clamp(16px,5vw,80px) 120px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:40px;">
+    <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5vw,80px);line-height:.9;">Questions<br><span style="font-style:italic;">people ask</span></h2>
+    <div style="grid-column:span 2;min-width:0;">
+      <sc-for list="{{ faq }}" as="f" hint-placeholder-count="5">
+        <div style="border-top:1px solid rgba(27,26,22,.15);">
+          <button onClick="{{ f.toggle }}" style="all:unset;cursor:pointer;display:flex;justify-content:space-between;gap:20px;width:100%;box-sizing:border-box;padding:22px 0;font-family:'Instrument Serif',serif;font-size:clamp(22px,2vw,30px);line-height:1.15;">{{ f.q }}<span style="font-family:'JetBrains Mono',monospace;font-size:18px;color:#8f2b1f;transform:rotate({{ f.rot }});transition:transform .3s;">+</span></button>
+          <div style="display:grid;grid-template-rows:{{ f.rows }};transition:grid-template-rows .4s ease;"><div style="overflow:hidden;"><p style="margin:0 0 24px;max-width:640px;font-size:15px;line-height:1.7;color:#4a4439;">{{ f.a }}</p></div></div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:80px clamp(16px,5vw,80px);background:#24392d;color:#f5f1e8;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;">
+    <div style="font-family:'Instrument Serif',serif;font-size:clamp(36px,4vw,64px);line-height:1;">Ready when you are.</div>
+    <a href="Build.dc.html" style="display:inline-flex;gap:16px;font-size:12px;font-weight:500;letter-spacing:.24em;padding:18px 26px;background:#e3a23a;color:#14130f;" style-hover="background:#f5f1e8;color:#14130f">BUILD YOUR JOURNEY →</a>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { open: 0 };
+  renderVals() {
+    const paths = [
+      ['Visa & SDF', 'Visa.dc.html', 'Process, fees, what we handle'], ['Flights', '#flights', 'Paro, carriers, connections'], ['When to visit', '#when', 'Seasons and festivals'], ['Accommodation', '#stay', 'From farmhouses to lodges'],
+      ['Money', '#money', 'Ngultrum, cards, tipping'], ['Health', '#health', 'Altitude and insurance'], ['Etiquette', '#etiquette', 'Dzongs, chortens, dress'], ['FAQ', '#faq', 'Short answers']
+    ].map(([title, href, sub], i) => ({ title, href, sub, no: String(i + 1).padStart(2, '0') }));
+    const sections = [
+      { id: 'flights', title: 'Flights', items: [['ARRIVAL', 'Paro International Airport is the only international airport. Flights are operated by Drukair and Bhutan Airlines.'], ['CONNECTIONS', 'Via regional hubs such as Bangkok, Delhi, Kathmandu and Singapore. Schedules change seasonally — we book and confirm seats for you.'], ['BY LAND', 'Overland entry is possible via Phuentsholing, Gelephu and Samdrup Jongkhar.'], ['TIP', 'On the approach into Paro, the left side usually has the mountain views.']] },
+      { id: 'when', title: 'When to visit', items: [['SPRING · MAR–MAY', 'Blossom and rhododendrons, mild days, Paro Tshechu.'], ['SUMMER · JUN–AUG', 'Monsoon: green, quiet, wet afternoons.'], ['AUTUMN · SEP–NOV', 'Clear skies, harvest, peak trekking and festival season.'], ['WINTER · DEC–FEB', 'Cold, clear, best mountain views; cranes in Phobjikha.'], ['FESTIVALS', 'See the full calendar on the Festivals page.']] },
+      { id: 'stay', title: 'Accommodation', items: [['STANDARD', 'Tourist hotels in Bhutan are certified by the Department of Tourism; most journeys use 3-star and above.'], ['BOUTIQUE & LUXURY', 'International luxury lodges operate in Paro, Thimphu, Punakha, Gangtey and Bumthang.'], ['HOMESTAYS', 'Farmhouse stays — hot-stone baths, home cooking — in Haa, Paro and Bumthang.']] },
+      { id: 'money', title: 'Money', items: [['CURRENCY', 'The ngultrum (BTN), pegged 1:1 to the Indian rupee.'], ['CARDS', 'Accepted at larger hotels and shops; carry cash for villages and markets.'], ['FEES', 'The Sustainable Development Fee is a government levy, quoted separately and clearly.']] },
+      { id: 'health', title: 'Health', items: [['ALTITUDE', 'Most valleys sit between 1,200 and 3,000 m; passes and treks go higher. Take the first days gently.'], ['INSURANCE', 'Comprehensive travel insurance with medical evacuation is strongly recommended.'], ['ADVICE', 'Ask your doctor about vaccinations well before you travel.']] },
+      { id: 'etiquette', title: 'Culture & etiquette', items: [['DZONGS & TEMPLES', 'Long sleeves and long trousers or skirts; no hats. Photography inside temples is not allowed.'], ['CHORTENS', 'Walk around chortens and prayer wheels clockwise.'], ['TOBACCO', 'Smoking in public places is restricted — ask your guide.']] }
+    ].map((s, i) => ({ ...s, no: String(i + 2).padStart(2, '0'), items: s.items.map(([k, v]) => ({ k, v })) }));
+    const F = [
+      ['Do I have to travel with a tour operator?', 'Visas are processed through a licensed Bhutanese tour operator or the official portal; licensed guides are required for most of the country. We arrange both.'],
+      ['How much is the Sustainable Development Fee?', 'USD 100 per adult per night, under a concession in place until 31 August 2027. Children aged 6–12 pay 50%; 5 and under are exempt. Indian nationals pay INR 1,200 per night.'],
+      ['Is the SDF included in the tour price?', 'We show it as a separate line so you can see exactly what goes to the government and what goes to your journey.'],
+      ['What is the best time to visit?', 'Spring (March–May) and autumn (September–November) for clear weather and festivals. Winter is cold and clear; summer is green and quiet.'],
+      ['Can you plan around a festival?', 'Yes — festival dates follow the lunar calendar and are confirmed each year. Tell us which one and we’ll build around it.']
+    ];
+    const faq = F.map(([q, a], i) => ({ q, a, rows: this.state.open === i ? '1fr' : '0fr', rot: this.state.open === i ? '45deg' : '0deg', toggle: () => this.setState({ open: this.state.open === i ? -1 : i }) }));
+    return { paths, sections, faq };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+{
+ "video": {
+  "heroVideo": {
+   "local": "/video/bhutan-hero.mp4",
+   "remote": "https://videos.pexels.com/video-files/13978913/13978913-hd_1920_1080_24fps.mp4",
+   "by": "Serg Alesenko",
+   "licence": "Pexels licence",
+   "page": "https://www.pexels.com/video/13978913/",
+   "note": "TEMPORARY — location unverified; replace with BMV film."
+  },
+  "heroPoster": {
+   "local": "/img/hero-poster.jpg",
+   "remote": "https://images.pexels.com/videos/13978913/4k-4k-background-4k-resolution-4k-video-13978913.jpeg?auto=compress&w=1920"
+  },
+  "riverVideo": {
+   "local": "/video/bhutan-river.mp4",
+   "remote": "https://videos.pexels.com/video-files/13978919/13978919-hd_1920_1080_24fps.mp4",
+   "by": "Serg Alesenko",
+   "licence": "Pexels licence",
+   "page": "https://www.pexels.com/video/13978919/",
+   "note": "TEMPORARY — location unverified."
+  }
+ },
+ "commons": {
+  "punakha": [
+   {
+    "local": "/img/commons/punakha-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Punakha_Dzong%2C_Bhutan_05.jpg/1920px-Punakha_Dzong%2C_Bhutan_05.jpg",
+    "title": "Punakha Dzong, Bhutan 05.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Punakha_Dzong,_Bhutan_05.jpg"
+   },
+   {
+    "local": "/img/commons/punakha-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Punakha_Dzong%2C_Bhutan_02.jpg/1920px-Punakha_Dzong%2C_Bhutan_02.jpg",
+    "title": "Punakha Dzong, Bhutan 02.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Punakha_Dzong,_Bhutan_02.jpg"
+   },
+   {
+    "local": "/img/commons/punakha-2.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Punakha_Dzong%2C_Bhutan_08.jpg/1920px-Punakha_Dzong%2C_Bhutan_08.jpg",
+    "title": "Punakha Dzong, Bhutan 08.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Punakha_Dzong,_Bhutan_08.jpg"
+   },
+   {
+    "local": "/img/commons/punakha-3.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Punakha_Dzong%2C_Bhutan_29.jpg/1920px-Punakha_Dzong%2C_Bhutan_29.jpg",
+    "title": "Punakha Dzong, Bhutan 29.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Punakha_Dzong,_Bhutan_29.jpg"
+   }
+  ],
+  "taktsang": [
+   {
+    "local": "/img/commons/taktsang-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Paro_Taktsang%2C_Bhutan_%28edited%29.jpg/1920px-Paro_Taktsang%2C_Bhutan_%28edited%29.jpg",
+    "title": "Paro Taktsang, Bhutan (edited).jpg",
+    "by": "Original: Nina R from Africa Derivative work: Unpetitprol",
+    "licence": "CC BY 2.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Paro_Taktsang,_Bhutan_(edited).jpg"
+   },
+   {
+    "local": "/img/commons/taktsang-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Bhutan-Paro-136-Taktshang-Tigernest-gje.jpg/1920px-Bhutan-Paro-136-Taktshang-Tigernest-gje.jpg",
+    "title": "Bhutan-Paro-136-Taktshang-Tigernest-gje.jpg",
+    "by": "Gerd Eichmann",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Bhutan-Paro-136-Taktshang-Tigernest-gje.jpg"
+   },
+   {
+    "local": "/img/commons/taktsang-2.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Paro_Taktsang_trail_08.jpg/1920px-Paro_Taktsang_trail_08.jpg",
+    "title": "Paro Taktsang trail 08.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Paro_Taktsang_trail_08.jpg"
+   },
+   {
+    "local": "/img/commons/taktsang-3.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Taktsang_Monastery%2C_Bhutan_03.jpg/1920px-Taktsang_Monastery%2C_Bhutan_03.jpg",
+    "title": "Taktsang Monastery, Bhutan 03.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Taktsang_Monastery,_Bhutan_03.jpg"
+   }
+  ],
+  "phobjikha": [
+   {
+    "local": "/img/commons/phobjikha-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Phobjika_Valley_view%2C_Bhutan.jpg/1920px-Phobjika_Valley_view%2C_Bhutan.jpg",
+    "title": "Phobjika Valley view, Bhutan.jpg",
+    "by": "stull17",
+    "licence": "CC BY 2.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Phobjika_Valley_view,_Bhutan.jpg"
+   },
+   {
+    "local": "/img/commons/phobjikha-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/The_Phobjikha_Valley_in_Autumn.jpg/1920px-The_Phobjikha_Valley_in_Autumn.jpg",
+    "title": "The Phobjikha Valley in Autumn.jpg",
+    "by": "Phuentsho",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:The_Phobjikha_Valley_in_Autumn.jpg"
+   },
+   {
+    "local": "/img/commons/phobjikha-2.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/The_Phobjikha_Valley.jpg/1920px-The_Phobjikha_Valley.jpg",
+    "title": "The Phobjikha Valley.jpg",
+    "by": "Phuentsho",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:The_Phobjikha_Valley.jpg"
+   }
+  ],
+  "haa": [
+   {
+    "local": "/img/commons/haa-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Haa_valley%2C_Ha_-_during_LGFC_-_Bhutan_2019_%283%29.jpg/1920px-Haa_valley%2C_Ha_-_during_LGFC_-_Bhutan_2019_%283%29.jpg",
+    "title": "Haa valley, Ha - during LGFC - Bhutan 2019 (3).jpg",
+    "by": "Vinayaraj",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Haa_valley,_Ha_-_during_LGFC_-_Bhutan_2019_(3).jpg"
+   },
+   {
+    "local": "/img/commons/haa-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Haa_valley%2C_Ha_-_during_LGFC_-_Bhutan_2019_%28126%29.jpg/1920px-Haa_valley%2C_Ha_-_during_LGFC_-_Bhutan_2019_%28126%29.jpg",
+    "title": "Haa valley, Ha - during LGFC - Bhutan 2019 (126).jpg",
+    "by": "Vinayaraj",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Haa_valley,_Ha_-_during_LGFC_-_Bhutan_2019_(126).jpg"
+   }
+  ],
+  "gangtey": [
+   {
+    "local": "/img/commons/gangtey-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Gangtey_Gompa_Bhutan.jpg/1920px-Gangtey_Gompa_Bhutan.jpg",
+    "title": "Gangtey Gompa Bhutan.jpg",
+    "by": "Prof Ranga Sai",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Gangtey_Gompa_Bhutan.jpg"
+   }
+  ],
+  "trongsa": [
+   {
+    "local": "/img/commons/trongsa-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Trongsa-Dzong-124-2015-gje.jpg/1920px-Trongsa-Dzong-124-2015-gje.jpg",
+    "title": "Trongsa-Dzong-124-2015-gje.jpg",
+    "by": "Gerd Eichmann",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Trongsa-Dzong-124-2015-gje.jpg"
+   },
+   {
+    "local": "/img/commons/trongsa-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Trongsa_dzong_internal_view.jpg/1920px-Trongsa_dzong_internal_view.jpg",
+    "title": "Trongsa dzong internal view.jpg",
+    "by": "Prof Ranga Sai",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Trongsa_dzong_internal_view.jpg"
+   }
+  ],
+  "jakar": [
+   {
+    "local": "/img/commons/jakar-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Jakar_Dzong_2021-10-19.jpg/1920px-Jakar_Dzong_2021-10-19.jpg",
+    "title": "Jakar Dzong 2021-10-19.jpg",
+    "by": "Christopher J. Fynn",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Jakar_Dzong_2021-10-19.jpg"
+   },
+   {
+    "local": "/img/commons/jakar-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Bumthang-Jakar_Dzong-08-Totenfahnen-2015-gje.jpg/1920px-Bumthang-Jakar_Dzong-08-Totenfahnen-2015-gje.jpg",
+    "title": "Bumthang-Jakar Dzong-08-Totenfahnen-2015-gje.jpg",
+    "by": "Gerd Eichmann",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Bumthang-Jakar_Dzong-08-Totenfahnen-2015-gje.jpg"
+   },
+   {
+    "local": "/img/commons/jakar-2.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Jakar_Dzong_internal_-_Bhutan.jpg/1920px-Jakar_Dzong_internal_-_Bhutan.jpg",
+    "title": "Jakar Dzong internal - Bhutan.jpg",
+    "by": "Prof Ranga Sai",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Jakar_Dzong_internal_-_Bhutan.jpg"
+   }
+  ],
+  "dochula": [
+   {
+    "local": "/img/commons/dochula-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Druk_Wangyal_Khang_Zhang_Chortens_at_Dochula_Pass.jpg/1920px-Druk_Wangyal_Khang_Zhang_Chortens_at_Dochula_Pass.jpg",
+    "title": "Druk Wangyal Khang Zhang Chortens at Dochula Pass.jpg",
+    "by": "Chirag85",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Druk_Wangyal_Khang_Zhang_Chortens_at_Dochula_Pass.jpg"
+   },
+   {
+    "local": "/img/commons/dochula-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Dochu_La_Pass%2C_108_Druk_Wangyal_Chortens_%2815818199106%29.jpg/1920px-Dochu_La_Pass%2C_108_Druk_Wangyal_Chortens_%2815818199106%29.jpg",
+    "title": "Dochu La Pass, 108 Druk Wangyal Chortens (15818199106).jpg",
+    "by": "Arian Zwegers from Brussels, Belgium",
+    "licence": "CC BY 2.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Dochu_La_Pass,_108_Druk_Wangyal_Chortens_(15818199106).jpg"
+   },
+   {
+    "local": "/img/commons/dochula-2.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Some_of_108_chortens%2C_Dochula_pass.jpg/1920px-Some_of_108_chortens%2C_Dochula_pass.jpg",
+    "title": "Some of 108 chortens, Dochula pass.jpg",
+    "by": "Stephen Shephard",
+    "licence": "CC BY-SA 3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Some_of_108_chortens,_Dochula_pass.jpg"
+   }
+  ],
+  "thimphu": [
+   {
+    "local": "/img/commons/thimphu-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Tashichho_Dzong%2C_Bhutan_02.jpg/1920px-Tashichho_Dzong%2C_Bhutan_02.jpg",
+    "title": "Tashichho Dzong, Bhutan 02.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Tashichho_Dzong,_Bhutan_02.jpg"
+   },
+   {
+    "local": "/img/commons/thimphu-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Tashichho_Dzong%2C_Bhutan_03.jpg/1920px-Tashichho_Dzong%2C_Bhutan_03.jpg",
+    "title": "Tashichho Dzong, Bhutan 03.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Tashichho_Dzong,_Bhutan_03.jpg"
+   },
+   {
+    "local": "/img/commons/thimphu-2.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Tashichho_Dzong%2C_Bhutan_13.jpg/1920px-Tashichho_Dzong%2C_Bhutan_13.jpg",
+    "title": "Tashichho Dzong, Bhutan 13.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Tashichho_Dzong,_Bhutan_13.jpg"
+   }
+  ],
+  "paro": [
+   {
+    "local": "/img/commons/paro-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Rinpung_Dzong%2C_Bhutan_01.jpg/1920px-Rinpung_Dzong%2C_Bhutan_01.jpg",
+    "title": "Rinpung Dzong, Bhutan 01.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Rinpung_Dzong,_Bhutan_01.jpg"
+   },
+   {
+    "local": "/img/commons/paro-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Rinpung_Dzong%2C_Bhutan_02.jpg/1920px-Rinpung_Dzong%2C_Bhutan_02.jpg",
+    "title": "Rinpung Dzong, Bhutan 02.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Rinpung_Dzong,_Bhutan_02.jpg"
+   },
+   {
+    "local": "/img/commons/paro-2.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Rinpung_Dzong_Paro_2007-11-11_CJF.JPG/1920px-Rinpung_Dzong_Paro_2007-11-11_CJF.JPG",
+    "title": "Rinpung Dzong Paro 2007-11-11 CJF.JPG",
+    "by": "Christopher Fynn",
+    "licence": "CC BY-SA 3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Rinpung_Dzong_Paro_2007-11-11_CJF.JPG"
+   }
+  ],
+  "trashigang": [],
+  "crane": [
+   {
+    "local": "/img/commons/crane-0.jpg",
+    "remote": "https://upload.wikimedia.org/wikipedia/commons/8/83/Phobjikha_Valley%2C_Black_Neck_Crane_bird_migration_sanctuary_-_panoramio.jpg",
+    "title": "Phobjikha Valley, Black Neck Crane bird migration sanctuary - panoramio.jpg",
+    "by": "David Broad",
+    "licence": "CC BY 3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Phobjikha_Valley,_Black_Neck_Crane_bird_migration_sanctuary_-_panoramio.jpg"
+   }
+  ],
+  "parotsechu": [
+   {
+    "local": "/img/commons/parotsechu-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Paro_tsechu_-_Bhutan.JPG/1920px-Paro_tsechu_-_Bhutan.JPG",
+    "title": "Paro tsechu - Bhutan.JPG",
+    "by": "Sujithkr",
+    "licence": "CC BY-SA 3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Paro_tsechu_-_Bhutan.JPG"
+   },
+   {
+    "local": "/img/commons/parotsechu-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Dance_of_the_Black_Hats_with_Drums%2C_Paro_Tsechu_4.jpg/1920px-Dance_of_the_Black_Hats_with_Drums%2C_Paro_Tsechu_4.jpg",
+    "title": "Dance of the Black Hats with Drums, Paro Tsechu 4.jpg",
+    "by": "Stephen Shephard",
+    "licence": "CC BY-SA 3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Dance_of_the_Black_Hats_with_Drums,_Paro_Tsechu_4.jpg"
+   },
+   {
+    "local": "/img/commons/parotsechu-2.jpg",
+    "remote": "https://upload.wikimedia.org/wikipedia/commons/2/23/Dancers%2C_Paro_Tsechu_2.jpg",
+    "title": "Dancers, Paro Tsechu 2.jpg",
+    "by": "Stephen Shephard",
+    "licence": "CC BY-SA 3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Dancers,_Paro_Tsechu_2.jpg"
+   }
+  ],
+  "thimtsechu": [
+   {
+    "local": "/img/commons/thimtsechu-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Festival_in_Paro_%28Bhutan%29_%2818%29.jpg/1920px-Festival_in_Paro_%28Bhutan%29_%2818%29.jpg",
+    "title": "Festival in Paro (Bhutan) (18).jpg",
+    "by": "Виктор Пинчук",
+    "licence": "CC BY 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Festival_in_Paro_(Bhutan)_(18).jpg"
+   },
+   {
+    "local": "/img/commons/thimtsechu-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Festival_in_Paro_%28Bhutan%29_%2849%29.jpg/1920px-Festival_in_Paro_%28Bhutan%29_%2849%29.jpg",
+    "title": "Festival in Paro (Bhutan) (49).jpg",
+    "by": "Виктор Пинчук",
+    "licence": "CC BY 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Festival_in_Paro_(Bhutan)_(49).jpg"
+   }
+  ],
+  "jomolhari": [
+   {
+    "local": "/img/commons/jomolhari-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Mount_Jomolhari_2016.jpg/1920px-Mount_Jomolhari_2016.jpg",
+    "title": "Mount Jomolhari 2016.jpg",
+    "by": "Martyn Smith",
+    "licence": "CC BY 2.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Mount_Jomolhari_2016.jpg"
+   },
+   {
+    "local": "/img/commons/jomolhari-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Mount_Jomolhari_2009-10-11_a.jpg/1920px-Mount_Jomolhari_2009-10-11_a.jpg",
+    "title": "Mount Jomolhari 2009-10-11 a.jpg",
+    "by": "Christopher Fynn",
+    "licence": "CC BY-SA 3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Mount_Jomolhari_2009-10-11_a.jpg"
+   }
+  ],
+  "flags": [
+   {
+    "local": "/img/commons/flags-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Prayer_flags%2C_Sopsokha%2C_Bhutan.jpg/1920px-Prayer_flags%2C_Sopsokha%2C_Bhutan.jpg",
+    "title": "Prayer flags, Sopsokha, Bhutan.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Prayer_flags,_Sopsokha,_Bhutan.jpg"
+   }
+  ],
+  "wangdue": [
+   {
+    "local": "/img/commons/wangdue-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Wangdue_Phodrang_Dzong_%28under_reconstruction%29_2019-12-16.jpg/1920px-Wangdue_Phodrang_Dzong_%28under_reconstruction%29_2019-12-16.jpg",
+    "title": "Wangdue Phodrang Dzong (under reconstruction) 2019-12-16.jpg",
+    "by": "Christopher J. Fynn",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Wangdue_Phodrang_Dzong_(under_reconstruction)_2019-12-16.jpg"
+   }
+  ],
+  "chimi": [
+   {
+    "local": "/img/commons/chimi-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Chimi_Lhakhang%2C_Bhutan_02.jpg/1920px-Chimi_Lhakhang%2C_Bhutan_02.jpg",
+    "title": "Chimi Lhakhang, Bhutan 02.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Chimi_Lhakhang,_Bhutan_02.jpg"
+   },
+   {
+    "local": "/img/commons/chimi-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Chimi_Lhakhang%2C_Bhutan_06.jpg/1920px-Chimi_Lhakhang%2C_Bhutan_06.jpg",
+    "title": "Chimi Lhakhang, Bhutan 06.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Chimi_Lhakhang,_Bhutan_06.jpg"
+   }
+  ],
+  "thimphuvalley": [
+   {
+    "local": "/img/commons/thimphuvalley-0.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/A_view_of_Thimphu_from_Talakha_Gonpa.jpg/1920px-A_view_of_Thimphu_from_Talakha_Gonpa.jpg",
+    "title": "A view of Thimphu from Talakha Gonpa.jpg",
+    "by": "Christopher J. Fynn",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:A_view_of_Thimphu_from_Talakha_Gonpa.jpg"
+   },
+   {
+    "local": "/img/commons/thimphuvalley-1.jpg",
+    "remote": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/National_Memorial_Chorten%2C_Thimphu_05.jpg/1920px-National_Memorial_Chorten%2C_Thimphu_05.jpg",
+    "title": "National Memorial Chorten, Thimphu 05.jpg",
+    "by": "Bernard Gagnon",
+    "licence": "CC BY-SA 4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:National_Memorial_Chorten,_Thimphu_05.jpg"
+   }
+  ]
+ },
+ "brand": {
+  "people": {
+   "local": "/img/bmv/people.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/Bhutanese-people-%282%29.jpg/f9545fffd0e0a090800716c1f8ef83eb.jpg"
+  },
+  "happiness": {
+   "local": "/img/bmv/happiness.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/slideshow/IMG_4360.jpg/909faaf7161b83e48c73eba7747af94b.jpg"
+  },
+  "dragon": {
+   "local": "/img/bmv/dragon.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/slideshow/DSC00014.JPG/cac95cec4f521317e7ac4d256239dffb.JPG"
+  },
+  "nature": {
+   "local": "/img/bmv/nature.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/slideshow/IMG_4374.jpg/b8696ea87fdb2c1ff9f4e47b5d49c0fa.jpg"
+  },
+  "undiscovered": {
+   "local": "/img/bmv/undiscovered.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/slideshow/Tourism-Bhutan-.JPG/36c8291e77ce6f62a09ee0ad8507f77e.JPG"
+  },
+  "custom": {
+   "local": "/img/bmv/custom.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/slideshow/Bhutan-customised-tour-.jpg/63b0eb8e51d7ad984bf05893c8a0acdf.jpg"
+  },
+  "culture": {
+   "local": "/img/bmv/culture.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/folk-dance-1610818952.jpg/09e5a2d8d759f793d829fe683a05afb9.jpg"
+  },
+  "eco": {
+   "local": "/img/bmv/eco.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/Bhutan-nature-1518016807.jpg/b260e630f3a65443b9d3c5bf68deae4e.jpg"
+  },
+  "wellness": {
+   "local": "/img/bmv/wellness.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/yoga.jpg/5a39f90d712df46fc939e8e5a6cfbe97.jpg"
+  },
+  "adventure": {
+   "local": "/img/bmv/adventure.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/rafting-in-Bhutan--1518895119.jpg/842ec2d78d083157731a3fd2fc66aaa7.jpg"
+  },
+  "photography": {
+   "local": "/img/bmv/photography.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/Bhutan-photography-tour.jpg/2ed04ec61b700d192b2b1b36e79c2625.jpg"
+  },
+  "honeymoon": {
+   "local": "/img/bmv/honeymoon.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/IMG_2616.jpeg/10a7e513d81bf35f8207a924a9f66982.jpeg"
+  },
+  "festivals": {
+   "local": "/img/bmv/festivals.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/festival-tours.jpg/ddbbb246949266fdb7727de1ddb0cdf1.jpg"
+  },
+  "trekking": {
+   "local": "/img/bmv/trekking.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/Bhutantrekking.jpg/a0fe395c98b4d308d7367aae41621be2.jpg"
+  },
+  "luxury": {
+   "local": "/img/bmv/luxury.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/Bhutan-Luxury-1510647594.jpg/8228dc625246c69819b8ed4f0a4d166a.jpg"
+  },
+  "spiritual": {
+   "local": "/img/bmv/spiritual.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/Bhutan-spiritual-&-pilgrimage-tour.jpg/3b6bb1335704db420c355ba0ebd58655.jpg"
+  },
+  "culinary": {
+   "local": "/img/bmv/culinary.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/wine.jpg/dd0cb22d60a08aa5d8cae27da751abfa.jpg"
+  },
+  "helicopter": {
+   "local": "/img/bmv/helicopter.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/helicopter.jpg/81bfb0d49a0dd8ac721bf2b5e32c8ce1.jpg"
+  },
+  "chumphu": {
+   "local": "/img/bmv/chumphu.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/blog/IMG_4454.jpg/3113ec1e93c758073c71a56a1a3b49d1.jpg"
+  },
+  "jabdo": {
+   "local": "/img/bmv/jabdo.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/blog/5904E706-6E0A-461C-A178-F89481D74258.jpeg/13ca64f75ee79032fd6a96dc45922000.jpeg"
+  },
+  "marriage": {
+   "local": "/img/bmv/marriage.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/blog/Marriage-in-Bhutan-.jpeg/21b5d9e7d09d7b0c4555928d89be35a5.jpeg"
+  },
+  "lockdown": {
+   "local": "/img/bmv/lockdown.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/blog/IMG_8924-1604938616.JPG/e8d2c98551ad36016065cf253a650ae4.JPG"
+  },
+  "founder": {
+   "local": "/img/bmv/founder.jpg",
+   "remote": "https://www.bhutanmindvacation.com/img/paths/assets/images/banners/Bhutanese-Man-.jpg/ef400417ec0bc52fe36cb0e0cb017216.jpg"
+  }
+ }
+}

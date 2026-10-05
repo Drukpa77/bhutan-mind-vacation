@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><title>Bhutan Visa &amp; SDF — Bhutan Mind Vacation</title><script src="assets/data.js"></script><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#f5f1e8}a{color:inherit;text-decoration:none}a:hover{color:#8f2b1f}</style></helmet>
+<dc-import name="Nav" tone="dark" solid="{{ true }}" hint-size="100%,76px"></dc-import>
+<main style="background:#f5f1e8;color:#1b1a16;font-family:'Archivo',sans-serif;">
+  <header data-screen-label="Visa intro" style="padding:170px clamp(16px,5vw,80px) 80px;">
+    <a href="Plan.dc.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#8f2b1f;">← PLAN YOUR TRIP</a>
+    <h1 style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(56px,9vw,160px);line-height:.85;letter-spacing:-.02em;">The visa,<br><span style="font-style:italic;color:#8f2b1f;">handled.</span></h1>
+    <p style="margin:32px 0 0;max-width:560px;font-size:17px;line-height:1.7;color:#4a4439;">Every visitor except nationals of India, Bangladesh and the Maldives needs a visa, approved before you fly. It sounds complicated. It isn’t, when someone in Thimphu does it for you.</p>
+  </header>
+
+  <section ref="{{ stepsRef }}" data-screen-label="Process" style="position:relative;padding:40px clamp(16px,5vw,80px) 100px;">
+    <div style="position:absolute;left:calc(clamp(16px,5vw,80px) + 39px);top:40px;bottom:100px;width:1px;background:rgba(27,26,22,.15);"><div style="width:100%;height:{{ lineH }};background:#8f2b1f;transition:height .3s;"></div></div>
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+      <div style="position:relative;display:grid;grid-template-columns:80px minmax(0,1fr);gap:clamp(20px,4vw,64px);padding:40px 0;opacity:{{ s.op }};transition:opacity .5s;">
+        <div style="width:80px;height:80px;border-radius:50%;background:{{ s.dot }};color:{{ s.dotFg }};border:1px solid #8f2b1f;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:14px;transition:all .4s;">{{ s.no }}</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px 48px;align-items:baseline;">
+          <div><h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,4vw,64px);line-height:.95;">{{ s.title }}</h2><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#8f2b1f;margin-top:12px;">{{ s.who }}</div></div>
+          <p style="margin:0;font-size:15px;line-height:1.7;color:#4a4439;max-width:480px;">{{ s.text }}</p>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section data-screen-label="We help" style="background:#8f2b1f;color:#f5f1e8;padding:clamp(80px,10vw,140px) clamp(16px,5vw,80px);">
+    <div style="font-family:'Instrument Serif',serif;font-size:clamp(48px,7vw,124px);line-height:.88;letter-spacing:-.01em;">We help handle<br><span style="font-style:italic;">the process.</span></div>
+    <p style="margin:28px 0 0;max-width:520px;font-size:16px;line-height:1.7;color:rgba(245,241,232,.88);">You send a passport scan. We file the application, pay the fees on your behalf, and send the visa clearance letter to show at check-in and on arrival.</p>
+  </section>
+
+  <section data-screen-label="Fees calculator" style="padding:clamp(80px,10vw,140px) clamp(16px,5vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:56px;">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#8f2b1f;">GOVERNMENT FEES · 2026</div>
+      <h2 style="margin:16px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,4.4vw,72px);line-height:.92;">What goes to Bhutan</h2>
+      <div style="margin-top:36px;border-top:1px solid #1b1a16;">
+        <sc-for list="{{ fees }}" as="f" hint-placeholder-count="5">
+          <div style="display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid rgba(27,26,22,.15);font-size:14px;"><span>{{ f.k }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:13px;text-align:right;">{{ f.v }}</span></div>
+        </sc-for>
+      </div>
+      <p style="margin:20px 0 0;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;line-height:1.8;color:#5a5244;">SDF CONCESSION IN PLACE UNTIL 31 AUG 2027. 5% GST ON TOUR SERVICES FROM 1 JAN 2026. RULES CHANGE — WE CONFIRM CURRENT RATES WITH EVERY QUOTE.</p>
+    </div>
+    <div style="background:#ece4d4;padding:clamp(28px,4vw,56px);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:#8f2b1f;">ESTIMATE YOUR FEES</div>
+      <sc-for list="{{ ctrls }}" as="c" hint-placeholder-count="3">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid rgba(27,26,22,.15);">
+          <span style="font-size:15px;">{{ c.label }}</span>
+          <div style="display:flex;align-items:center;gap:18px;">
+            <button onClick="{{ c.dec }}" aria-label="Decrease" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #1b1a16;font-size:18px;">−</button>
+            <span style="font-family:'Instrument Serif',serif;font-size:36px;min-width:44px;text-align:center;">{{ c.v }}</span>
+            <button onClick="{{ c.inc }}" aria-label="Increase" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #1b1a16;font-size:18px;">+</button>
+          </div>
+        </div>
+      </sc-for>
+      <div style="margin-top:32px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#5a5244;">SDF + VISA FEES, TOTAL</div>
+      <div style="font-family:'Instrument Serif',serif;font-size:clamp(64px,7vw,110px);line-height:1;margin-top:6px;">USD {{ total }}</div>
+      <div style="font-size:13px;color:#5a5244;margin-top:8px;">{{ breakdown }}</div>
+    </div>
+  </section>
+  <section style="padding:0 clamp(16px,5vw,80px) 100px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#5a5244;line-height:1.8;">SOURCES: DEPARTMENT OF TOURISM, ROYAL GOVERNMENT OF BHUTAN; VISA POLICY OF BHUTAN. LAST CHECKED OCTOBER 2026.</section>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { adults: 2, kids: 0, nights: 9, p: 0 };
+  stepsRef = React.createRef();
+  componentDidMount() {
+    this.onScroll = () => { const el = this.stepsRef.current; if (!el) return; const r = el.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (window.innerHeight * 0.6 - r.top) / r.height)); this.setState({ p }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true }); this.onScroll();
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+  renderVals() {
+    const st = this.state;
+    const S = [
+      ['Choose your journey', 'YOU + US', 'Tell us what you want from Bhutan. We shape the route, the pace and the places to stay.'],
+      ['Confirm travel', 'YOU', 'Approve the itinerary and pay in full — including the Sustainable Development Fee — as Bhutan requires before a visa is issued.'],
+      ['Passport details', 'YOU', 'Send a clear colour scan of your passport, valid for at least six months from your date of departure from Bhutan.'],
+      ['Visa processing', 'US', 'We submit your application to the Department of Immigration and pay the USD 40 fee. Approval usually takes a few working days.'],
+      ['Arrive in Bhutan', 'YOU', 'Show your visa clearance letter at check-in and on arrival at Paro. The visa is stamped into your passport. Your guide is waiting.']
+    ];
+    const act = Math.min(4, Math.floor(st.p * 5.2));
+    const steps = S.map(([title, who, text], i) => ({ title, who, text, no: String(i + 1).padStart(2, '0'), op: i <= act ? 1 : 0.35, dot: i <= act ? '#8f2b1f' : 'transparent', dotFg: i <= act ? '#f5f1e8' : '#8f2b1f' }));
+    const sdf = (st.adults * 100 + st.kids * 50) * st.nights, visa = (st.adults + st.kids) * 40;
+    const ch = (k, d, min, max) => () => this.setState(s => ({ [k]: Math.max(min, Math.min(max, s[k] + d)) }));
+    return {
+      stepsRef: this.stepsRef, steps, lineH: (st.p * 100).toFixed(1) + '%',
+      fees: [{ k: 'Visa fee (one-time)', v: 'USD 40' }, { k: 'SDF — adults (13+)', v: 'USD 100 / night' }, { k: 'SDF — children 6–12', v: 'USD 50 / night' }, { k: 'SDF — children 5 and under', v: 'Exempt' }, { k: 'SDF — Indian nationals', v: 'INR 1,200 / night' }],
+      ctrls: [{ label: 'Adults (13+)', v: st.adults, dec: ch('adults', -1, 1, 12), inc: ch('adults', 1, 1, 12) }, { label: 'Children 6–12', v: st.kids, dec: ch('kids', -1, 0, 8), inc: ch('kids', 1, 0, 8) }, { label: 'Nights in Bhutan', v: st.nights, dec: ch('nights', -1, 1, 30), inc: ch('nights', 1, 1, 30) }],
+      total: (sdf + visa).toLocaleString('en-US'), breakdown: `SDF USD ${sdf.toLocaleString('en-US')} + visas USD ${visa}. Excludes your journey costs and GST.`
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><title>Interactive Map — Bhutan Mind Vacation</title><script src="assets/data.js"></script><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#0f0e0b;overflow:hidden}a{color:inherit;text-decoration:none}a:hover{color:#e3a23a}</style></helmet>
+<dc-import name="Nav" hint-size="100%,76px"></dc-import>
+<main data-screen-label="Interactive map" style="position:fixed;inset:0;background:#0f0e0b;color:#f5f1e8;font-family:'Archivo',sans-serif;overflow:hidden;">
+  <div style="position:absolute;inset:76px 0 0 0;">
+    <dc-import name="BhutanMap" markers="{{ markers }}" route="{{ route }}" flights="{{ flights }}" progress="{{ progress }}" active-id="{{ sel }}" hover-id="{{ hov }}" focus="{{ focus }}" zoom="{{ 2.2 }}" focus-x="{{ focusX }}" numbered="{{ numbered }}" on-hover="{{ onHover }}" on-select="{{ onSelect }}" style="position:absolute;inset:0;" hint-size="100%,100%"></dc-import>
+  </div>
+
+  <div style="position:absolute;left:clamp(16px,3vw,40px);top:110px;width:min(300px,42vw);max-height:calc(100vh - 230px);display:flex;flex-direction:column;gap:22px;pointer-events:none;">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;color:#e3a23a;">INTERACTIVE MAP · {{ modeLabel }}</div>
+      <h1 style="margin:14px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,3.6vw,60px);line-height:.92;">{{ modeTitle }}</h1>
+    </div>
+    <div style="display:flex;flex-direction:column;overflow:auto;pointer-events:auto;border-top:1px solid rgba(245,241,232,.15);">
+      <sc-for list="{{ list }}" as="it" hint-placeholder-count="6">
+        <button onClick="{{ it.click }}" onMouseEnter="{{ it.enter }}" onMouseLeave="{{ it.leave }}" style="all:unset;cursor:pointer;display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:baseline;padding:11px 0;border-bottom:1px solid rgba(245,241,232,.08);color:{{ it.color }};transition:color .2s, padding .3s;padding-left:{{ it.pad }};">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#e3a23a;">{{ it.no }}</span>
+          <span style="font-family:'Instrument Serif',serif;font-size:22px;line-height:1.05;">{{ it.name }}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;opacity:.7;">{{ it.meta }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+
+  <aside style="position:absolute;right:0;top:76px;bottom:0;width:min(420px,100vw);background:linear-gradient(90deg,rgba(15,14,11,0),rgba(15,14,11,.94) 18%);padding:40px clamp(16px,3vw,40px) 120px 80px;display:flex;flex-direction:column;justify-content:center;gap:18px;transform:translateX({{ panelX }});opacity:{{ panelOp }};transition:transform .9s cubic-bezier(.2,.7,.2,1), opacity .5s;pointer-events:{{ panelPe }};">
+    <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#1b1a16;max-height:46vh;">
+      <div role="img" aria-label="{{ d.name }}" style="width:100%;height:100%;view-transition-name:{{ d.vt }};background-image:{{ d.imgBg }};background-size:cover;background-position:center;"></div>
+      <div style="position:absolute;left:12px;top:12px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;color:#f5f1e8;background:rgba(15,14,11,.6);padding:6px 8px;">{{ d.coords }}</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;">
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,4vw,64px);line-height:.9;">{{ d.name }}</h2>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;color:#e3a23a;white-space:nowrap;">{{ d.altLabel }}</span>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.7);">{{ d.kindU }} · {{ d.regionU }}</div>
+    <p style="margin:0;font-size:14px;line-height:1.6;color:rgba(245,241,232,.82);">{{ d.line }}</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px 16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;">
+      <sc-for list="{{ d.tags }}" as="t" hint-placeholder-count="3"><span style="border-bottom:1px solid rgba(227,162,58,.5);padding-bottom:3px;">{{ t }}</span></sc-for>
+    </div>
+    <a href="{{ d.page }}" data-cursor="ENTER" style="margin-top:10px;display:inline-flex;justify-content:space-between;gap:16px;font-size:12px;font-weight:500;letter-spacing:.22em;padding:16px 20px;background:#e3a23a;color:#14130f;" style-hover="background:#f5f1e8;color:#14130f">EXPLORE {{ d.nameU }} <span style="font-family:'JetBrains Mono',monospace;">→</span></a>
+    <button onClick="{{ clearSel }}" style="all:unset;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.6);">× BACK TO THE KINGDOM</button>
+  </aside>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:18px clamp(16px,3vw,40px) 24px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;background:linear-gradient(0deg,rgba(15,14,11,.95),rgba(15,14,11,0));">
+    <div style="display:flex;gap:4px;flex-wrap:wrap;">
+      <sc-for list="{{ modes }}" as="m" hint-placeholder-count="6">
+        <button onClick="{{ m.click }}" style="all:unset;cursor:pointer;padding:12px 16px;font-family:'Archivo',sans-serif;font-size:11px;font-weight:500;letter-spacing:.22em;color:{{ m.color }};border-bottom:1px solid {{ m.line }};transition:color .2s,border-color .2s;">{{ m.label }}</button>
+      </sc-for>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(245,241,232,.5);text-align:right;line-height:1.7;">RELIEF: AWS TERRAIN TILES (SRTM) · BOUNDARIES: GEOBOUNDARIES gbOpen<br>COORDINATES: OPENSTREETMAP / WIKIPEDIA</div>
+  </div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { const v = this._rvImg(); const isU = s => typeof s === 'string' && /^(https?:|assets\/|data:)/.test(s); const seen = new Set(); const add = o => { if (!o || typeof o !== 'object' || seen.has(o) || o.$typeof || o instanceof Element || 'current' in o) return o; seen.add(o); if (Array.isArray(o)) { o.forEach(add); return o; } if (Object.getPrototypeOf(o) !== Object.prototype) return o; for (const k of Object.keys(o)) { const x = o[k]; if (isU(x)) o[k + 'Bg'] = 'url("' + x + '")'; else if (x && typeof x === 'object') add(x); } return o; }; return v ? add({ ...v }) : v; }
+  state = { mode: 'destinations', sel: null, hov: null, journey: 0, anim: 0, w: 1200 };
+  componentDidMount() {
+    const w = () => window.BMV ? this.forceUpdate() : setTimeout(w, 60); w();
+    const q = new URLSearchParams(location.search); if (q.get('mode')) this.setState({ mode: q.get('mode') }); if (q.get('d')) this.setState({ sel: q.get('d') });
+    this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR); this.onR();
+    this.onKey = e => { if (e.key === 'Escape') this.setState({ sel: null }); }; window.addEventListener('keydown', this.onKey);
+    this.runRoute();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); window.removeEventListener('keydown', this.onKey); cancelAnimationFrame(this.raf); }
+  runRoute() { cancelAnimationFrame(this.raf); const t0 = performance.now(); const tick = t => { const a = Math.min(1, (t - t0) / 3600); this.setState({ anim: a }); if (a < 1) this.raf = requestAnimationFrame(tick); }; this.raf = requestAnimationFrame(tick); }
+  _rvImg() {
+    const B = window.BMV; if (!B) return { modes: [], list: [], d: { tags: [], img: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=' }, markers: [] };
+    const st = this.state, mode = st.mode;
+    const set = (k, v) => this.setState({ [k]: v });
+    const M = {
+      destinations: { label: 'DESTINATIONS', title: 'Eleven places, one kingdom', ids: B.dest.map(d => d.id) },
+      journeys: { label: 'JOURNEYS', title: 'Routes across the real terrain' },
+      festivals: { label: 'FESTIVALS', title: 'Where the masks come out', ids: [...new Set(B.festivals.map(f => f.place))] },
+      trekking: { label: 'TREKKING', title: 'Higher ground', ids: ['jangothang', 'haa', 'taktsang', 'dochula', 'phobjikha'], route: ['paro', 'jangothang'] },
+      culture: { label: 'CULTURE', title: 'The great dzongs', ids: ['paro', 'thimphu', 'punakha', 'trongsa', 'bumthang', 'trashigang'] },
+      nature: { label: 'NATURE', title: 'Valleys, passes, cranes', ids: ['phobjikha', 'haa', 'dochula', 'jangothang', 'punakha'] }
+    };
+    const m = M[mode];
+    let markers, route = [], flights = [], list, numbered = false;
+    if (mode === 'journeys') {
+      const j = B.journeys[st.journey]; route = j.route; flights = j.flight || []; markers = [...new Set(j.route)]; numbered = true;
+      list = B.journeys.map((jj, i) => ({ no: jj.no, name: jj.title, meta: jj.days + ' D', color: i === st.journey ? '#e3a23a' : '#f5f1e8', pad: i === st.journey ? '10px' : '0',
+        click: () => { this.setState({ journey: i, sel: null }); this.runRoute(); }, enter: () => {}, leave: () => {} }));
+    } else if (mode === 'festivals') {
+      markers = m.ids;
+      list = B.festivals.map((f, i) => ({ no: B.months[f.month], name: f.name, meta: (B.byId[f.place].short || B.byId[f.place].name).toUpperCase(), color: st.hov === f.place || st.sel === f.place ? '#e3a23a' : '#f5f1e8', pad: st.sel === f.place ? '10px' : '0',
+        click: () => set('sel', f.place), enter: () => set('hov', f.place), leave: () => set('hov', null) }));
+    } else {
+      markers = m.ids; route = m.route || [];
+      list = m.ids.map((id, i) => { const d = B.byId[id]; return { no: String(i + 1).padStart(2, '0'), name: d.name, meta: d.alt.toLocaleString('en-US') + ' M', color: st.hov === id || st.sel === id ? '#e3a23a' : '#f5f1e8', pad: st.sel === id ? '10px' : '0',
+        click: () => set('sel', id), enter: () => set('hov', id), leave: () => set('hov', null) }; });
+    }
+    const progress = route.length ? st.anim * (route.length - 1) : null;
+    const dd = B.byId[st.sel || st.hov || 'punakha'];
+    const d = { ...dd, img: dd.img || B.brand.undiscovered, altLabel: dd.alt.toLocaleString('en-US') + ' M', kindU: dd.kind.toUpperCase(), regionU: dd.region.toUpperCase(), nameU: (dd.short || dd.name).toUpperCase(), tags: dd.tags.map(t => t.toUpperCase()), coords: dd.lat.toFixed(4) + '° N · ' + dd.lon.toFixed(4) + '° E', vt: st.sel ? 'dest-' + dd.id : 'none' };
+    const showPanel = !!(st.sel || st.hov);
+    return {
+      markers, route, flights, progress, numbered, sel: st.sel, hov: st.hov, focus: st.sel || '', focusX: st.w > 900 ? 0.4 : 0.5,
+      onHover: id => set('hov', id), onSelect: id => set('sel', id), clearSel: () => this.setState({ sel: null, hov: null }),
+      modeLabel: m.label, modeTitle: mode === 'journeys' ? B.journeys[st.journey].title : m.title, list, d,
+      panelX: showPanel ? '0' : '110%', panelOp: showPanel ? 1 : 0, panelPe: st.sel ? 'auto' : 'none',
+      modes: Object.entries(M).map(([k, v]) => ({ label: v.label, color: k === mode ? '#e3a23a' : 'rgba(245,241,232,.75)', line: k === mode ? '#e3a23a' : 'transparent', click: () => { this.setState({ mode: k, sel: null, hov: null }); this.runRoute(); } }))
+    };
+  }
+}
+</script>
+</body>
+</html>

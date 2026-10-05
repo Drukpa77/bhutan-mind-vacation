@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><title>Festivals — The Year in Masks · Bhutan Mind Vacation</title><script src="assets/data.js"></script><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#0f0e0b}a{color:inherit;text-decoration:none}a:hover{color:#e3a23a}</style></helmet>
+<dc-import name="Nav" hint-size="100%,76px"></dc-import>
+<main style="background:#0f0e0b;color:#f5f1e8;font-family:'Archivo',sans-serif;">
+  <header data-screen-label="Festivals intro" style="position:relative;min-height:78vh;display:flex;flex-direction:column;justify-content:flex-end;padding:140px clamp(16px,4vw,64px) 48px;overflow:hidden;">
+    <div role="img" aria-label="Black Hat dance at Paro Tshechu" style="position:absolute;inset:0;width:100%;height:100%;opacity:.5;background-image:{{ heroImgBg }};background-size:cover;background-position:center;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(0deg,#0f0e0b,rgba(15,14,11,.2));"></div>
+    <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;">
+      <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(64px,11vw,200px);line-height:.84;letter-spacing:-.02em;">The year<br><span style="font-style:italic;color:#e3a23a;">in masks</span></h1>
+      <p style="margin:0;max-width:380px;font-size:15px;line-height:1.7;color:rgba(245,241,232,.82);">Tshechus honour Guru Rinpoche with sacred mask dances that whole valleys come to watch. Most follow the lunar calendar, so dates move each year; we confirm them as soon as they’re published.</p>
+    </div>
+  </header>
+
+  <div data-screen-label="Month rail" style="position:sticky;top:76px;z-index:5;background:rgba(15,14,11,.92);backdrop-filter:blur(10px);border-top:1px solid rgba(245,241,232,.12);border-bottom:1px solid rgba(245,241,232,.12);display:flex;overflow-x:auto;scrollbar-width:none;">
+    <sc-for list="{{ rail }}" as="m" hint-placeholder-count="12">
+      <button onClick="{{ m.click }}" style="all:unset;cursor:pointer;flex:1 0 auto;min-width:64px;padding:16px 10px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;color:{{ m.color }};border-bottom:2px solid {{ m.line }};position:relative;">{{ m.label }}<span style="display:block;margin:6px auto 0;width:5px;height:5px;border-radius:50%;background:#e3a23a;opacity:{{ m.dot }};"></span></button>
+    </sc-for>
+  </div>
+
+  <section data-screen-label="Calendar" style="position:relative;padding:40px 0 100px;">
+    <div style="display:flex;justify-content:space-between;padding:0 clamp(16px,4vw,64px) 20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.6);"><span>DRAG OR SCROLL SIDEWAYS</span><span>{{ count }} FESTIVALS</span></div>
+    <div ref="{{ trackRef }}" onScroll="{{ onTrack }}" onMouseDown="{{ dragStart }}" data-cursor="DRAG" style="display:flex;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding:0 clamp(16px,4vw,64px);gap:0;cursor:grab;user-select:none;">
+      <sc-for list="{{ cols }}" as="c" hint-placeholder-count="6">
+        <div style="flex:0 0 clamp(260px,26vw,400px);scroll-snap-align:start;border-left:1px solid rgba(245,241,232,.1);padding:0 24px 0 20px;min-height:60vh;">
+          <div style="font-family:'Instrument Serif',serif;font-size:clamp(56px,6vw,96px);line-height:1;color:{{ c.color }};">{{ c.name }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.55);margin-top:6px;">{{ c.season }}</div>
+          <div style="display:flex;flex-direction:column;gap:32px;margin-top:32px;">
+            <sc-for list="{{ c.fests }}" as="f" hint-placeholder-count="0">
+              <button onClick="{{ f.open }}" data-cursor="OPEN" style="all:unset;cursor:pointer;display:block;color:#f5f1e8;">
+                <div style="aspect-ratio:{{ f.ratio }};overflow:hidden;background:#1b1a16;"><div role="img" aria-label="{{ f.name }}" style="width:100%;height:100%;transition:transform 1.2s cubic-bezier(.2,.6,.2,1);background-image:{{ f.imgBg }};background-size:cover;background-position:center;" style-hover="transform:scale(1.06)"></div></div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:#e3a23a;margin-top:14px;">{{ f.when }}</div>
+                <div style="font-family:'Instrument Serif',serif;font-size:30px;line-height:1;margin-top:6px;">{{ f.name }}</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;color:rgba(245,241,232,.7);margin-top:8px;">{{ f.placeU }}</div>
+              </button>
+            </sc-for>
+            <sc-if value="{{ c.empty }}" hint-placeholder-val="{{ false }}"><div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:rgba(245,241,232,.45);">{{ c.emptyText }}</div></sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+</main>
+
+<div data-screen-label="Festival takeover" style="position:fixed;inset:0;z-index:70;background:#0b0a08;color:#f5f1e8;font-family:'Archivo',sans-serif;clip-path:{{ tkClip }};transition:clip-path .9s cubic-bezier(.77,0,.18,1);pointer-events:{{ tkPe }};overflow-y:auto;">
+  <div style="position:relative;height:72vh;min-height:420px;overflow:hidden;">
+    <div role="img" aria-label="{{ fx.name }}" style="position:absolute;inset:0;width:100%;height:100%;transform:scale({{ tkScale }});transition:transform 2.4s cubic-bezier(.2,.6,.2,1);background-image:{{ fx.imgBg }};background-size:cover;background-position:center;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(0deg,#0b0a08,rgba(11,10,8,0) 60%);"></div>
+    <button onClick="{{ close }}" data-cursor="CLOSE" style="all:unset;cursor:pointer;position:absolute;top:28px;right:clamp(16px,4vw,64px);font-size:12px;letter-spacing:.2em;font-weight:500;padding:12px 16px;background:rgba(11,10,8,.6);">CLOSE ×</button>
+    <div style="position:absolute;left:clamp(16px,4vw,64px);right:clamp(16px,4vw,64px);bottom:32px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#e3a23a;">{{ fx.when }}</div>
+      <h2 style="margin:14px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(52px,8vw,140px);line-height:.86;max-width:14ch;">{{ fx.name }}</h2>
+    </div>
+  </div>
+  <div style="padding:48px clamp(16px,4vw,64px) 100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:48px;">
+    <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.6);">THE STORY</div><p style="margin:14px 0 0;font-family:'Instrument Serif',serif;font-size:clamp(24px,2.2vw,34px);line-height:1.2;">{{ fx.text }}</p></div>
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.6);">WHERE</div><a href="{{ fx.placePage }}" style="font-family:'Instrument Serif',serif;font-size:32px;">{{ fx.placeName }} →</a></div>
+      <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.6);">WHEN</div><div style="font-size:15px;margin-top:6px;line-height:1.6;">{{ fx.dateNote }}</div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(245,241,232,.6);">JOURNEYS THAT PASS THROUGH</div>
+      <sc-for list="{{ fx.journeys }}" as="j" hint-placeholder-count="2"><a href="{{ j.href }}" style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(245,241,232,.12);font-family:'Instrument Serif',serif;font-size:24px;">{{ j.title }}<span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#e3a23a;">{{ j.days }}D</span></a></sc-for>
+      <a href="{{ fx.build }}" data-cursor="BEGIN" style="margin-top:16px;display:inline-flex;justify-content:space-between;gap:16px;font-size:12px;font-weight:500;letter-spacing:.2em;padding:18px 22px;background:#e3a23a;color:#14130f;" style-hover="background:#f5f1e8;color:#14130f">BUILD A JOURNEY AROUND THIS FESTIVAL <span style="font-family:'JetBrains Mono',monospace;">→</span></a>
+    </div>
+  </div>
+</div>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { const v = this._rvImg(); const isU = s => typeof s === 'string' && /^(https?:|assets\/|data:)/.test(s); const seen = new Set(); const add = o => { if (!o || typeof o !== 'object' || seen.has(o) || o.$typeof || o instanceof Element || 'current' in o) return o; seen.add(o); if (Array.isArray(o)) { o.forEach(add); return o; } if (Object.getPrototypeOf(o) !== Object.prototype) return o; for (const k of Object.keys(o)) { const x = o[k]; if (isU(x)) o[k + 'Bg'] = 'url("' + x + '")'; else if (x && typeof x === 'object') add(x); } return o; }; return v ? add({ ...v }) : v; }
+  state = { open: null, month: 0 };
+  trackRef = React.createRef();
+  componentDidMount() {
+    const w = () => window.BMV ? this.forceUpdate() : setTimeout(w, 60); w();
+    this.onKey = e => { if (e.key === 'Escape') this.setState({ open: null }); }; window.addEventListener('keydown', this.onKey);
+    const t = this.trackRef.current;
+    if (t) { this.onWheel = e => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && e.shiftKey) { t.scrollLeft += e.deltaY; e.preventDefault(); } }; t.addEventListener('wheel', this.onWheel, { passive: false }); }
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this.onKey); }
+  scrollTo(i) { const t = this.trackRef.current; if (!t) return; const col = t.children[i]; if (col) t.scrollTo({ left: col.offsetLeft - t.offsetLeft - 40, behavior: 'smooth' }); this.setState({ month: i }); }
+  _rvImg() {
+    const B = window.BMV; if (!B) return { heroImg: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=', rail: [], cols: [], fx: { journeys: [], img: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=' }, trackRef: this.trackRef };
+    const st = this.state;
+    const NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const SEASON = ['WINTER', 'WINTER', 'SPRING', 'SPRING', 'SPRING', 'MONSOON', 'MONSOON', 'MONSOON', 'AUTUMN', 'AUTUMN', 'AUTUMN', 'WINTER'];
+    const has = m => B.festivals.some(f => f.month === m);
+    const open = f => this.setState({ open: f.id });
+    const cols = NAMES.map((name, m) => { const fs = B.festivals.filter(f => f.month === m); return { name, season: SEASON[m], color: m === st.month ? '#e3a23a' : '#f5f1e8', empty: fs.length === 0, emptyText: m === 0 ? 'Cold, clear and quiet in the valleys.' : m >= 5 && m <= 7 ? 'Green monsoon months, fewer festivals.' : 'No major tshechu — the valleys are yours.', fests: fs.map((f, i) => ({ ...f, ratio: i % 2 ? '1/1' : '4/5', placeU: B.byId[f.place].name.toUpperCase(), open: () => open(f) })) }; });
+    const f = B.festivals.find(x => x.id === st.open) || B.festivals[1];
+    const pl = B.byId[f.place];
+    const fx = { ...f, placeName: pl.name, placePage: pl.page, dateNote: f.date ? `${f.date}, as published for 2026. Dates for later years follow the lunar calendar.` : `Usually ${f.when.replace(' · lunar', '')}. Exact dates follow the Bhutanese lunar calendar and are confirmed annually.`, build: 'Build.dc.html?d=' + f.place,
+      journeys: B.journeys.filter(j => j.route.includes(f.place)).slice(0, 4).map(j => ({ title: j.title, days: j.days, href: j.itinerary ? 'Journey.dc.html' : 'Journey.dc.html?j=' + j.id })) };
+    let drag = null;
+    return {
+      heroImg: B.img('parotsechu', 1), count: B.festivals.length, trackRef: this.trackRef,
+      rail: B.months.map((m, i) => ({ label: m, color: i === st.month ? '#e3a23a' : (has(i) ? '#f5f1e8' : 'rgba(245,241,232,.4)'), line: i === st.month ? '#e3a23a' : 'transparent', dot: has(i) ? 1 : 0, click: () => this.scrollTo(i) })),
+      cols, fx,
+      onTrack: e => { const t = e.currentTarget; const kids = [...t.children]; let m = 0; kids.forEach((k, i) => { if (k.offsetLeft - t.offsetLeft - 60 <= t.scrollLeft) m = i; }); if (m !== st.month) this.setState({ month: m }); },
+      dragStart: e => { const t = this.trackRef.current; if (!t) return; const x0 = e.clientX, s0 = t.scrollLeft; let moved = false; t.style.scrollSnapType = 'none'; t.style.cursor = 'grabbing';
+        const mv = ev => { const dx = ev.clientX - x0; if (Math.abs(dx) > 4) moved = true; t.scrollLeft = s0 - dx; };
+        const up = ev => { window.removeEventListener('mousemove', mv); window.removeEventListener('mouseup', up); t.style.scrollSnapType = 'x proximity'; t.style.cursor = 'grab'; if (moved) { const stop = c => { c.stopPropagation(); c.preventDefault(); window.removeEventListener('click', stop, true); }; window.addEventListener('click', stop, true); setTimeout(() => window.removeEventListener('click', stop, true), 50); } };
+        window.addEventListener('mousemove', mv); window.addEventListener('mouseup', up); },
+      tkClip: st.open ? 'inset(0 0 0 0)' : 'inset(50% 0 50% 0)', tkPe: st.open ? 'auto' : 'none', tkScale: st.open ? 1 : 1.15,
+      close: () => this.setState({ open: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

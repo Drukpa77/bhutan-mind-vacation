@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><title>Destination — Bhutan Mind Vacation</title><script src="assets/data.js"></script><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#0f0e0b}a{color:inherit;text-decoration:none}a:hover{color:#e3a23a}</style></helmet>
+<dc-import name="Nav" hint-size="100%,76px" tone="{{ navTone }}"></dc-import>
+<main style="background:{{ bg }};color:{{ fg }};font-family:'Archivo',sans-serif;">
+
+  <sc-if value="{{ isVertical }}" hint-placeholder-val="{{ false }}">
+    <header data-screen-label="Hero vertical" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));min-height:100vh;">
+      <div style="padding:140px clamp(16px,4vw,64px) 56px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;">
+        <a href="Destinations.dc.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#e3a23a;">← DESTINATIONS · {{ d.regionU }}</a>
+        <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(72px,11vw,200px);line-height:.82;letter-spacing:-.02em;view-transition-name:{{ wordVt }};">{{ d.name }}</h1>
+        <div style="display:flex;align-items:flex-end;gap:28px;">
+          <div style="width:1px;height:160px;background:linear-gradient(#e3a23a,transparent);"></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;line-height:2;">{{ d.altLabel }}<br>{{ d.coords }}<br>{{ d.kindU }}</div>
+        </div>
+      </div>
+      <div style="position:relative;min-height:80vh;overflow:hidden;"><div role="img" aria-label="{{ d.name }}" style="position:absolute;inset:0;width:100%;height:100%;view-transition-name:{{ imgVt }};background-image:{{ d.imgBg }};background-size:cover;background-position:center;"></div></div>
+    </header>
+  </sc-if>
+
+  <sc-if value="{{ isStill }}" hint-placeholder-val="{{ false }}">
+    <header data-screen-label="Hero still" style="padding:170px clamp(16px,6vw,120px) 0;">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;color:#5a5244;">
+        <a href="Destinations.dc.html" style="color:#8f2b1f;">← DESTINATIONS</a><span>{{ d.coords }} · {{ d.altLabel }}</span>
+      </div>
+      <h1 style="margin:22vh 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,4.4vw,72px);line-height:1;letter-spacing:.01em;text-align:center;view-transition-name:{{ wordVt }};">{{ d.name }}</h1>
+      <p style="margin:20px auto 22vh;max-width:30ch;text-align:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(20px,1.6vw,26px);line-height:1.3;color:#5a5244;">{{ d.line }}</p>
+    </header>
+    <div style="height:72vh;min-height:420px;overflow:hidden;"><div role="img" aria-label="{{ d.name }}" style="width:100%;height:100%;transform:scale({{ slowScale }});view-transition-name:{{ imgVt }};background-image:{{ d.imgBg }};background-size:cover;background-position:center;"></div></div>
+  </sc-if>
+
+  <sc-if value="{{ isEditorial }}" hint-placeholder-val="{{ false }}">
+    <header data-screen-label="Hero editorial" style="padding:140px clamp(16px,4vw,64px) 60px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;">
+      <div style="grid-column:1 / -1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-bottom:2px solid #1b1a16;padding-bottom:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;"><a href="Destinations.dc.html" style="color:#8f2b1f;">← DESTINATIONS</a><span>{{ d.kindU }}</span><span>{{ d.altLabel }}</span></div>
+      <h1 style="grid-column:1 / -1;margin:24px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(80px,15vw,280px);line-height:.8;letter-spacing:-.03em;view-transition-name:{{ wordVt }};">{{ d.name }}</h1>
+      <div style="grid-column:span 7;min-width:280px;"><div role="img" aria-label="{{ d.name }}" style="width:100%;aspect-ratio:4/3;display:block;view-transition-name:{{ imgVt }};background-image:{{ d.imgBg }};background-size:cover;background-position:center;"></div></div>
+      <div style="grid-column:span 5;min-width:260px;display:flex;flex-direction:column;justify-content:flex-end;gap:24px;">
+        <p style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(26px,2.2vw,36px);line-height:1.15;">{{ d.line }}</p>
+        <div role="img" aria-label="{{ d.name }}" style="width:62%;aspect-ratio:3/4;align-self:flex-end;background-image:{{ d.img2Bg }};background-size:cover;background-position:center;"></div>
+      </div>
+    </header>
+  </sc-if>
+
+  <sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}">
+    <header data-screen-label="Hero" style="position:relative;height:100vh;min-height:600px;overflow:hidden;">
+      <div role="img" aria-label="{{ d.name }}" style="position:absolute;inset:0;width:100%;height:100%;view-transition-name:{{ imgVt }};background-image:{{ d.imgBg }};background-size:cover;background-position:center;"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,14,11,.9),rgba(15,14,11,.1) 60%,rgba(15,14,11,.4));"></div>
+      <a href="Destinations.dc.html" style="position:absolute;top:110px;left:clamp(16px,4vw,64px);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#e3a23a;">← DESTINATIONS · {{ d.regionU }}</a>
+      <div style="position:absolute;left:clamp(16px,4vw,64px);right:clamp(16px,4vw,64px);bottom:56px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;color:#f5f1e8;">
+        <h1 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(72px,12vw,220px);line-height:.82;letter-spacing:-.02em;view-transition-name:{{ wordVt }};">{{ d.name }}</h1>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;line-height:2;text-align:right;">{{ d.altLabel }}<br>{{ d.coords }}<br>{{ d.kindU }}</div>
+      </div>
+    </header>
+  </sc-if>
+
+  <sc-if value="{{ hasMist }}" hint-placeholder-val="{{ false }}">
+    <section ref="{{ mistRef }}" data-screen-label="Tiger's Nest" style="position:relative;height:420vh;background:#d9dcd8;">
+      <div style="position:sticky;top:0;height:100vh;overflow:hidden;">
+        <div role="img" aria-label="Paro Taktsang on its cliff" style="position:absolute;inset:0;width:100%;height:100%;transform:scale({{ tnScale }});filter:blur({{ tnBlur }}) saturate({{ tnSat }});background-image:{{ tnImgBg }};background-size:cover;background-position:center;"></div>
+        <sc-for list="{{ mist }}" as="m" hint-placeholder-count="5">
+          <div style="position:absolute;left:{{ m.l }};top:{{ m.t }};width:{{ m.s }};height:{{ m.s }};border-radius:50%;background:radial-gradient(circle,rgba(236,238,234,.98) 0%,rgba(236,238,234,.85) 35%,rgba(236,238,234,0) 70%);transform:translate({{ m.x }},{{ m.y }});opacity:{{ m.op }};pointer-events:none;"></div>
+        </sc-for>
+        <div style="position:absolute;inset:0;background:rgba(232,234,230,{{ veil }});"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,10,8,.75),rgba(10,10,8,0) 50%);opacity:{{ textShade }};"></div>
+        <div style="position:absolute;left:clamp(16px,4vw,64px);right:clamp(16px,4vw,64px);bottom:clamp(40px,8vh,90px);color:#f5f1e8;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;opacity:{{ t1 }};transform:translateY({{ t1y }});">TIGER’S NEST</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:clamp(56px,10vw,180px);line-height:.85;margin-top:14px;opacity:{{ t1 }};transform:translateY({{ t1y }});">Paro Taktsang</div>
+          <div style="display:flex;flex-wrap:wrap;gap:20px 56px;margin-top:32px;">
+            <div style="opacity:{{ t2 }};transform:translateY({{ t2y }});"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;opacity:.8;">ALTITUDE</div><div style="font-family:'Instrument Serif',serif;font-size:48px;line-height:1;">~3,120 m</div></div>
+            <div style="opacity:{{ t2 }};transform:translateY({{ t2y }});"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;opacity:.8;">ABOVE THE VALLEY</div><div style="font-family:'Instrument Serif',serif;font-size:48px;line-height:1;">~900 m</div></div>
+            <div style="opacity:{{ t3 }};transform:translateY({{ t3y }});max-width:420px;"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;opacity:.8;">THE TRAIL</div><div style="font-size:15px;line-height:1.6;margin-top:6px;">Through blue pine and prayer flags, past the halfway cafeteria viewpoint, then down and up steps across the gorge. Allow most of a day. Built in 1692 around Guru Rinpoche’s meditation cave; restored after a fire in 1998.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <section data-screen-label="About the place" style="padding:clamp(80px,10vw,150px) clamp(16px,4vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:56px;">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:{{ acc }};">{{ d.kindU }}</div>
+      <h2 style="margin:20px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,4.6vw,80px);line-height:.92;">{{ copy.head }}</h2>
+    </div>
+    <div>
+      <p style="margin:0;font-size:17px;line-height:1.75;opacity:.85;max-width:560px;">{{ copy.body }}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:36px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;">
+        <sc-for list="{{ d.tags }}" as="t" hint-placeholder-count="3"><span style="border-bottom:1px solid {{ acc }};padding-bottom:4px;">{{ t }}</span></sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Map & journeys" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));border-top:1px solid {{ line }};">
+    <div style="position:relative;height:min(64vh,600px);min-height:360px;background:{{ bg }};">
+      <dc-import name="BhutanMap" variant="{{ mapVariant }}" markers="{{ near }}" active-id="{{ d.id }}" focus="{{ d.id }}" zoom="{{ 2.6 }}" labels="all" on-select="{{ go }}" style="position:absolute;inset:0;" hint-size="100%,100%"></dc-import>
+    </div>
+    <div style="padding:clamp(48px,6vw,96px) clamp(16px,4vw,64px);display:flex;flex-direction:column;justify-content:center;gap:20px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;color:{{ acc }};">JOURNEYS THROUGH {{ d.nameU }}</div>
+      <sc-for list="{{ journeys }}" as="j" hint-placeholder-count="3">
+        <a href="{{ j.href }}" style="display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid {{ line }};">
+          <span style="font-family:'Instrument Serif',serif;font-size:clamp(26px,2.4vw,38px);line-height:1;">{{ j.title }}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;white-space:nowrap;">{{ j.days }} DAYS →</span>
+        </a>
+      </sc-for>
+      <a href="{{ buildHref }}" style="align-self:flex-start;margin-top:16px;display:inline-flex;gap:16px;font-size:12px;font-weight:500;letter-spacing:.24em;padding:18px 26px;border:1px solid currentColor;" style-hover="background:#e3a23a;color:#14130f;border-color:#e3a23a">BUILD A JOURNEY WITH {{ d.nameU }} <span style="font-family:'JetBrains Mono',monospace;">→</span></a>
+    </div>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { const v = this._rvImg(); const isU = s => typeof s === 'string' && /^(https?:|assets\/|data:)/.test(s); const seen = new Set(); const add = o => { if (!o || typeof o !== 'object' || seen.has(o) || o.$typeof || o instanceof Element || 'current' in o) return o; seen.add(o); if (Array.isArray(o)) { o.forEach(add); return o; } if (Object.getPrototypeOf(o) !== Object.prototype) return o; for (const k of Object.keys(o)) { const x = o[k]; if (isU(x)) o[k + 'Bg'] = 'url("' + x + '")'; else if (x && typeof x === 'object') add(x); } return o; }; return v ? add({ ...v }) : v; }
+  state = { y: 0, vh: 800 };
+  mistRef = React.createRef();
+  componentDidMount() {
+    const w = () => { if (!window.BMV) return setTimeout(w, 60); const d = this.dest(); document.title = d.name + ' — Bhutan Mind Vacation'; this.forceUpdate(); }; w();
+    let raf = 0; this.onScroll = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; this.setState({ y: window.scrollY, vh: window.innerHeight }); }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true }); this.onScroll();
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+  dest() { const B = window.BMV; const id = new URLSearchParams(location.search).get('d'); if (id === 'punakha') { location.replace('Punakha.dc.html'); } return B.byId[id] || B.byId.paro; }
+  _rvImg() {
+    const B = window.BMV; if (!B) return { d: { tags: [], img: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=', img2: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=' }, tnImg: 'data:image/gif;base64,R0lGODlhAQABAAAAACw=', journeys: [], near: [], mist: [], copy: {}, isDefault: true, mistRef: this.mistRef };
+    const dd = this.dest();
+    const V = { paro: 'vertical', taktsang: 'vertical', phobjikha: 'still', haa: 'still', bumthang: 'editorial', trongsa: 'editorial' }[dd.id] || 'default';
+    const light = V === 'still' || V === 'editorial';
+    const COPY = {
+      paro: ['Arrival, height, cliffs', 'The only international airport sits at around 2,200 m, approached through a narrow valley — one of the most remarkable landings anywhere. Above the town, Rinpung Dzong guards the river; above that, Tiger’s Nest hangs on its granite face.'],
+      taktsang: ['A monastery on the edge of the sky', 'Built in 1692 around the cave where Guru Rinpoche is said to have meditated. The walk up is a pilgrimage for Bhutanese families and a rite of passage for visitors.'],
+      haa: ['The quiet valley', 'Over Chele La from Paro, Haa opened to visitors only in 2002. Farmhouse homestays, the Haa Summer Festival, and very few other travellers.'],
+      thimphu: ['A capital at human scale', 'Bhutan’s capital is still small enough to walk. Tashichho Dzong houses the throne room and government; the Buddha Dordenma watches from the ridge.'],
+      dochula: ['The pass of 108 chortens', 'At about 3,100 m on the road from Thimphu to Punakha, the Druk Wangyal chortens frame — on clear winter mornings — a long line of Himalayan peaks.'],
+      phobjikha: ['Stillness, space, cranes', 'A wide glacial valley on the western slopes of the Black Mountains. From late autumn, endangered black-necked cranes arrive from the Tibetan plateau to winter in its marshes. Gangtey Goenpa watches from the ridge.'],
+      trongsa: ['The centre of the kingdom', 'Trongsa Dzong commands the old east–west route. The first two kings of Bhutan ruled from here, and the Crown Prince traditionally serves as Trongsa Penlop.'],
+      bumthang: ['History, sacred landscape, culture', 'Bumthang’s four valleys — Chokhor, Tang, Ura and Chhume — hold some of the oldest temples in the kingdom, including Jambay Lhakhang and Kurjey Lhakhang. Buckwheat, cheese, honey and yathra weaving.'],
+      trashigang: ['The far east', 'Bhutan’s largest district by population, and the gateway to the semi-nomadic Brokpa communities of Merak and Sakteng.'],
+      jangothang: ['Beneath Jomolhari', 'Base camp of the Jomolhari trek at around 4,080 m, under the 7,326 m east face of Jomolhari.']
+    }[dd.id] || [dd.kind, dd.line];
+    const d = { ...dd, img: dd.img || B.brand.undiscovered, img2: dd.img2 || dd.img || B.brand.nature, altLabel: '~' + dd.alt.toLocaleString('en-US') + ' M', coords: dd.lat.toFixed(4) + '° N · ' + dd.lon.toFixed(4) + '° E', kindU: dd.kind.toUpperCase(), regionU: dd.region.toUpperCase(), nameU: (dd.short || dd.name).toUpperCase(), tags: dd.tags.map(t => t.toUpperCase()) };
+    const st = this.state;
+    const hasMist = dd.id === 'paro' || dd.id === 'taktsang';
+    let mp = 0; if (hasMist && this.mistRef.current) { const r = this.mistRef.current.getBoundingClientRect(); const s = r.height - st.vh; mp = Math.max(0, Math.min(1, -r.top / s)); }
+    const reveal = Math.min(1, mp / 0.5);
+    const step = (a, b) => Math.max(0, Math.min(1, (mp - a) / (b - a)));
+    const mist = [[-10, 10, 70, -1], [40, -10, 80, 1], [10, 40, 90, -1], [55, 45, 75, 1], [20, 70, 85, 0]].map(([l, t, s, dir], i) => ({ l: l + '%', t: t + '%', s: s + 'vw', x: (dir * reveal * 70) + 'vw', y: (-reveal * (30 + i * 10)) + 'vh', op: (1 - reveal * 0.95).toFixed(2) }));
+    const near = B.dest.filter(x => Math.hypot(x.lon - dd.lon, x.lat - dd.lat) < 0.75).map(x => x.id);
+    return {
+      d, copy: { head: COPY[0], body: COPY[1] }, mistRef: this.mistRef,
+      isVertical: V === 'vertical', isStill: V === 'still', isEditorial: V === 'editorial', isDefault: V === 'default', hasMist,
+      navTone: light ? 'dark' : 'light', bg: light ? (V === 'still' ? '#f5f1e8' : '#ece4d4') : '#0f0e0b', fg: light ? '#1b1a16' : '#f5f1e8', acc: light ? '#8f2b1f' : '#e3a23a', line: light ? 'rgba(27,26,22,.15)' : 'rgba(245,241,232,.12)', mapVariant: light ? 'light' : 'dark',
+      imgVt: 'dest-' + dd.id, wordVt: 'word-' + dd.id, slowScale: (1 + Math.min(st.y, 1200) / 12000).toFixed(4),
+      tnImg: B.img('taktsang', 0), tnScale: (1.25 - reveal * 0.2).toFixed(3), tnBlur: ((1 - reveal) * 10).toFixed(1) + 'px', tnSat: (0.5 + reveal * 0.5).toFixed(2), veil: ((1 - reveal) * 0.75).toFixed(2), mist,
+      textShade: step(0.45, 0.6).toFixed(2), t1: step(0.5, 0.62).toFixed(2), t1y: ((1 - step(0.5, 0.62)) * 30) + 'px', t2: step(0.64, 0.76).toFixed(2), t2y: ((1 - step(0.64, 0.76)) * 30) + 'px', t3: step(0.78, 0.9).toFixed(2), t3y: ((1 - step(0.78, 0.9)) * 30) + 'px',
+      near, go: id => { location.href = B.byId[id].page; },
+      journeys: B.journeys.filter(j => j.route.includes(dd.id)).map(j => ({ title: j.title, days: j.days, href: j.itinerary ? 'Journey.dc.html' : 'Journey.dc.html?j=' + j.id })),
+      buildHref: 'Build.dc.html?d=' + dd.id
+    };
+  }
+}
+</script>
+</body>
+</html>
