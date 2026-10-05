@@ -11,7 +11,7 @@
 .rail { position: sticky; top: 76px; z-index: 5; background: rgba(15, 14, 11, .92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid rgba(245, 241, 232, .12); border-bottom: 1px solid rgba(245, 241, 232, .12); display: flex; overflow-x: auto; scrollbar-width: none; }
 .rail::-webkit-scrollbar { display: none; }
 .railBtn { all: unset; cursor: pointer; flex: 1 0 auto; min-width: 64px; padding: 16px 10px; text-align: center; font-family: var(--mono); font-size: 12px; letter-spacing: .18em; border-bottom: 2px solid transparent; position: relative; }
-.railBtn:focus-visible { outline: 1px solid #e3a23a; outline-offset: -4px; }
+.railBtn:focus-visible { outline-offset: -4px; }
 .railDot { display: block; margin: 6px auto 0; width: 5px; height: 5px; border-radius: 50%; background: #e3a23a; }
 
 .cal { position: relative; padding: 40px 0 100px; }
@@ -23,7 +23,8 @@
 .colSeason { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: rgba(245, 241, 232, .55); margin-top: 6px; }
 .colList { display: flex; flex-direction: column; gap: 32px; margin-top: 32px; }
 .card { all: unset; cursor: pointer; display: block; color: #f5f1e8; }
-.card:focus-visible { outline: 1px solid #e3a23a; outline-offset: 6px; }
+.card:focus-visible { outline-offset: 6px; }
+.track:focus-visible { outline-offset: -2px; }
 .cardImgBox { overflow: hidden; background: #1b1a16; }
 .cardImg { width: 100%; height: 100%; transition: transform 1.2s cubic-bezier(.2, .6, .2, 1); }
 .card:hover .cardImg { transform: scale(1.06); }
@@ -52,3 +53,23 @@
 .tkJDays { font-family: var(--mono); font-size: 11px; color: #e3a23a; }
 .tkBuild { margin-top: 16px; display: inline-flex; justify-content: space-between; gap: 16px; font-size: 12px; font-weight: 500; letter-spacing: .2em; padding: 18px 22px; background: #e3a23a; color: #14130f; }
 .tkBuild:hover { background: #f5f1e8; color: #14130f; }
+.colName { margin: 0; font-weight: 400; }
+.hintTouch { display: none; }
+@media (hover: none) { .hintPointer { display: none; } .hintTouch { display: inline; } }
+.tk { overscroll-behavior: contain; }
+
+@media (max-width: 599px) {
+  .hero { min-height: 70svh; padding-top: 120px; padding-bottom: 36px; }
+  .lead { font-size: 14px; }
+  .railBtn { min-width: 56px; padding: 14px 6px; font-size: 11px; letter-spacing: .12em; }
+  .cal { padding: 28px 0 64px; }
+  .col { flex-basis: 80vw; padding: 0 16px; min-height: 0; }
+  .colName { font-size: 52px; }
+  .cardName { font-size: 26px; }
+  .tkHero { height: 58svh; min-height: 360px; }
+  .close { top: 16px; right: 16px; }
+  .tkGrid { padding: 32px 16px calc(64px + env(safe-area-inset-bottom)); gap: 36px; }
+  .tkPlace { font-size: 28px; }
+  .tkJRow { font-size: 20px; }
+  .tkBuild { letter-spacing: .14em; padding: 18px 16px; }
+}

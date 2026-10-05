@@ -5,7 +5,7 @@ import Nav from '@/components/Nav';
 import Photo from '@/components/Photo';
 import TLink from '@/components/TLink';
 import { brand, byId, destinations, festivals, fmt, journeys, months, pad2 } from '@/content';
-import { useKey, useTween, useWidth } from '@/lib/hooks';
+import { useKey, useNoHover, useTween, useWidth } from '@/lib/hooks';
 import s from './MapPage.module.css';
 
 import type { MapMode } from '@/content';
@@ -29,6 +29,7 @@ export default function MapPage({ initialMode = 'destinations', initialSel = nul
   const [journey, setJourney] = useState(0);
   const [anim, runRoute] = useTween(3600);
   const w = useWidth();
+  const touch = useNoHover();
   useKey('Escape', () => setSel(null));
 
   const m = MODES[mode];
@@ -47,12 +48,12 @@ export default function MapPage({ initialMode = 'destinations', initialSel = nul
   }
   const progress = route.length ? anim * (route.length - 1) : null;
   const dd = byId[sel || hov || 'punakha'];
-  const showPanel = !!(sel || hov);
+  const showPanel = !!(sel || (hov && !touch));
 
   return (
     <>
       <Nav />
-      <main className={s.main}>
+      <main id="main" tabIndex={-1} className={s.main}>
         <div className={s.mapArea}>
           <BhutanMap markers={markers} route={route} flights={flights} progress={progress} activeId={sel} hoverId={hov} focus={sel || ''} zoom={2.2} focusX={w > 900 ? 0.4 : 0.5}
             numbered={numbered} onHover={setHov} onSelect={setSel} />
@@ -63,11 +64,11 @@ export default function MapPage({ initialMode = 'destinations', initialSel = nul
             <div className={s.eyebrow}>INTERACTIVE MAP · {m.label}</div>
             <h1 className={s.title}>{mode === 'journeys' ? journeys[journey].title : m.title}</h1>
           </div>
-          <div className={s.list}>
+          <div className={s.list} role="group" aria-label={mode === 'journeys' ? 'Journeys' : 'Places'}>
             {list.map(it => (
-              <button key={it.key} onClick={it.click} onMouseEnter={it.enter} onMouseLeave={it.leave} className={s.row}
+              <button key={it.key} type="button" onClick={it.click} onMouseEnter={it.enter} onMouseLeave={it.leave} onFocus={it.enter} onBlur={it.leave} className={s.row} aria-pressed={it.pad}
                 style={{ color: it.on ? '#e3a23a' : '#f5f1e8', paddingLeft: it.pad ? '10px' : '0' }}>
-                <span className={s.rowNo}>{it.no}</span>
+                <span className={s.rowNo} aria-hidden="true">{it.no}</span>
                 <span className={s.rowName}>{it.name}</span>
                 <span className={s.rowMeta}>{it.meta}</span>
               </button>
@@ -75,7 +76,8 @@ export default function MapPage({ initialMode = 'destinations', initialSel = nul
           </div>
         </div>
 
-        <aside className={s.panel} aria-hidden={!showPanel} style={{ transform: `translateX(${showPanel ? '0' : '110%'})`, opacity: showPanel ? 1 : 0, pointerEvents: sel ? 'auto' : 'none' }}>
+        <p className="bmv-sr" aria-live="polite">{sel ? `${byId[sel].name} selected. Details below.` : ''}</p>
+        <aside className={s.panel} aria-label={dd.name} aria-hidden={!showPanel} inert={!sel} data-open={showPanel} style={{ opacity: showPanel ? 1 : 0, pointerEvents: sel ? 'auto' : 'none' }}>
           <div className={s.photoBox}>
             <Photo src={dd.img || brand.undiscovered} alt={dd.name} className={s.photo} vt={sel ? 'dest-' + dd.id : undefined} sizes="340px" />
             <div className={s.coords}>{dd.lat.toFixed(4)}° N · {dd.lon.toFixed(4)}° E</div>
@@ -88,17 +90,17 @@ export default function MapPage({ initialMode = 'destinations', initialSel = nul
           <p className={s.line}>{dd.line}</p>
           <div className={s.tags}>{dd.tags.map(t => <span key={t} className={s.tag}>{t.toUpperCase()}</span>)}</div>
           <TLink href={dd.page} data-cursor="ENTER" className={s.explore}>EXPLORE {(dd.short || dd.name).toUpperCase()} <span className={s.mono}>→</span></TLink>
-          <button onClick={() => { setSel(null); setHov(null); }} className={s.back}>× BACK TO THE KINGDOM</button>
+          <button type="button" onClick={() => { setSel(null); setHov(null); }} className={s.back}><span aria-hidden="true">× </span>BACK TO THE KINGDOM</button>
         </aside>
 
         <div className={s.bottom}>
-          <div className={s.modes}>
+          <div className={s.modes} role="group" aria-label="Map layer">
             {(Object.keys(MODES) as MapMode[]).map(k => (
-              <button key={k} className={s.mode} onClick={() => { setMode(k); setSel(null); setHov(null); runRoute(); }}
+              <button key={k} type="button" className={s.mode} aria-pressed={k === mode} onClick={() => { setMode(k); setSel(null); setHov(null); runRoute(); }}
                 style={{ color: k === mode ? '#e3a23a' : 'rgba(245,241,232,.75)', borderBottomColor: k === mode ? '#e3a23a' : 'transparent' }}>{MODES[k].label}</button>
             ))}
           </div>
-          <div className={s.credit}>RELIEF: AWS TERRAIN TILES (SRTM) · BOUNDARIES: GEOBOUNDARIES gbOpen<br />COORDINATES: OPENSTREETMAP / WIKIPEDIA</div>
+          <div className={s.credit} aria-hidden="true">RELIEF: AWS TERRAIN TILES (SRTM) · BOUNDARIES: GEOBOUNDARIES gbOpen<br />COORDINATES: OPENSTREETMAP / WIKIPEDIA</div>
         </div>
       </main>
     </>

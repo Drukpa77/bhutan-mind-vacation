@@ -63,7 +63,7 @@ export default function Destination({ id }: { id: string }) {
   return (
     <>
       <Nav tone={light ? 'dark' : 'light'} />
-      <main className={s.main} style={{ background: bg, color: fg }}>
+      <main id="main" tabIndex={-1} className={s.main} style={{ background: bg, color: fg }}>
         {V === 'vertical' && (
           <header className={s.vHero} data-screen-label="Hero vertical">
             <div className={s.vLeft}>
@@ -108,7 +108,7 @@ export default function Destination({ id }: { id: string }) {
             <TLink href="/destinations" className={s.dBack}>← DESTINATIONS · {regionU}</TLink>
             <div className={s.dBottom}>
               <h1 className={s.dH1} style={wordVt}>{dd.name}</h1>
-              <div className={s.meta} style={{ textAlign: 'right' }}>{altLabel}<br />{coords}<br />{kindU}</div>
+              <div className={`${s.meta} ${s.dMeta}`}>{altLabel}<br />{coords}<br />{kindU}</div>
             </div>
           </header>
         )}

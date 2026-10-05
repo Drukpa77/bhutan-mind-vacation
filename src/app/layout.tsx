@@ -13,13 +13,14 @@ export const metadata: Metadata = {
   description: 'BMV Tours & Treks — a Bhutanese, family-owned travel company in Thimphu. Private journeys, festivals, treks and tailor-made routes across the Kingdom of Bhutan.'
 };
 
-export const viewport: Viewport = { width: 'device-width', initialScale: 1 };
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#0f0e0b', colorScheme: 'dark light' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ViewTransitions>
       <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
         <body>
+          <a href="#main" className="bmv-skip">SKIP TO CONTENT</a>
           {children}
           <Cursor />
         </body>

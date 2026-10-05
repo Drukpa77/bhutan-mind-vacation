@@ -36,3 +36,21 @@
 .relV { font-family: var(--serif); font-size: 48px; line-height: 1; margin-top: 8px; }
 .go { align-self: flex-start; display: inline-flex; gap: 16px; font-size: 12px; font-weight: 500; letter-spacing: .24em; padding: 18px 26px; background: #1b1a16; color: #f5f1e8; }
 .go:hover { background: #8f2b1f; color: #f5f1e8; }
+.hero { --focus: #e3a23a; height: 100svh; }
+.back { display: inline-block; padding: 10px 0; margin: -10px 0; }
+
+@media (max-width: 599px) {
+  .hero { min-height: 560px; }
+  .h1 { font-size: clamp(44px, 13vw, 60px); }
+  .dek { font-size: 20px; }
+  .p, .col { font-size: 17px; }
+  .drop { font-size: 72px; margin-right: 10px; }
+  .bleed { margin: 48px -16px; }
+  .bleedImg { height: 56svh; min-height: 300px; }
+  .pull { margin: 56px auto; font-size: 34px; }
+  .partial { padding: 64px 16px; }
+  .mapBox { height: 320px; }
+  .relText { padding: 40px 16px; }
+  .relV { font-size: 34px; }
+  .go { align-self: stretch; justify-content: space-between; }
+}

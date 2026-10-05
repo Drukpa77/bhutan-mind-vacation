@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import Photo from '@/components/Photo';
 import TLink from '@/components/TLink';
 import { byId, festivals, img, journeyHref, journeysThrough, monthNames, months, type Festival } from '@/content';
-import { useKey } from '@/lib/hooks';
+import { useModal } from '@/lib/hooks';
 import s from './Festivals.module.css';
 
 const SEASON = ['WINTER', 'WINTER', 'SPRING', 'SPRING', 'SPRING', 'MONSOON', 'MONSOON', 'MONSOON', 'AUTUMN', 'AUTUMN', 'AUTUMN', 'WINTER'];
@@ -16,7 +16,8 @@ export default function Festivals() {
   const [open, setOpen] = useState<string | null>(null);
   const [month, setMonth] = useState(0);
   const track = useRef<HTMLDivElement>(null);
-  useKey('Escape', () => setOpen(null));
+  const tkRef = useRef<HTMLDivElement>(null), opener = useRef<HTMLElement | null>(null);
+  useModal(!!open, tkRef, opener, () => setOpen(null));
 
   useEffect(() => {
     const t = track.current; if (!t) return;
@@ -63,7 +64,7 @@ export default function Festivals() {
   return (
     <>
       <Nav />
-      <main className={s.main}>
+      <main id="main" tabIndex={-1} className={s.main}>
         <header className={s.hero} data-screen-label="Festivals intro">
           <Photo src={img('parotsechu', 1)} alt="Black Hat dance at Paro Tshechu" className={s.heroImg} priority />
           <div className={s.heroShade} />
@@ -73,28 +74,29 @@ export default function Festivals() {
           </div>
         </header>
 
-        <div className={s.rail} data-screen-label="Month rail">
+        <nav className={s.rail} data-screen-label="Month rail" aria-label="Jump to month">
           {months.map((m, i) => (
-            <button key={m} onClick={() => scrollTo(i)} className={s.railBtn} aria-current={i === month}
-              style={{ color: i === month ? '#e3a23a' : has(i) ? '#f5f1e8' : 'rgba(245,241,232,.4)', borderBottomColor: i === month ? '#e3a23a' : 'transparent' }}>
-              {m}<span className={s.railDot} style={{ opacity: has(i) ? 1 : 0 }} />
+            <button key={m} type="button" onClick={() => scrollTo(i)} className={s.railBtn} aria-current={i === month ? 'true' : undefined}
+              aria-label={`${monthNames[i]}${has(i) ? '' : ', no festivals'}`}
+              style={{ color: i === month ? '#e3a23a' : has(i) ? '#f5f1e8' : 'rgba(245,241,232,.55)', borderBottomColor: i === month ? '#e3a23a' : 'transparent' }}>
+              {m}<span className={s.railDot} aria-hidden="true" style={{ opacity: has(i) ? 1 : 0 }} />
             </button>
           ))}
-        </div>
+        </nav>
 
-        <section className={s.cal} data-screen-label="Calendar">
-          <div className={s.calHead}><span>DRAG OR SCROLL SIDEWAYS</span><span>{festivals.length} FESTIVALS</span></div>
-          <div ref={track} onScroll={onTrack} onMouseDown={dragStart} data-cursor="DRAG" className={s.track}>
+        <section className={s.cal} data-screen-label="Calendar" aria-label="Festival calendar">
+          <div className={s.calHead} aria-hidden="true"><span><span className={s.hintPointer}>DRAG OR SCROLL SIDEWAYS</span><span className={s.hintTouch}>SWIPE SIDEWAYS</span></span><span>{festivals.length} FESTIVALS</span></div>
+          <div ref={track} onScroll={onTrack} onMouseDown={dragStart} data-cursor="DRAG" className={s.track} tabIndex={0} role="region" aria-label="Months, scroll horizontally">
             {monthNames.map((name, m) => {
               const fs = festivals.filter(x => x.month === m);
               return (
                 <div key={name} className={s.col}>
-                  <div className={s.colName} style={{ color: m === month ? '#e3a23a' : '#f5f1e8' }}>{name}</div>
+                  <h2 className={s.colName} style={{ color: m === month ? '#e3a23a' : '#f5f1e8' }}>{name}</h2>
                   <div className={s.colSeason}>{SEASON[m]}</div>
                   <div className={s.colList}>
                     {fs.map((x, i) => (
-                      <button key={x.id} onClick={() => setOpen(x.id)} data-cursor="OPEN" className={s.card}>
-                        <div className={s.cardImgBox} style={{ aspectRatio: i % 2 ? '1/1' : '4/5' }}><Photo src={x.img} alt={x.name} className={s.cardImg} sizes="400px" /></div>
+                      <button key={x.id} type="button" onClick={e => { opener.current = e.currentTarget; setOpen(x.id); }} data-cursor="OPEN" className={s.card} aria-haspopup="dialog">
+                        <div className={s.cardImgBox} style={{ aspectRatio: i % 2 ? '1/1' : '4/5' }}><Photo src={x.img} alt="" className={s.cardImg} sizes="(max-width: 599px) 80vw, 400px" /></div>
                         <div className={s.cardWhen}>{x.when}</div>
                         <div className={s.cardName}>{x.name}</div>
                         <div className={s.cardPlace}>{byId[x.place].name.toUpperCase()}</div>
@@ -109,29 +111,29 @@ export default function Festivals() {
         </section>
       </main>
 
-      <div className={s.tk} data-screen-label="Festival takeover" role="dialog" aria-modal="true" aria-hidden={!open} aria-label={f.name}
-        style={{ clipPath: open ? 'inset(0 0 0 0)' : 'inset(50% 0 50% 0)', pointerEvents: open ? 'auto' : 'none' }}>
+      <div ref={tkRef} className={s.tk} data-screen-label="Festival takeover" role="dialog" aria-modal="true" aria-labelledby="tk-title" inert={!open}
+        style={{ clipPath: open ? 'inset(0 0 0 0)' : 'inset(50% 0 50% 0)', pointerEvents: open ? 'auto' : 'none', visibility: open ? 'visible' : 'hidden', transitionProperty: 'clip-path, visibility', transitionDelay: open ? '0s, 0s' : '0s, .9s' }}>
         <div className={s.tkHero}>
           <Photo src={f.img} alt={f.name} className={s.tkImg} style={{ transform: `scale(${open ? 1 : 1.15})` }} />
           <div className={s.tkShade} />
-          <button onClick={() => setOpen(null)} data-cursor="CLOSE" className={s.close} tabIndex={open ? 0 : -1}>CLOSE ×</button>
+          <button type="button" onClick={() => setOpen(null)} data-cursor="CLOSE" className={s.close} aria-label="Close festival">CLOSE <span aria-hidden="true">×</span></button>
           <div className={s.tkTitleBox}>
             <div className={s.tkWhen}>{f.when}</div>
-            <h2 className={s.tkH2}>{f.name}</h2>
+            <h2 id="tk-title" className={s.tkH2}>{f.name}</h2>
           </div>
         </div>
         <div className={s.tkGrid}>
           <div><div className={s.k}>THE STORY</div><p className={s.tkStory}>{f.text}</p></div>
           <div className={s.tkMid}>
-            <div><div className={s.k}>WHERE</div><TLink href={pl.page} className={s.tkPlace} tabIndex={open ? 0 : -1}>{pl.name} →</TLink></div>
+            <div><div className={s.k}>WHERE</div><TLink href={pl.page} className={s.tkPlace}>{pl.name} <span aria-hidden="true">→</span></TLink></div>
             <div><div className={s.k}>WHEN</div><div className={s.tkDate}>{dateNote}</div></div>
           </div>
           <div className={s.tkJ}>
             <div className={s.k}>JOURNEYS THAT PASS THROUGH</div>
             {journeysThrough(f.place).slice(0, 4).map(j => (
-              <TLink key={j.id} href={journeyHref(j)} className={s.tkJRow} tabIndex={open ? 0 : -1}>{j.title}<span className={s.tkJDays}>{j.days}D</span></TLink>
+              <TLink key={j.id} href={journeyHref(j)} className={s.tkJRow}>{j.title}<span className={s.tkJDays} aria-label={`${j.days} days`}>{j.days}D</span></TLink>
             ))}
-            <TLink href={`/build-your-journey?d=${f.place}`} data-cursor="BEGIN" className={s.tkBuild} tabIndex={open ? 0 : -1}>BUILD A JOURNEY AROUND THIS FESTIVAL <span className={s.mono}>→</span></TLink>
+            <TLink href={`/build-your-journey?d=${f.place}`} data-cursor="BEGIN" className={s.tkBuild}>BUILD A JOURNEY AROUND THIS FESTIVAL <span className={s.mono} aria-hidden="true">→</span></TLink>
           </div>
         </div>
       </div>

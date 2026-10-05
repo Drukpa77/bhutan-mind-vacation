@@ -66,3 +66,33 @@
 .jDays { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; white-space: nowrap; }
 .build { align-self: flex-start; margin-top: 16px; display: inline-flex; gap: 16px; font-size: 12px; font-weight: 500; letter-spacing: .24em; padding: 18px 26px; border: 1px solid currentColor; }
 .build:hover { background: #e3a23a; color: #14130f; border-color: #e3a23a; }
+.dMeta { text-align: right; }
+.dHero, .mistSticky { height: 100svh; }
+.mistSticky { --focus: #e3a23a; }
+.dHero { --focus: #e3a23a; }
+
+@media (max-width: 899px) {
+  .vRight { min-height: 64svh; }
+  .vLeft { padding-top: 120px; }
+  .sH1 { margin-top: 14vh; }
+  .sLine { margin-bottom: 14vh; }
+}
+@media (max-width: 599px) {
+  .vH1, .dH1 { font-size: clamp(52px, 16vw, 72px); }
+  .eH1 { font-size: clamp(56px, 17vw, 80px); }
+  .vRule { height: 96px; }
+  .sHero { padding-top: 120px; }
+  .sWide { height: 56svh; min-height: 320px; }
+  .eHero { padding-top: 112px; gap: 20px; }
+  .eImg2 { width: 70%; }
+  .dHero { min-height: 540px; }
+  .dBack { top: 96px; }
+  .dBottom { bottom: 32px; gap: 16px; }
+  .dMeta { text-align: left; }
+  .mist { height: 340svh; }
+  .mistFacts { gap: 16px 32px; margin-top: 24px; }
+  .mistV { font-size: 34px; }
+  .mistTrail { font-size: 14px; }
+  .body { font-size: 16px; }
+  .build { align-self: stretch; justify-content: space-between; }
+}

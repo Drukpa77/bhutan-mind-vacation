@@ -1,5 +1,49 @@
 'use client';
-import { useEffect, useState, type RefObject } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
+
+const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
+
+/** Modal overlay behaviour: Escape closes, Tab is trapped inside, body scroll is locked,
+ *  first control is focused on open and focus returns to the trigger on close. */
+export function useModal(open: boolean, panel: RefObject<HTMLElement | null>, trigger: RefObject<HTMLElement | null>, onClose: () => void) {
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
+  const wasOpen = useRef(false);
+  useEffect(() => {
+    if (!open) {
+      if (wasOpen.current) { wasOpen.current = false; trigger.current?.focus({ preventScroll: true }); }
+      return;
+    }
+    wasOpen.current = true;
+    const el = panel.current;
+    document.body.classList.add('bmv-locked');
+    const id = requestAnimationFrame(() => el?.querySelector<HTMLElement>(FOCUSABLE)?.focus({ preventScroll: true }));
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { e.preventDefault(); closeRef.current(); return; }
+      if (e.key !== 'Tab' || !el) return;
+      const items = Array.from(el.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(n => n.offsetParent !== null);
+      if (!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      else if (!el.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => { cancelAnimationFrame(id); document.removeEventListener('keydown', onKey); document.body.classList.remove('bmv-locked'); };
+  }, [open, panel, trigger]);
+}
+
+/** True when the primary input can't hover (phones, tablets) — hover-revealed content should be shown. */
+export function useNoHover(): boolean {
+  const [r, setR] = useState(false);
+  useEffect(() => {
+    const m = window.matchMedia('(hover: none)');
+    const on = () => setR(m.matches); on();
+    m.addEventListener('change', on);
+    return () => m.removeEventListener('change', on);
+  }, []);
+  return r;
+}
 
 export interface Viewport { y: number; vh: number; w: number }
 

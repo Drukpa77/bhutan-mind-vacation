@@ -20,3 +20,23 @@
 .rowMeta { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-align: right; line-height: 1.8; color: rgba(245, 241, 232, .7); }
 .mapLink { display: inline-flex; gap: 14px; margin-top: 40px; font-size: 12px; font-weight: 500; letter-spacing: .22em; border-bottom: 1px solid #e3a23a; padding-bottom: 8px; }
 .mono { font-family: var(--mono); }
+
+.main { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+.mapCol { height: 100vh; }
+@media (max-width: 899px) {
+  .main { grid-template-columns: minmax(0, 1fr); }
+  /* Map scrolls away; the photo pins under the nav while the list scrolls past it. */
+  .mapCol { position: relative; height: calc(100vw * .58 + 190px); }
+  .listCol { border-left: 0; }
+  .photoBox { top: 76px; height: 34svh; min-height: 220px; }
+  .titleBox { top: 96px; }
+}
+@media (max-width: 599px) {
+  .h1 { font-size: 44px; }
+  .mapCol { height: calc(100vw * .58 + 170px); }
+  .coords { bottom: 16px; font-size: 9px; }
+  .captionLine { font-size: 18px; }
+  .row { grid-template-columns: 28px minmax(0, 1fr) auto; gap: 12px; padding: 18px 0; }
+  .rowName { font-size: 32px; }
+  .rowMeta { font-size: 9px; }
+}

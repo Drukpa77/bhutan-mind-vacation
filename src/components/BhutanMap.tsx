@@ -68,6 +68,7 @@ export default function BhutanMap(p: BhutanMapProps) {
   const s = focus ? (p.zoom || 2.6) : 1;
   const tx = focus ? W * (p.focusX || 0.5) - focus.x * s : 0, ty = focus ? H / 2 - focus.y * s : 0;
   const active = p.activeId, hover = p.hoverId;
+  const interactive = !!p.onSelect;
   const kids: ReactNode[] = [];
 
   if (p.graticule !== false) {
@@ -111,13 +112,18 @@ export default function BhutanMap(p: BhutanMapProps) {
         {isA && <circle r={7 / s} fill="none" stroke={acc} strokeWidth={1.2 / s} style={{ transformBox: 'fill-box', transformOrigin: 'center', animation: 'bmvpulse 1.8s ease-out infinite' }} />}
         <circle r={r} fill={lit ? (isA ? acc : (dark ? '#f5f1e8' : '#1b1a16')) : 'transparent'} stroke={lit ? (dark ? '#14130f' : '#f5f1e8') : ink} strokeOpacity={lit ? 1 : 0.5} strokeWidth={1.2 / s} style={{ transition: 'r .25s' }} />
         {showLabel && (
-          <text x={dx} y={dy} textAnchor={anchor} fill={ink} fillOpacity={lit ? (isA ? 1 : 0.85) : 0.4} fontSize={(isA ? 13 : 10.5) / s} letterSpacing={1.6 / s} fontWeight={isA ? 600 : 400}
+          <text aria-hidden="true" x={dx} y={dy} textAnchor={anchor} fill={ink} fillOpacity={lit ? (isA ? 1 : 0.85) : 0.4} fontSize={(isA ? 13 : 10.5) / s} letterSpacing={1.6 / s} fontWeight={isA ? 600 : 400}
             style={{ fontFamily: MONO, paintOrder: 'stroke', stroke: dark ? 'rgba(10,10,8,.65)' : 'rgba(245,241,232,.8)', strokeWidth: 3 / s, transition: 'font-size .25s' }}>
             {(p.numbered && onRoute ? String(ri + 1).padStart(2, '0') + ' ' : '') + (m.short || m.name).toUpperCase()}
           </text>
         )}
-        <circle r={22 / s} fill="transparent" style={{ cursor: 'pointer' }} data-cursor="OPEN" role="button" aria-label={m.name}
-          onMouseEnter={() => p.onHover?.(m.id)} onMouseLeave={() => p.onHover?.(null)} onClick={() => p.onSelect?.(m.id)} />
+        {interactive ? (
+          <circle r={22 / s} fill="transparent" className="bmv-hit" style={{ cursor: 'pointer' }} data-cursor="OPEN" role="button" tabIndex={0} aria-label={m.name} aria-pressed={m.id === active}
+            onMouseEnter={() => p.onHover?.(m.id)} onMouseLeave={() => p.onHover?.(null)} onFocus={() => p.onHover?.(m.id)} onBlur={() => p.onHover?.(null)}
+            onClick={() => p.onSelect?.(m.id)} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); p.onSelect?.(m.id); } }} />
+        ) : p.onHover ? (
+          <circle r={22 / s} fill="transparent" onMouseEnter={() => p.onHover?.(m.id)} onMouseLeave={() => p.onHover?.(null)} />
+        ) : null}
       </g>
     );
   });
@@ -134,9 +140,10 @@ export default function BhutanMap(p: BhutanMapProps) {
         <div style={{ position: 'absolute', left: (cw - W * k) / 2, top: (ch - H * k) / 2, width: W, height: H, transform: `scale(${k})`, transformOrigin: '0 0', visibility: cw0 ? 'visible' : 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, transform: `translate(${tx}px,${ty}px) scale(${s})`, transformOrigin: '0 0', transition: 'transform 1.4s cubic-bezier(.7,0,.2,1)' }}>
             {/* eslint-disable-next-line @next/next/no-img-element -- fixed 1347×780 stage; must not be resized or re-encoded */}
-            <img src={dark ? '/geo/terrain-dark.jpg' : '/geo/terrain-light.jpg'} alt="Shaded relief of Bhutan" draggable={false}
+            <img src={dark ? '/geo/terrain-dark.jpg' : '/geo/terrain-light.jpg'} alt="" draggable={false}
               style={{ position: 'absolute', inset: 0, width: W, height: H, opacity: p.terrainOpacity ?? 1, userSelect: 'none' }} />
-            <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>{cw0 ? kids : null}</svg>
+            <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} style={{ position: 'absolute', inset: 0, overflow: 'visible' }}
+              {...(interactive ? { role: 'group', 'aria-label': 'Destinations on the map' } : { 'aria-hidden': true, focusable: false })}>{cw0 ? kids : null}</svg>
           </div>
         </div>
       </div>

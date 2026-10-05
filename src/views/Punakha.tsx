@@ -47,31 +47,34 @@ function Waves({ p }: { p: number }) {
 export default function Punakha() {
   const { y, vh, w } = useViewport();
   const router = useRouter();
-  const rivRef = useRef<HTMLElement>(null), galRef = useRef<HTMLElement>(null);
+  const rivRef = useRef<HTMLElement>(null), galRef = useRef<HTMLElement>(null), trackRef = useRef<HTMLDivElement>(null);
   const rp = stickyProgress(rivRef, vh), gp = stickyProgress(galRef, vh);
   const conv = 1 - Math.pow(1 - Math.min(1, rp / 0.55), 3);
   const meet = clamp01((rp - 0.45) / 0.15), story = clamp01((rp - 0.55) / 0.2);
-  const trackW = w * 2.7;
+  // Travel exactly to the end of the track so the last figure is reachable at any width.
+  const tw = trackRef.current?.scrollWidth;
+  const travel = tw ? Math.max(0, tw - w + Math.min(64, w * 0.04)) : w * 2.7 * 0.62;
 
   return (
     <>
       <Nav />
-      <main className={s.main}>
+      <main id="main" tabIndex={-1} className={s.main}>
         <header className={s.hero} data-screen-label="Punakha hero">
           <Photo src={img('punakha', 0)} alt="Punakha Dzong" className={s.heroImg} vt="dest-punakha" priority style={{ transform: `translateY(${(Math.min(y, 900) * 0.25).toFixed(1)}px) scale(1.06)` }} />
           <div className={s.heroShade} />
-          <div className={s.heroL}><TLink href="/destinations" className={s.back}>← DESTINATIONS</TLink><br />06 / 11 · WESTERN BHUTAN</div>
-          <div className={s.heroR}>27.5815° N · 89.8631° E<br />~1,200 M<br />SUBTROPICAL VALLEY</div>
+          <div className={s.heroL}><TLink href="/destinations" className={s.back}><span aria-hidden="true">← </span>DESTINATIONS</TLink><br />06 / 11 · WESTERN BHUTAN</div>
+          <div className={s.heroR} aria-label="27.5815° North, 89.8631° East, about 1,200 metres, subtropical valley">27.5815° N · 89.8631° E<br />~1,200 M<br />SUBTROPICAL VALLEY</div>
           <h1 className={s.word} style={{ viewTransitionName: 'word-punakha' }}>Punakha</h1>
         </header>
 
         <section ref={rivRef} className={s.rivers} data-screen-label="Two rivers">
           <div className={s.sticky}>
-            <div className={s.waves}><Waves p={rp} /></div>
-            <div className={s.riverLbls}>
+            <div className={s.waves} aria-hidden="true"><Waves p={rp} /></div>
+            <h2 className="bmv-sr">Two rivers: the Pho Chhu and the Mo Chhu meet at Punakha</h2>
+            <div className={s.riverLbls} aria-hidden="true">
               <span style={{ opacity: (1 - conv).toFixed(2) }}>THE FATHER RIVER</span><span style={{ opacity: (1 - conv).toFixed(2) }}>THE MOTHER RIVER</span>
             </div>
-            <div className={s.riverStage}>
+            <div className={s.riverStage} aria-hidden="true">
               <div className={s.river} style={{ transform: `translateX(calc(-100% - ${((1 - conv) * 22 + 1).toFixed(2)}vw))` }}>Pho Chhu</div>
               <div className={s.river} style={{ fontStyle: 'italic', transform: `translateX(${((1 - conv) * 22 + 1).toFixed(2)}vw)` }}>Mo Chhu</div>
               <div className={s.meet} style={{ opacity: meet.toFixed(2), transform: `translateY(${((1 - meet) * 20).toFixed(1)}px)` }}>MEET HERE</div>
@@ -85,8 +88,8 @@ export default function Punakha() {
 
         <section ref={galRef} className={s.gallery} data-screen-label="River gallery">
           <div className={s.galSticky}>
-            <div className={s.galNo}>DOWNSTREAM · {pad2(Math.min(5, Math.floor(gp * 5) + 1))} / 05</div>
-            <div className={s.track} style={{ transform: `translateX(${(-gp * trackW * 0.62).toFixed(0)}px)` }}>
+            <div className={s.galNo} aria-hidden="true">DOWNSTREAM · {pad2(Math.min(5, Math.floor(gp * 5) + 1))} / 05</div>
+            <div ref={trackRef} className={s.track} style={{ transform: `translateX(${(-gp * travel).toFixed(0)}px)` }}>
               <div className={s.galIntro}>
                 <h2 className={s.galH2}>Follow the <em>water.</em></h2>
                 <p className={s.galP}>Five places along the rivers, in the order you’d meet them walking downstream.</p>
@@ -111,7 +114,7 @@ export default function Punakha() {
             <div>
               {TODO.map((t, i) => (
                 <div key={t.title} className={s.todo}>
-                  <span className={s.todoNo}>{pad2(i + 1)}</span>
+                  <span className={s.todoNo} aria-hidden="true">{pad2(i + 1)}</span>
                   <div><div className={s.todoTitle}>{t.title}</div><p className={s.todoText}>{t.text}</p></div>
                 </div>
               ))}

@@ -33,9 +33,29 @@
 .stepper { display: flex; align-items: center; gap: 18px; }
 .sBtn { all: unset; cursor: pointer; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid #1b1a16; font-size: 18px; box-sizing: border-box; }
 .sBtn:hover { background: #1b1a16; color: #f5f1e8; }
-.sBtn:focus-visible { outline: 1px solid #8f2b1f; outline-offset: 3px; }
+.sBtn:disabled { opacity: .3; cursor: default; }
+.sBtn:disabled:hover { background: transparent; color: inherit; }
 .sVal { font-family: var(--serif); font-size: 36px; min-width: 44px; text-align: center; }
 .totalK { margin-top: 32px; font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: #5a5244; }
 .total { font-family: var(--serif); font-size: clamp(64px, 7vw, 110px); line-height: 1; margin-top: 6px; }
 .breakdown { font-size: 13px; color: #5a5244; margin-top: 8px; }
+.total { display: block; }
+.back { display: inline-block; padding: 10px 0; margin: -10px 0; }
+
+@media (max-width: 599px) {
+  .intro { padding-top: 120px; padding-bottom: 48px; }
+  .lead { font-size: 16px; }
+  .process { padding-bottom: 64px; }
+  .line { left: calc(16px + 25.5px); bottom: 64px; }
+  .step { grid-template-columns: 52px minmax(0, 1fr); gap: 18px; padding: 28px 0; }
+  .dot { width: 52px; height: 52px; font-size: 12px; }
+  .stepH { font-size: 32px; }
+  .calc { padding: 24px 16px; margin: 0 -16px; }
+  .ctrl { gap: 12px; }
+  .ctrlLabel { font-size: 14px; }
+  .stepper { gap: 10px; }
+  .sVal { font-size: 30px; min-width: 36px; }
+  .row { flex-direction: column; gap: 4px; }
+  .rowV { text-align: left; }
+}
 .sources { padding: 0 clamp(16px, 5vw, 80px) 100px; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: #5a5244; line-height: 1.8; }

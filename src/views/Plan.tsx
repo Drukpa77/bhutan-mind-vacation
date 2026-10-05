@@ -17,7 +17,7 @@ export default function Plan({ anchor }: { anchor?: string }) {
   return (
     <>
       <Nav tone="dark" solid />
-      <main className={s.main}>
+      <main id="main" tabIndex={-1} className={s.main}>
         <header className={s.intro} data-screen-label="Plan intro">
           <div>
             <div className={s.eyebrow}>PLAN YOUR TRIP</div>
@@ -29,7 +29,7 @@ export default function Plan({ anchor }: { anchor?: string }) {
         <nav className={s.paths} data-screen-label="Pathways" aria-label="Plan sections">
           {planPaths.map(([title, href, sub], i) => (
             <TLink key={title} href={href} className={s.path}>
-              <span className={s.pathNo}>{pad2(i + 1)}</span>
+              <span className={s.pathNo} aria-hidden="true">{pad2(i + 1)}</span>
               <span className={s.pathTitle}>{title}</span>
               <span className={s.pathSub}>{sub}</span>
             </TLink>
@@ -57,10 +57,12 @@ export default function Plan({ anchor }: { anchor?: string }) {
           <div className={s.items}>
             {planFaq.map(([q, a], i) => (
               <div key={q} className={s.qa}>
-                <button onClick={() => setOpen(open === i ? -1 : i)} className={s.q} aria-expanded={open === i}>
-                  {q}<span className={s.plus} style={{ transform: `rotate(${open === i ? 45 : 0}deg)` }}>+</span>
-                </button>
-                <div className={s.aWrap} style={{ gridTemplateRows: open === i ? '1fr' : '0fr' }}><div className={s.aInner}><p className={s.a}>{a}</p></div></div>
+                <h3 className={s.qH}>
+                  <button type="button" id={`faq-q${i}`} onClick={() => setOpen(open === i ? -1 : i)} className={s.q} aria-expanded={open === i} aria-controls={`faq-a${i}`}>
+                    {q}<span className={s.plus} aria-hidden="true" style={{ transform: `rotate(${open === i ? 45 : 0}deg)` }}>+</span>
+                  </button>
+                </h3>
+                <div id={`faq-a${i}`} role="region" aria-labelledby={`faq-q${i}`} aria-hidden={open !== i} className={s.aWrap} style={{ gridTemplateRows: open === i ? '1fr' : '0fr' }}><div className={s.aInner}><p className={s.a}>{a}</p></div></div>
               </div>
             ))}
           </div>
@@ -68,7 +70,7 @@ export default function Plan({ anchor }: { anchor?: string }) {
 
         <section className={s.ready}>
           <div className={s.readyH}>Ready when you are.</div>
-          <TLink href="/build-your-journey" className={s.readyBtn}>BUILD YOUR JOURNEY →</TLink>
+          <TLink href="/build-your-journey" className={s.readyBtn}>BUILD YOUR JOURNEY <span aria-hidden="true">→</span></TLink>
         </section>
       </main>
       <Footer />

@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import Photo from '@/components/Photo';
 import TLink from '@/components/TLink';
 import { brand, byId, fmt, img, journeyHref, journeys, media, shortU, type Journey } from '@/content';
-import { inViewProgress, prefersReducedMotion, stickyProgress, useViewport } from '@/lib/hooks';
+import { inViewProgress, prefersReducedMotion, stickyProgress, useNoHover, useViewport } from '@/lib/hooks';
 import s from './Home.module.css';
 
 const K_DATA = [
@@ -84,6 +84,7 @@ export default function Home() {
   const [mHover, setMHover] = useState('punakha');
   const [choice, setChoice] = useState(-1);
   const [endIn, setEndIn] = useState(false);
+  const touch = useNoHover();
 
   useEffect(() => {
     const reduce = prefersReducedMotion();
@@ -123,10 +124,11 @@ export default function Home() {
   return (
     <>
       <Nav />
+      <main id="main" tabIndex={-1}>
 
       <section ref={heroRef} className={s.hero} aria-label="Film">
         <div className={s.sticky}>
-          <video ref={vidRef} className={s.video} playsInline loop muted preload="metadata" poster={media.heroPoster} style={{ transform: `scale(${(1 + hp * 0.12).toFixed(3)})` }} />
+          <video ref={vidRef} aria-hidden="true" tabIndex={-1} className={s.video} playsInline loop muted preload="metadata" poster={media.heroPoster} style={{ transform: `scale(${(1 + hp * 0.12).toFixed(3)})` }} />
           <div className={s.vignette} />
           <div className={s.fill} style={{ opacity: (hp * 0.55).toFixed(3) }} />
           <div className={s.curtain} style={{ opacity: ready ? 0 : 1 }} />
@@ -148,9 +150,9 @@ export default function Home() {
             <p className={s.tag}>WHERE PROGRESS IS MEASURED IN HAPPINESS</p>
           </div>
           <div className={s.heroBottom} style={{ opacity: tagOp }}>
-            <span>FILM 01 — HIMALAYAN RIVER VALLEY</span>
-            <a href="#kingdom" data-cursor="ENTER" className={s.enter}>ENTER THE KINGDOM<span className={s.enterLine} /></a>
-            <button onClick={toggleSound} className={s.sound} aria-pressed={sound}>SOUND <span style={{ color: sound ? '#e3a23a' : 'rgba(245,241,232,.75)' }}>{sound ? 'ON' : 'OFF'}</span></button>
+            <span className={s.filmLabel}>FILM 01 — HIMALAYAN RIVER VALLEY</span>
+            <a href="#kingdom" data-cursor="ENTER" className={s.enter}>ENTER THE KINGDOM<span className={s.enterLine} aria-hidden="true" /></a>
+            <button type="button" onClick={toggleSound} className={s.sound} aria-pressed={sound} aria-label="Film sound">SOUND <span aria-hidden="true" style={{ color: sound ? '#e3a23a' : 'rgba(245,241,232,.75)' }}>{sound ? 'ON' : 'OFF'}</span></button>
           </div>
         </div>
       </section>
@@ -188,7 +190,7 @@ export default function Home() {
               );
             })}
           </div>
-          <div className={s.kCounter}>
+          <div className={s.kCounter} aria-hidden="true">
             <span>{String(kIdx + 1).padStart(2, '0')}</span>
             <span className={s.kTrack}><span className={s.kBar} style={{ width: ((kIdx + 1) / 4 * 100) + '%' }} /></span>
             <span>04</span>
@@ -201,9 +203,10 @@ export default function Home() {
         <div className={s.mapText}>
           <div className={s.eyebrow}>03 — THE SHAPE OF THE KINGDOM</div>
           <h2 className={s.mapHead}>A kingdom<br />between earth<br /><em>and sky.</em></h2>
-          <div className={s.facts}>
-            <span className={s.factK}>AREA</span><span className={s.factK}>HIGHEST PEAK</span><span className={s.factK}>DZONGKHAGS</span>
-            <span className={s.factV}>38,394 km²</span><span className={s.factV}>7,570 m</span><span className={s.factV}>20</span>
+          <div className={s.facts} role="list" aria-label="Kingdom facts">
+            {[['AREA', '38,394 km²'], ['HIGHEST PEAK', '7,570 m'], ['DZONGKHAGS', '20']].map(([k, v]) => (
+              <span key={k} role="listitem" className={s.fact}><span className={s.factK}>{k}</span> <span className={s.factV}>{v}</span></span>
+            ))}
           </div>
           <p className={s.mapP}>Shaded from real elevation data. Hover a valley to look inside it — the subtropical south rises to Gangkhar Puensum in barely 170 kilometres.</p>
           <TLink href="/interactive-map" data-cursor="EXPLORE" className={s.mapCta}>ENTER THE INTERACTIVE MAP <span className={s.mono}>→</span></TLink>
@@ -223,6 +226,7 @@ export default function Home() {
       <section id="experiences" className={s.choose} aria-label="Choose">
         {CHOICES.map((c, i) => {
           const on = choice === i;
+          const shown = on || touch;
           const enter = () => {
             setChoice(i);
             const v = vrefs[i].current;
@@ -230,16 +234,16 @@ export default function Home() {
           };
           const leave = () => { setChoice(-1); vrefs[i].current?.pause(); };
           return (
-            <TLink key={c.no} href={c.href} onMouseEnter={enter} onMouseLeave={leave} data-cursor="ENTER" className={s.panel} style={{ flex: `${on ? 2.2 : 1} 1 300px` }}>
+            <TLink key={c.no} href={c.href} onMouseEnter={enter} onMouseLeave={leave} onFocus={() => setChoice(i)} onBlur={() => setChoice(-1)} data-cursor="ENTER" className={s.panel} style={{ flex: `${on ? 2.2 : 1} 1 300px` }}>
               <Photo src={c.img} alt={c.name} className={s.panelImg} sizes="(max-width: 900px) 100vw, 60vw"
                 style={{ transform: `scale(${on ? 1.02 : 1.12})`, filter: `grayscale(${choice >= 0 && !on ? 0.7 : 0}) brightness(${on ? 0.9 : 0.62})` }} />
-              {c.video && <video ref={vrefs[i]} className={s.panelVideo} playsInline loop muted preload="none" style={{ opacity: on ? 1 : 0 }} />}
+              {c.video && <video ref={vrefs[i]} aria-hidden="true" tabIndex={-1} className={s.panelVideo} playsInline loop muted preload="none" style={{ opacity: on ? 1 : 0 }} />}
               <div className={s.panelShade} />
               <div className={s.panelText}>
-                <div className={s.panelNo}>{c.no}</div>
+                <div className={s.panelNo} aria-hidden="true">{c.no}</div>
                 <div className={s.panelVerb} style={{ fontStyle: on ? 'italic' : 'normal' }}>{c.verb}</div>
-                <div className={s.panelRow}><span>{c.name}</span><span className={s.panelArrow} style={{ opacity: on ? 1 : 0 }}>EXPLORE →</span></div>
-                <p className={s.panelP} style={{ opacity: on ? 1 : 0 }}>{c.text}</p>
+                <div className={s.panelRow}><span>{c.name}</span><span className={s.panelArrow} aria-hidden="true" style={{ opacity: shown ? 1 : 0 }}>EXPLORE →</span></div>
+                <p className={s.panelP} style={{ opacity: shown ? 1 : 0 }}>{c.text}</p>
               </div>
             </TLink>
           );
@@ -308,14 +312,15 @@ export default function Home() {
               <span className={s.trustNo}>{t.no}</span>
               <span className={s.trustTitle}>{t.title}</span>
               <span className={s.trustText}>{t.text}</span>
-              <span className={s.trustArrow}>{t.arrow}</span>
+              <span className={s.trustArrow} aria-hidden="true">{t.arrow}</span>
+              {t.arrow === '↗' && <span className="bmv-sr"> (opens Tripadvisor)</span>}
             </TLink>
           ))}
         </div>
       </section>
 
       <section ref={endRef} className={s.end} aria-label="Begin">
-        <video ref={endVidRef} className={s.endVideo} playsInline loop muted preload="none" poster={img('punakha', 0)} />
+        <video ref={endVidRef} aria-hidden="true" tabIndex={-1} className={s.endVideo} playsInline loop muted preload="none" poster={img('punakha', 0)} />
         <div className={s.endShade} />
         <div className={s.endInner}>
           <div className={s.endLine} style={{ opacity: endIn ? 1 : 0, transform: `translateY(${endIn ? '0' : '40px'})` }}>Some places change your plans.</div>
@@ -323,6 +328,7 @@ export default function Home() {
           <TLink href="/build-your-journey" data-cursor="BEGIN" className={s.endCta} style={{ opacity: endIn ? 1 : 0 }}>BEGIN YOUR JOURNEY <span className={s.mono}>→</span></TLink>
         </div>
       </section>
+      </main>
       <Footer />
     </>
   );

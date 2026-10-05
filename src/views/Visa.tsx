@@ -27,20 +27,20 @@ export default function Visa() {
   return (
     <>
       <Nav tone="dark" solid />
-      <main className={s.main}>
+      <main id="main" tabIndex={-1} className={s.main}>
         <header className={s.intro} data-screen-label="Visa intro">
-          <TLink href="/plan" className={s.back}>← PLAN YOUR TRIP</TLink>
+          <TLink href="/plan" className={s.back}><span aria-hidden="true">← </span>PLAN YOUR TRIP</TLink>
           <h1 className={s.h1}>The visa,<br /><em>handled.</em></h1>
           <p className={s.lead}>Every visitor except nationals of India, Bangladesh and the Maldives needs a visa, approved before you fly. It sounds complicated. It isn’t, when someone in Thimphu does it for you.</p>
         </header>
 
         <section ref={ref} className={s.process} data-screen-label="Process">
-          <div className={s.line}><div className={s.lineFill} style={{ height: (p * 100).toFixed(1) + '%' }} /></div>
+          <div className={s.line} aria-hidden="true"><div className={s.lineFill} style={{ height: (p * 100).toFixed(1) + '%' }} /></div>
           {visaSteps.map(([title, who, text], i) => {
             const on = i <= act;
             return (
-              <div key={title} className={s.step} style={{ opacity: on ? 1 : 0.35 }}>
-                <div className={s.dot} style={{ background: on ? '#8f2b1f' : 'transparent', color: on ? '#f5f1e8' : '#8f2b1f' }}>{pad2(i + 1)}</div>
+              <div key={title} className={s.step} style={{ opacity: on ? 1 : 0.45 }}>
+                <div className={s.dot} aria-hidden="true" style={{ background: on ? '#8f2b1f' : 'transparent', color: on ? '#f5f1e8' : '#8f2b1f' }}>{pad2(i + 1)}</div>
                 <div className={s.stepBody}>
                   <div><h2 className={s.stepH}>{title}</h2><div className={s.who}>{who}</div></div>
                   <p className={s.stepText}>{text}</p>
@@ -67,17 +67,17 @@ export default function Visa() {
           <div className={s.calc}>
             <div className={s.eyebrow}>ESTIMATE YOUR FEES</div>
             {ctrls.map(c => (
-              <div key={c.k} className={s.ctrl}>
-                <span className={s.ctrlLabel}>{c.label}</span>
+              <div key={c.k} className={s.ctrl} role="group" aria-labelledby={`visa-${c.k}`}>
+                <span className={s.ctrlLabel} id={`visa-${c.k}`}>{c.label}</span>
                 <div className={s.stepper}>
-                  <button onClick={ch(c.k, -1, c.min, c.max)} aria-label={`Decrease ${c.label}`} className={s.sBtn}>−</button>
-                  <span className={s.sVal} aria-live="polite">{n[c.k]}</span>
-                  <button onClick={ch(c.k, 1, c.min, c.max)} aria-label={`Increase ${c.label}`} className={s.sBtn}>+</button>
+                  <button type="button" onClick={ch(c.k, -1, c.min, c.max)} disabled={n[c.k] <= c.min} aria-label={`Decrease ${c.label}`} className={s.sBtn}>−</button>
+                  <output className={s.sVal} aria-live="polite" aria-label={`${c.label}: ${n[c.k]}`}>{n[c.k]}</output>
+                  <button type="button" onClick={ch(c.k, 1, c.min, c.max)} disabled={n[c.k] >= c.max} aria-label={`Increase ${c.label}`} className={s.sBtn}>+</button>
                 </div>
               </div>
             ))}
-            <div className={s.totalK}>SDF + VISA FEES, TOTAL</div>
-            <div className={s.total}>USD {fmt(sdf + visa)}</div>
+            <div className={s.totalK} id="visa-total">SDF + VISA FEES, TOTAL</div>
+            <output className={s.total} aria-labelledby="visa-total" aria-live="polite">USD {fmt(sdf + visa)}</output>
             <div className={s.breakdown}>SDF USD {fmt(sdf)} + visas USD {visa}. Excludes your journey costs and GST.</div>
           </div>
         </section>

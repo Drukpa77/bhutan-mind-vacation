@@ -19,12 +19,12 @@ export default function Stories() {
   return (
     <>
       <Nav tone="dark" solid />
-      <main className={s.main}>
+      <main id="main" tabIndex={-1} className={s.main}>
         <header className={s.mast} data-screen-label="Stories masthead">
           <h1 className={s.h1}>Stories <em>from the Kingdom</em></h1>
-          <div className={s.kickers}>
+          <div className={s.kickers} role="group" aria-label="Filter stories">
             {[{ label: 'ALL', v: null as string | null }, ...KICKERS.map(x => ({ label: x.toUpperCase(), v: x }))].map(x => (
-              <button key={x.label} onClick={() => setK(x.v)} className={s.kicker} aria-pressed={k === x.v}
+              <button key={x.label} type="button" onClick={() => setK(x.v)} className={s.kicker} aria-pressed={k === x.v}
                 style={{ background: k === x.v ? '#1b1a16' : 'transparent', color: k === x.v ? '#f5f1e8' : '#1b1a16' }}>{x.label}</button>
             ))}
           </div>
@@ -37,14 +37,15 @@ export default function Stories() {
               <div className={s.meta}>{lead.kicker.toUpperCase()} · {lead.date}</div>
               <h2 className={s.leadH2}>{lead.title}</h2>
               <p className={s.leadDek}>{lead.dek}</p>
-              <span className={s.read}>READ THE STORY →</span>
+              <span className={s.read} aria-hidden="true">READ THE STORY →</span>
             </div>
           </TLink>
         )}
 
+        <p className="bmv-sr" role="status">{list.length} {list.length === 1 ? 'story' : 'stories'}{k ? ` in ${k}` : ''}</p>
         <div className={s.grid}>
           {rest.map((x, i) => (
-            <TLink key={x.id} href={`/stories/${x.id}`} data-cursor="READ" className={s.card} style={{ marginTop: i % 3 === 1 ? 80 : 0 }}>
+            <TLink key={x.id} href={`/stories/${x.id}`} data-cursor="READ" className={`${s.card} ${i % 3 === 1 ? s.cardOffset : ''}`}>
               <div className={s.cardImgBox} style={{ aspectRatio: RATIOS[i % 4] }}><Photo src={x.img} alt={x.title} className={s.cardImg} sizes="(max-width: 700px) 100vw, 33vw" /></div>
               <div className={s.meta} style={{ marginTop: 18 }}>{x.kicker.toUpperCase()} · {x.date}</div>
               <h3 className={s.cardH3}>{x.title}</h3>

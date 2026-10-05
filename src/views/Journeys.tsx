@@ -44,7 +44,7 @@ export default function Journeys({ initialCat = null, initialFeel = null, scroll
   return (
     <>
       <Nav />
-      <main className={s.main}>
+      <main id="main" tabIndex={-1} className={s.main}>
         <header className={s.hero}>
           <Photo src={img('dochula', 2)} alt="Dochula pass" className={s.heroImg} priority sizes="58vw" />
           <div className={s.heroShade} />
@@ -57,14 +57,14 @@ export default function Journeys({ initialCat = null, initialFeel = null, scroll
         <section className={s.feelSec} aria-label="Discover by feeling">
           <div className={s.feelHead}>
             <div className={s.label}>DISCOVER BY FEELING</div>
-            <button onClick={() => { setFeel([]); setDur(null); setCat(null); }} className={s.clear} style={{ color: filtered ? '#e3a23a' : 'rgba(245,241,232,.35)' }}>CLEAR ALL ×</button>
+            <button type="button" onClick={() => { setFeel([]); setDur(null); setCat(null); }} className={s.clear} aria-disabled={!filtered} aria-label="Clear all filters" style={{ color: filtered ? '#e3a23a' : 'rgba(245,241,232,.35)' }}>CLEAR ALL ×</button>
           </div>
-          <div className={s.feelings}>
+          <div className={s.feelings} role="group" aria-label="Feelings">
             {FEELINGS.map(f => {
               const on = feel.includes(f);
               const c = journeys.filter(j => match(j, { feel: [f] })).length;
               return (
-                <button key={f} onClick={() => toggleFeel(f)} className={s.feel} aria-pressed={on}
+                <button key={f} type="button" onClick={() => toggleFeel(f)} className={s.feel} aria-pressed={on} aria-label={`${f}, ${c} journeys`}
                   style={{ '--c': on ? '#e3a23a' : (feel.length ? 'rgba(245,241,232,.35)' : 'rgba(245,241,232,.82)'), fontStyle: on ? 'italic' : 'normal' } as React.CSSProperties}>
                   {f}<sup className={s.count}>{c}</sup>
                 </button>
@@ -75,19 +75,19 @@ export default function Journeys({ initialCat = null, initialFeel = null, scroll
 
         <section className={s.needSec} aria-label="Discover by need">
           <div>
-            <div className={s.needLabel}>HOW LONG</div>
-            <div className={s.seg}>
+            <div className={s.needLabel} id="jr-dur">HOW LONG</div>
+            <div className={s.seg} role="group" aria-labelledby="jr-dur">
               {DUR.map((d, i) => (
-                <button key={d[0]} onClick={() => setDur(dur === i ? null : i)} className={s.segBtn} aria-pressed={dur === i}
+                <button key={d[0]} type="button" onClick={() => setDur(dur === i ? null : i)} className={s.segBtn} aria-pressed={dur === i}
                   style={{ background: dur === i ? '#f5f1e8' : 'transparent', color: dur === i ? '#14130f' : '#f5f1e8' }}>{d[0]}</button>
               ))}
             </div>
           </div>
           <div>
-            <div className={s.needLabel}>WHAT KIND</div>
-            <div className={s.seg}>
+            <div className={s.needLabel} id="jr-cat">WHAT KIND</div>
+            <div className={s.seg} role="group" aria-labelledby="jr-cat">
               {CATS.map(c => (
-                <button key={c} onClick={() => setCat(cat === c ? null : c)} className={s.segBtn} aria-pressed={cat === c}
+                <button key={c} type="button" onClick={() => setCat(cat === c ? null : c)} className={s.segBtn} aria-pressed={cat === c}
                   style={{ background: cat === c ? '#f5f1e8' : 'transparent', color: cat === c ? '#14130f' : '#f5f1e8' }}>{c.toUpperCase()}</button>
               ))}
             </div>
@@ -95,7 +95,7 @@ export default function Journeys({ initialCat = null, initialFeel = null, scroll
         </section>
 
         <section className={s.results} aria-label="Results">
-          <div className={s.resultLabel}>{res.length + (res.length === 1 ? ' JOURNEY' : ' JOURNEYS') + (filtered ? ' MATCH' : ' · ALL') + ' · SAMPLE ITINERARIES'}</div>
+          <div className={s.resultLabel} role="status" aria-live="polite">{res.length + (res.length === 1 ? ' JOURNEY' : ' JOURNEYS') + (filtered ? ' MATCH' : ' · ALL') + ' · SAMPLE ITINERARIES'}</div>
           {res.length === 0 && (
             <div className={s.none}>Nothing matches — yet.<br /><TLink href="/build-your-journey" className={s.noneLink}>Let us write this one for you →</TLink></div>
           )}
@@ -113,7 +113,7 @@ export default function Journeys({ initialCat = null, initialFeel = null, scroll
             {pair.map((j, k) => {
               const i = k + 1;
               return (
-                <TLink key={j.id} href={journeyHref(j)} data-cursor="VIEW" className={s.pair} style={{ marginTop: i % 2 ? '120px' : '0' }}>
+                <TLink key={j.id} href={journeyHref(j)} data-cursor="VIEW" className={`${s.pair} ${i % 2 ? s.pairOffset : ''}`}>
                   <div className={s.pairImgBox} style={{ aspectRatio: i % 2 ? '4/5' : '5/4' }}><Photo src={j.img} alt={j.title} className={s.pairImg} sizes="50vw" /></div>
                   <div className={s.pairMeta}><span>JOURNEY {j.no}</span><span>{j.days} DAYS</span></div>
                   <div className={s.pairTitle}>{j.title}</div>
@@ -155,9 +155,9 @@ export default function Journeys({ initialCat = null, initialFeel = null, scroll
         <section id="experiences" ref={expRef} className={s.exp} aria-label="Experiences index">
           <div className={s.expHead}>
             <h2 className={s.expH2}>Or begin with<br /><em>an experience</em></h2>
-            <div className={s.expHint}>DRAG / SCROLL →</div>
+            <div className={s.expHint} aria-hidden="true"><span className={s.hintPointer}>DRAG / SCROLL</span><span className={s.hintTouch}>SWIPE</span> →</div>
           </div>
-          <div className={s.strip}>
+          <div className={s.strip} role="region" aria-label="Experiences, scroll horizontally" tabIndex={0}>
             {experiences.map((e, i) => {
               const on = hovE === i;
               const enter = () => {
@@ -172,9 +172,10 @@ export default function Journeys({ initialCat = null, initialFeel = null, scroll
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               };
               return (
-                <button key={e.id} onClick={click} onMouseEnter={enter} onMouseLeave={leave} data-cursor="FILTER" className={s.card}>
-                  <Photo src={e.img} alt={e.name} className={s.cardImg} sizes="360px" style={{ filter: `brightness(${on ? 0.85 : 0.6})`, transform: `scale(${on ? 1 : 1.06})` }} />
-                  {e.video && <video ref={el => { vrefs.current[i] = el; }} muted loop playsInline preload="none" className={s.cardVideo} style={{ opacity: on ? 1 : 0 }} />}
+                <button key={e.id} type="button" onClick={click} onMouseEnter={enter} onMouseLeave={leave} onFocus={() => setHovE(i)} onBlur={() => setHovE(-1)} data-cursor="FILTER" className={s.card}
+                  aria-label={e.id === 'festivals' ? `${e.name}: open the festival calendar` : `${e.name}: show matching journeys`}>
+                  <Photo src={e.img} alt="" className={s.cardImg} sizes="(max-width: 599px) 80vw, 360px" style={{ filter: `brightness(${on ? 0.85 : 0.6})`, transform: `scale(${on ? 1 : 1.06})` }} />
+                  {e.video && <video ref={el => { vrefs.current[i] = el; }} aria-hidden="true" tabIndex={-1} muted loop playsInline preload="none" className={s.cardVideo} style={{ opacity: on ? 1 : 0 }} />}
                   <div className={s.cardShade} />
                   <div className={s.cardText}>
                     <div className={s.cardKicker}>{String(i + 1).padStart(2, '0')} · {e.name.toUpperCase()}</div>

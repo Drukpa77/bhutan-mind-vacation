@@ -26,7 +26,8 @@ function ElevProfile({ j, prog, cur }: { j: JourneyT; prog: number; cur: number 
   const area = vis.length > 1 ? line(vis) + `L${vis[vis.length - 1][0]} ${H - 30}L${vis[0][0]} ${H - 30}Z` : '';
   const mono = { fontFamily: 'var(--mono)' };
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%', overflow: 'visible' }} role="img"
+      aria-label={'Elevation profile: ' + pts.map(p => `${p.name} ${fmt(p.alt)} m`).join(', ')}>
       {[1000, 2000, 3000, 4000].filter(v => v < mx).map(v => {
         const y = H - 30 - v / mx * (H - 70);
         return <g key={'g' + v}><line x1={40} x2={W - 40} y1={y} y2={y} stroke="rgba(245,241,232,.08)" /><text x={0} y={y + 3} fill="rgba(245,241,232,.45)" fontSize={10} style={mono}>{v + 'm'}</text></g>;
@@ -72,7 +73,7 @@ export default function Journey({ id }: { id: string }) {
   return (
     <>
       <Nav />
-      <main className={s.main}>
+      <main id="main" tabIndex={-1} className={s.main}>
         <header className={s.hero}>
           <Photo src={j.img} alt={j.title} className={s.heroImg} priority style={{ transform: `scale(${(1 + Math.min(y, 800) / 4000).toFixed(3)})` }} />
           <div className={s.heroShade} />
@@ -100,9 +101,9 @@ export default function Journey({ id }: { id: string }) {
           <div className={s.elev}><ElevProfile j={j} prog={ep * (j.route.length - 1)} cur={dayRoute[a]} /></div>
         </section>
 
-        <section className={s.itin} aria-label="Itinerary" style={{ gridTemplateColumns: narrow ? '1fr' : 'minmax(0,5fr) minmax(0,7fr)' }}>
-          <div className={s.mapCol} style={{ height: narrow ? '38vh' : 'calc(100vh - 76px)' }}>
-            <BhutanMap route={j.route} markers={[...new Set(j.route)]} flights={j.flight} progress={mapProg} activeId={j.itinerary[a].dest} focus="" zoom={1.7} labels="all" />
+        <section className={s.itin} aria-label="Itinerary">
+          <div className={s.mapCol} aria-hidden="true">
+            <BhutanMap route={j.route} markers={[...new Set(j.route)]} flights={j.flight} progress={mapProg} activeId={j.itinerary[a].dest} focus="" zoom={1.7} labels={narrow ? 'active' : 'all'} />
             <div className={s.counter}><span className={s.counterNo}>{String(a + 1).padStart(2, '0')}</span> / {j.days} DAYS</div>
             <div className={s.bar}><div className={s.barFill} style={{ width: ((a + 1) / j.itinerary.length * 100) + '%' }} /></div>
           </div>
@@ -110,10 +111,10 @@ export default function Journey({ id }: { id: string }) {
             {j.itinerary.map((d, i) => {
               const dd = byId[d.dest];
               return (
-                <article key={i} ref={el => { dayRefs.current[i] = el; }} className={s.day} style={{ opacity: i === a ? 1 : 0.38 }}>
+                <article key={i} ref={el => { dayRefs.current[i] = el; }} className={s.day} style={{ opacity: i === a ? 1 : 0.45 }}>
                   <div>
-                    <div className={s.dayK}>DAY</div>
-                    <div className={s.dayNo}>{String(j.generated ? i + 1 : d.day).padStart(2, '0')}</div>
+                    <div className={s.dayK} aria-hidden="true">DAY</div>
+                    <div className={s.dayNo}><span className="bmv-sr">Day </span>{String(j.generated ? i + 1 : d.day).padStart(2, '0')}</div>
                     <div className={s.dayMeta}>{dd.name.toUpperCase()}<br />{fmt(dd.alt)} M · {dd.lat.toFixed(3)}° N {dd.lon.toFixed(3)}° E</div>
                     <h3 className={s.dayTitle}>{d.title}</h3>
                     <p className={s.dayText}>{d.text}</p>

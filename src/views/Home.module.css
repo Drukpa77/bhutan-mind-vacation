@@ -40,6 +40,7 @@
 .mapHead { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(52px, 6.4vw, 112px); line-height: .9; letter-spacing: -.01em; }
 .mapHead em { font-style: italic; color: #e3a23a; }
 .facts { margin-top: 48px; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 12px 40px; font-family: var(--mono); }
+.fact { display: flex; flex-direction: column; gap: 12px; }
 .factK { font-size: 10px; letter-spacing: .2em; color: rgba(245, 241, 232, .6); }
 .factV { font-family: var(--serif); font-size: 34px; }
 .mapP { margin: 40px 0 0; max-width: 400px; font-family: var(--sans); font-size: 15px; line-height: 1.65; color: rgba(245, 241, 232, .75); }
@@ -137,3 +138,49 @@
 .endLine2 { font-style: italic; color: #e3a23a; transition-delay: .5s; }
 .endCta { margin-top: 56px; align-self: flex-start; display: inline-flex; gap: 16px; font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: .26em; padding: 20px 30px; border: 1px solid #f5f1e8; color: #f5f1e8; transition: all 1s ease 1s; }
 .endCta:hover { background: #f5f1e8; color: #14130f; }
+
+/* ——— Responsive ——— */
+.sticky, .end { height: 100svh; }
+.sound, .enter { min-height: 44px; }
+
+/* Tablet & below: 2-of-3 image column only makes sense with three tracks. */
+@media (max-width: 1139px) {
+  .fj { grid-template-columns: minmax(0, 1fr); }
+  .fjImgCol { grid-column: auto; min-height: 64svh; }
+  .fjShade { background: linear-gradient(180deg, rgba(15, 14, 11, 0) 55%, rgba(15, 14, 11, .9)); }
+  .fjSide { padding-left: clamp(16px, 5vw, 80px); padding-right: clamp(16px, 5vw, 80px); max-width: 720px; }
+}
+@media (max-width: 899px) {
+  .choose { flex-direction: column; }
+  .panel { flex: 1 1 auto !important; min-height: 72svh; border-right: 0; border-bottom: 1px solid rgba(245, 241, 232, .08); }
+  .mapBox { height: 62svh; min-height: 380px; }
+  .trustRow { grid-template-columns: 48px minmax(0, 1fr) 28px; row-gap: 12px; }
+  .trustText { grid-column: 2 / 3; grid-row: 2; }
+}
+@media (max-width: 599px) {
+  .hero { height: 180svh; }
+  .filmLabel { display: none; }
+  .heroBottom { bottom: calc(24px + env(safe-area-inset-bottom)); align-items: center; }
+  .coords, .druk { top: 96px; font-size: 10px; letter-spacing: .18em; }
+  .kingdom { height: 360svh; }
+  .kHead { font-size: clamp(40px, 11vw, 64px); }
+  .kicker { margin-bottom: 20px; }
+  .kCaption { bottom: 72px; right: 16px; line-height: 1.7; }
+  .kCounter { bottom: 32px; }
+  .mapText { padding: 96px 16px 40px; }
+  .facts { gap: 12px 22px; margin-top: 36px; }
+  .factV { font-size: 26px; }
+  .card { width: 150px; right: 16px; bottom: 16px; }
+  .cardName { font-size: 22px; }
+  .cardTags, .cardKind { display: none; }
+  .panel { min-height: 64svh; }
+  .panelText { right: 20px; bottom: 32px; }
+  .fjImgCol { min-height: 56svh; }
+  .fjDays { bottom: 24px; }
+  .fjMap { height: 170px; }
+  .fjCta, .endCta { align-self: stretch; justify-content: space-between; }
+  .step { padding-right: 16px; }
+  .trustRow { padding: 24px 0; gap: 16px; }
+  .end { min-height: 520px; }
+  .endCta { margin-top: 40px; }
+}

@@ -33,22 +33,24 @@ const PILLARS = [
 export default function About({ anchor }: { anchor?: string }) {
   const { y, vh } = useViewport();
   const storyRef = useRef<HTMLElement>(null);
+  const chRefs = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
     if (anchor) document.getElementById(anchor)?.scrollIntoView({ behavior: 'instant' as ScrollBehavior });
   }, [anchor]);
 
-  const el = storyRef.current;
-  const ch = el ? Math.max(0, Math.min(3, Math.floor((-el.getBoundingClientRect().top + vh * 0.5) / vh))) : 0;
+  // Active chapter: the last one whose top has passed 60% of the viewport (works for both the side-by-side and stacked layouts).
+  let ch = 0;
+  chRefs.current.forEach((a, i) => { if (a && a.getBoundingClientRect().top < vh * 0.6) ch = i; });
 
   return (
     <>
       <Nav tone="dark" />
-      <main className={s.main}>
+      <main id="main" tabIndex={-1} className={s.main}>
         <header className={s.intro} data-screen-label="About intro">
           <div className={s.eyebrow}>ABOUT · BMV TOURS &amp; TREKS · SINCE 2012</div>
           <h1 className={s.h1}>A Bhutanese family,<br /><em>at your service.</em></h1>
-          <div className={s.anchors}>
+          <div className={s.anchors} role="navigation" aria-label="On this page">
             <TLink href="#story">OUR STORY</TLink><TLink href="#founder">THE FOUNDER</TLink><TLink href="#responsible">RESPONSIBLE TRAVEL</TLink>
           </div>
         </header>
@@ -57,13 +59,13 @@ export default function About({ anchor }: { anchor?: string }) {
         </div>
 
         <section id="story" ref={storyRef} className={s.story} data-screen-label="Our story">
-          <div className={s.storySticky}>
-            {CHAPTERS.map(([, title, , im], i) => <Photo key={title} src={im} alt={title} className={s.chImg} sizes="(max-width: 800px) 100vw, 50vw" style={{ opacity: i === ch ? 1 : 0 }} />)}
+          <div className={s.storySticky} aria-hidden="true">
+            {CHAPTERS.map(([, title, , im], i) => <Photo key={title} src={im} alt="" className={s.chImg} sizes="(max-width: 800px) 100vw, 50vw" style={{ opacity: i === ch ? 1 : 0 }} />)}
             <div className={s.chNo}>{pad2(ch + 1)} / 04</div>
           </div>
           <div>
-            {CHAPTERS.map(([k, title, text]) => (
-              <article key={title} className={s.chapter}>
+            {CHAPTERS.map(([k, title, text], i) => (
+              <article key={title} ref={a => { chRefs.current[i] = a; }} className={s.chapter}>
                 <div className={s.eyebrow}>{k}</div>
                 <h2 className={s.chH2}>{title}</h2>
                 <p className={s.chP}>{text}</p>
@@ -83,7 +85,7 @@ export default function About({ anchor }: { anchor?: string }) {
               <blockquote className={s.quote}>“People need some breathing space, which is often lost in the chaos of this crazy modern world.”</blockquote>
               <p className={s.bio}>Tshering Dorji began in Bhutan’s travel industry in 2005, became a licensed guide, and walked the kingdom’s great treks — Jomolhari, Laya–Lingshi, the Druk Path, Dagala Thousand Lakes. Friendships with the travellers he guided took him across Europe, America, Asia and Australia. In 2012 he founded Bhutan Mind Vacation for people looking for serenity, happiness and a spiritual journey — while giving back to the country and its people.</p>
               <div className={s.timeline}>
-                {TIMELINE.map((t, i) => <div key={i} className={s.tRow}><span className={s.tY}>{t.y}</span><span className={s.tT}>{t.t}</span></div>)}
+                {TIMELINE.map((t, i) => <div key={i} className={s.tRow}><span className={s.tY} aria-hidden={t.y === '—'}>{t.y}</span><span className={s.tT}>{t.t}</span></div>)}
               </div>
             </div>
           </div>
@@ -98,7 +100,7 @@ export default function About({ anchor }: { anchor?: string }) {
             <div>
               {PILLARS.map((p, i) => (
                 <div key={p.t} className={s.pillar}>
-                  <span className={s.pNo}>{pad2(i + 1)}</span>
+                  <span className={s.pNo} aria-hidden="true">{pad2(i + 1)}</span>
                   <div><div className={s.pT}>{p.t}</div><p className={s.pD}>{p.d}</p></div>
                 </div>
               ))}

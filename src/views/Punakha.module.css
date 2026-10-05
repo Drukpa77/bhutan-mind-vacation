@@ -55,3 +55,26 @@
 .jDays { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; color: #e3a23a; white-space: nowrap; }
 .build { align-self: flex-start; margin-top: 16px; display: inline-flex; gap: 16px; font-size: 12px; font-weight: 500; letter-spacing: .24em; padding: 18px 26px; background: #e3a23a; color: #14130f; }
 .build:hover { background: #f5f1e8; color: #14130f; }
+.back { display: inline-block; padding: 8px 0; margin: -8px 0; }
+
+.hero, .sticky, .galSticky { height: 100svh; }
+@media (max-width: 899px) {
+  .figImgBox { max-height: 52svh; }
+}
+@media (max-width: 599px) {
+  .hero { min-height: 560px; }
+  .heroL, .heroR { top: 96px; font-size: 10px; letter-spacing: .18em; }
+  .heroR { top: 168px; left: 16px; right: auto; text-align: left; opacity: .85; }
+  .river { font-size: 13vw; }
+  .riverLbls { font-size: 9px; letter-spacing: .18em; }
+  .riverStage { height: 120px; }
+  .story { gap: 20px; }
+  .storyLead { font-size: 22px; }
+  .storyBody { font-size: 14px; }
+  .galNo { top: 92px; }
+  .galIntro { flex-basis: 78vw; }
+  .figTitle { font-size: 24px; }
+  .todoTitle { font-size: 26px; }
+  .build { align-self: stretch; justify-content: space-between; }
+}
+@media (max-height: 640px) { .storyBody { display: none; } }

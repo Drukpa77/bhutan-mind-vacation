@@ -15,7 +15,6 @@
 .opts { display: flex; flex-wrap: wrap; column-gap: clamp(20px, 3vw, 48px); row-gap: 6px; margin-top: 48px; max-width: 1200px; }
 .opt { all: unset; cursor: pointer; display: flex; align-items: baseline; gap: 12px; font-family: var(--serif); font-size: clamp(30px, 3.4vw, 56px); line-height: 1.1; color: rgba(245, 241, 232, .55); transition: color .25s; }
 .opt:hover { color: #f5f1e8 !important; }
-.opt:focus-visible, .month:focus-visible, .back:focus-visible, .next:focus-visible, .restart:focus-visible { outline: 1px solid #e3a23a; outline-offset: 4px; }
 .optMark { font-family: var(--mono); font-size: 11px; font-style: normal; color: #e3a23a; }
 
 .daysBox { margin-top: 40px; max-width: 820px; }
@@ -64,8 +63,9 @@
 .stopAlt { opacity: .6; }
 .notes { font-size: 13px; line-height: 1.7; color: rgba(245, 241, 232, .75); border-top: 1px solid rgba(245, 241, 232, .15); padding-top: 20px; }
 .fees { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: rgba(245, 241, 232, .6); }
-.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-.input { all: unset; padding: 16px 0; border-bottom: 1px solid rgba(245, 241, 232, .3); font-size: 15px; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.input { all: unset; padding: 16px 0; border-bottom: 1px solid rgba(245, 241, 232, .3); font-size: 16px; }
+.input:focus { border-bottom-color: #e3a23a; }
 .input::placeholder { color: rgba(245, 241, 232, .5); }
 .sendRow { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
 .send { display: inline-flex; gap: 16px; font-size: 12px; font-weight: 500; letter-spacing: .22em; padding: 20px 28px; background: #e3a23a; color: #14130f; }
@@ -75,3 +75,36 @@
 .sentH { font-family: var(--serif); font-size: 40px; line-height: 1; }
 .sentP { margin: 12px 0 0; font-size: 14px; line-height: 1.6; color: rgba(245, 241, 232, .8); }
 .resMap { position: relative; min-height: 60vh; background: #0f0e0b; }
+.main { overflow: clip; }
+.stops { margin: 0; padding: 0; list-style: none; }
+.q:focus, .resH1:focus { outline: none; }
+.back { padding: 14px 0; }
+.back:disabled { cursor: default; }
+.next[aria-disabled='true'] { cursor: not-allowed; }
+.restart { padding: 14px 0; }
+
+@media (max-width: 899px) {
+  .shade { background: linear-gradient(180deg, rgba(15, 14, 11, .9) 20%, rgba(15, 14, 11, .7)); }
+  .resMap { min-height: 50svh; }
+}
+@media (max-width: 599px) {
+  .steps { padding: 96px 16px calc(20px + env(safe-area-inset-bottom)); min-height: 100svh; }
+  .body { padding: 28px 0; justify-content: flex-start; }
+  .q { font-size: clamp(40px, 11.5vw, 54px); }
+  .opts { flex-direction: column; margin-top: 28px; row-gap: 4px; }
+  .opt { font-size: 28px; padding: 6px 0; }
+  .daysNum { font-size: 120px; }
+  .daysU { font-size: 12px; }
+  .rangeLbls { font-size: 9px; }
+  .monthRow { justify-content: center; }
+  .wheel { width: min(340px, 86vw); }
+  .month { padding: 12px 10px; }
+  .monthName { font-size: 40px; }
+  .footRow { position: sticky; bottom: 0; margin: 0 -16px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: rgba(15, 14, 11, .92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .next { padding: 16px 20px; letter-spacing: .18em; }
+  .resText { gap: 22px; }
+  .statV { font-size: 44px; }
+  .stops { font-size: 11px; letter-spacing: .14em; }
+  .fields { grid-template-columns: 1fr; }
+  .send { width: 100%; box-sizing: border-box; justify-content: space-between; letter-spacing: .16em; padding: 18px 20px; }
+}

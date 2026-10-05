@@ -55,13 +55,14 @@ export default function Story({ id }: { id: string }) {
   return (
     <>
       <Nav tone="light" />
-      <div className={s.progress} style={{ width: (p * 100).toFixed(2) + '%' }} />
+      <div className={s.progress} aria-hidden="true" style={{ width: (p * 100).toFixed(2) + '%' }} />
+      <main id="main" tabIndex={-1}>
       <article className={s.article}>
         <header className={s.hero} data-screen-label="Article hero">
           <Photo src={st.img} alt={st.title} className={s.heroImg} vt="story-hero" priority />
           <div className={s.heroShade} />
           <div className={s.heroText}>
-            <TLink href="/stories" className={s.back}>← STORIES · {st.kicker.toUpperCase()}</TLink>
+            <TLink href="/stories" className={s.back}><span aria-hidden="true">← </span>STORIES · {st.kicker.toUpperCase()}</TLink>
             <h1 className={s.h1}>{st.title}</h1>
             <p className={s.dek}>{st.dek}</p>
             <div className={s.date}>{st.date} · {full ? '4 MIN READ' : 'FROM THE ARCHIVE'}</div>
@@ -71,12 +72,12 @@ export default function Story({ id }: { id: string }) {
         {full ? <HiddenGem /> : (
           <div className={s.partial}>
             <p className={s.p} style={{ margin: 0 }}>{st.dek}</p>
-            <a href={`https://www.bhutanmindvacation.com/blog/${st.orig}`} className={s.orig} target="_blank" rel="noopener">READ THE ORIGINAL ON THE BMV BLOG ↗</a>
+            <a href={`https://www.bhutanmindvacation.com/blog/${st.orig}`} className={s.orig} target="_blank" rel="noopener">READ THE ORIGINAL ON THE BMV BLOG <span aria-hidden="true">↗</span><span className="bmv-sr"> (opens in a new tab)</span></a>
           </div>
         )}
 
         <section className={s.related} data-screen-label="Article related">
-          <div className={s.mapBox}>
+          <div className={s.mapBox} aria-hidden="true">
             <BhutanMap variant="light" markers={near} activeId={dd.id} focus={dd.id} zoom={2.4} labels="all" />
             <div className={s.loc}>LOCATION · {dd.lat.toFixed(3)}° N {dd.lon.toFixed(3)}° E</div>
           </div>
@@ -87,6 +88,7 @@ export default function Story({ id }: { id: string }) {
           </div>
         </section>
       </article>
+      </main>
       <Footer />
     </>
   );

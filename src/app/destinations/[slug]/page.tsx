@@ -22,7 +22,7 @@ export default async function Page({ params }: Params) {
   const bg = v === 'still' ? '#f5f1e8' : v === 'editorial' ? '#ece4d4' : '#0f0e0b';
   return (
     <>
-      <PageStyle bg={bg} />
+      <PageStyle bg={bg} focus={bg === '#0f0e0b' ? undefined : '#8f2b1f'} />
       <Destination id={slug} />
     </>
   );
